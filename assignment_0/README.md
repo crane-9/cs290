@@ -75,7 +75,7 @@ I don't use a lot of social media, but I've been intermittently on Tumblr. There
 
     > (Disclaimer: I am complaining about the worst themes of my personal opinion, there is maybe one that I like. I am also a bit photophobic and picky.)
 
-### 3. WordHippo.com
+### 3. [WordHippo.com](https://www.wordhippo.com/)
 
 WordHippo is a site that provides synonyms, antonyms, definitions, rhymes, translations, etc. I primarily use it for synonyms and antonyms, so I cannot speak to the accuracy of every feature.
 
@@ -125,15 +125,23 @@ This site has a lot of features, some of which I won't be acknowledging as I don
     > Disclaimer: I'm not sure about this one, as it could be a handful of other things going on. But it is one of the few things that I think the site could have better organized.
 
 
-### 5. 
+### 5. [Devon Wiersma's Portfolio Site](https://www.devonwiersma.games/home)
 
-
+I wanted to include a site that didn't serve a userbase. This is the site of Devon Wiersma, a game developer I admire. They have worked on Far Cry 6, as well as various indie games. 
 
 #### Likes:
 
-1.
+1. **Layout.** I like the simplicity of the /home and /independent-works pages. Each item listed on each page is formatted simply, yet it is appealing to look at, and lays out information succinctly without overwhelming the reader with text.
+
+    Additionally, the layout works on mobile, morphing into a similar style appropriate for the new aspect ratio.
+
+2. **Simplicity.** This site overall is very simple in many respects, which I admire. As I noted, the layout is simple (especially on the /about page, it does not overcomplicate what an about page should be), as well as the color palette/use of color. It makes Devon as a person feel focused and direct. This is something I should follow for my own site.
+
+3. **Navigation.** The navigation at the top of the page is another simple element. The site has four pages overall, each of which being linked at the top of the page (or, in a nice popup on mobile). There aren't any drop-downs or sub-menus, which is very nice. Additionally, there is a nice header with the developer's name.
+
 
 #### Dislikes:
 
-1. 
+1. **Color palette.** While I like the simplicity of the color palette and usage, I do not like the colors themselves. There are three or four colors used: a dark grey and a similar black, white, and yellow. While they are used effectively and appropriately, I don't necessarily like the effect of the yellow shadow-highlight for certain pieces of text. To me, that feels generic, and it isn't something I enjoy looking at or feel looks good against white, even if it doesn't challenge readability.
 
+2. **Spacing details.**  This is a complete nitpick, but at the bottom of each page it feels that there is a bit of extra space beneath a "last updated" footer, which personally I would trim. I find it bothersome and a slight lack of polish, but I am consciously being nitpicky.
