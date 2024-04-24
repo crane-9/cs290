@@ -1,0 +1,130 @@
+/**
+    CSS for blog/merch personal site.
+
+    This file is divided into sections:
+        - Prep (fonts, root, body).
+        - General (basic elements/classes that will be used on all pages).
+
+    Specific page layouts can be found in each their own CSS file.
+*/
+
+
+@font-face {
+    font-family: JoyStix;
+    src: url(../fonts/joystix.otf) format("opentype");
+}
+
+:root {
+    --background: #1a121d;
+    --text-color: #dbdbdb;
+    
+    --coral: #f24973;
+    --pink: #C73FC1;
+    --orange: #e09f24;
+    --yellow: #ffe86b;
+    
+    --header-font: JoyStix, monospace;
+    --body-font: "Ubuntu Mono", monospace;
+}
+
+
+::selection {
+    background-color: color-mix(in srgb, var(--orange) 80%, transparent);
+}
+
+/* body background header gradient thing */
+body::before {
+    background: linear-gradient(to bottom, var(--pink), transparent);
+    content: "";
+    mix-blend-mode: saturation;
+    display: block;
+    height: 30dvh;
+    position: absolute;
+    top: 0;
+    width: 100dvw;
+    z-index: -10;
+
+    overflow: hidden;
+}
+
+
+body {
+    height: 100dvh;
+    margin: 0;
+
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: var(--body-font);
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+header#site-header {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 1.5em 0;
+    font-family: var(--header-font);
+    
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--header-font);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+nav#site-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 100%;
+    text-align: center;
+}
+
+header#site-header a, header#site-header a:visited {
+    color: var(--text-color);
+}
+
+header#site-header a:hover {
+    color: color-mix(in srgb, var(--text-color), transparent);
+}
+
+/** Basic layout for main, will likely be consistent across most pages. */
+main {
+    margin: 0 auto;
+    width: 65%;
+}
+
+/** A nice lil copyright footer. */
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    margin: 0 1ex;
+
+    font: 0.8rem var(--header-font);
+}
+
+a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--coral);
+}
+
+a:hover, a::selection {
+    /** Including selection to avoid contrast conflict. */
+    color: var(--yellow);
+}
