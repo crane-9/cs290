@@ -1,0 +1,68 @@
+/**
+    CSS layout for the site's merch/store page, and its parts and pieces.
+*/
+
+/** Layout for the shop's main. */
+
+main#merch {
+    width: 85%;
+}
+
+#merch-nav {
+    display: flex;
+    align-items: last baseline;
+    justify-content: space-between;
+}
+
+#merch-content {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1em;
+}
+
+.product {
+    background-color: var(--card-bg);
+    padding: 1em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.thumbnail {
+    image-rendering: crisp-edges; /* for pixel art*/
+    width: 100%;
+    max-width: 200px;
+}
+
+.product-name {
+    position: absolute; 
+    bottom: 0px;
+    left: 0px;
+    margin: 0;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    font: 24px var(--header-font);
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    margin: 1rem 1rem 0 0;
+}
+
+.product-price::before {
+    content: "$";
+}
+
+.product-price span.cents {
+    font-size: 12px;
+}

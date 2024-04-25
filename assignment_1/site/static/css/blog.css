@@ -1,0 +1,64 @@
+/** 
+    CSS ;ayout for the site's blog page and its parts and pieces.
+*/
+
+/** Layout for the blog's main. */
+main#blog {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    flex: auto;
+    width: 50%;
+    min-width: 750px;
+}
+
+.blog-article {
+    background-color: var(--card-bg);
+    background-blend-mode: multiply;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0;
+    padding: 1ex 1em;
+}
+
+.article-header {
+    font-family: var(--header-font);
+
+    display: flex;
+    align-items: last baseline;
+    justify-content: space-between;
+    
+    border-bottom: 2px solid var(--pink);
+}
+
+.article-author {
+    font-size: 0.7em;
+}
+
+.article-content {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1ex;
+
+    padding: 1em 1.5em 2em;
+}
+
+.article-readmore {
+    margin: 1.5em 0;
+}
+
+.article-content p:first-child {
+    margin-top: 0
+}
+
+.article-content p:last-child {
+    margin-bottom: 0;
+}
+
+.article-tags {
+    display: flex;
+    gap: 1ex;
+    flex-flow: column wrap;
+    margin-left: 1.5em;
+}

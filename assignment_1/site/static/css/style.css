@@ -17,6 +17,8 @@
 :root {
     --background: #1a121d;
     --text-color: #dbdbdb;
+
+    --card-bg: color-mix(in srgb, black 70%, transparent);
     
     --coral: #f24973;
     --pink: #C73FC1;
@@ -127,4 +129,12 @@ a:visited {
 a:hover, a::selection {
     /** Including selection to avoid contrast conflict. */
     color: var(--yellow);
+}
+
+/** */
+.clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
 }

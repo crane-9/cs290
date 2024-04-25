@@ -22,8 +22,8 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `meta`                              | HTML     | ✔️         |                                                         |
 |         | `lang`                              | HTML     | ✔️         |                                                         |
 |         | `title`                             | HTML     | ✔️         |                                                         |
-|         | headers (at least 3 from `h1`-`h6`) | HTML     |           |                                                         |
-|         | paragraphs (`p`)                    | HTML     |           |                                                         |
+|         | headers (at least 3 from `h1`-`h6`) | HTML     | ✔️         |                                                         |
+|         | paragraphs (`p`)                    | HTML     | ✔️         |                                                         |
 |         | lists (`ol`, `ul`, `dl`)            | HTML     |           |                                                         |
 |         | line breaks (`br`)                  | HTML     |           | I will be avoiding line breaks, as I prefer for CSS to control my page's line spacing. However, they may be utilized in blog posts, as realistically, a site admin would include a `<br>`. |
 |         | anchor (`a`)                        | HTML     | ✔️         |                                                         |
@@ -55,7 +55,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `font-style`                        | CSS      |           |                                                         |
 |         | `font-variant`                      | CSS      |           |                                                         |
 |         | `font-weight`                       | CSS      |           |                                                         |
-|         | font property shorthand             | CSS      | ✔️         |                                                         |
+|         | `font` property shorthand           | CSS      | ✔️         |                                                         |
 |         | `text-align`                        | CSS      | ✔️         |                                                         |
 |         | `text-decoration`                   | CSS      | ✔️         |                                                         |
 |         | `line-height`                       | CSS      |           |                                                         |
