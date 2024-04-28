@@ -108,13 +108,15 @@ main {
 
 /** A nice lil copyright footer. */
 footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    text-align: right;
-    margin: 0 1ex;
-
     font: 0.8rem var(--header-font);
+    
+    text-align: center;
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    padding-top: 2em;
 }
 
 a {

@@ -5,8 +5,8 @@
 /** Layout for the blog's main. */
 main#blog {
     display: flex;
+    gap: 2em;
     flex-flow: column nowrap;
-    align-items: center;
     flex: auto;
     width: 50%;
     min-width: 750px;
@@ -39,13 +39,18 @@ main#blog {
 .article-content {
     display: flex;
     flex-flow: row nowrap;
-    gap: 1ex;
+    justify-content: space-between;
 
     padding: 1em 1.5em 2em;
 }
 
+.article-body {
+    padding-right: 1em;
+}
+
 .article-readmore {
-    margin: 1.5em 0;
+    
+
 }
 
 .article-content p:first-child {
@@ -61,4 +66,5 @@ main#blog {
     gap: 1ex;
     flex-flow: column wrap;
     margin-left: 1.5em;
+    min-width: max-content;
 }

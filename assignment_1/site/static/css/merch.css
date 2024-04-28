@@ -22,18 +22,32 @@ main#merch {
 }
 
 .product {
+    cursor:pointer;
+
     background-color: var(--card-bg);
     padding: 1em;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: background-color 200ms ease-in-out;
+
+    text-shadow: black 0 2px 5px;
 }
 
 img.thumbnail {
     image-rendering: crisp-edges; /* for pixel art*/
     width: 100%;
     max-width: 200px;
+
+    transition: translate 500ms ease-in-out;
+    animation-name: twirlreturn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+
+    z-index: 0;
 }
 
 .product-name {
@@ -57,6 +71,7 @@ img.thumbnail {
     align-items: flex-start;
 
     margin: 1rem 1rem 0 0;
+    z-index: 2;
 }
 
 .product-price::before {
@@ -65,4 +80,51 @@ img.thumbnail {
 
 .product-price span.cents {
     font-size: 12px;
+}
+
+/**
+    MOBILE LAYOUT
+*/
+@media (max-width: 800px) {
+    #merch-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+
+/** hover animations */
+.product:hover {
+    background-color: color-mix(in lch, var(--card-bg) 85%, white);
+    transition: background-color 100ms ease-in-out;
+}
+
+.product:hover img.thumbnail {
+    translate: 0 -10px;
+    transition: translate 400ms ease-in-out;
+
+    animation-name: idletwirl;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-direction:normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes idletwirl {
+    from {
+        rotate: 0 1 0 0deg;
+    } to {
+        rotate: 0 1 0 360deg;
+    }
+}
+
+@keyframes twirlreturn {
+    from {
+        rotate: 0 1 0 -360deg;
+    }
+    to {
+        rotate: 0 1 0 0deg;
+    }
 }

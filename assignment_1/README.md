@@ -28,13 +28,13 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | line breaks (`br`)                  | HTML     |           | I will be avoiding line breaks, as I prefer for CSS to control my page's line spacing. However, they may be utilized in blog posts, as realistically, a site admin would include a `<br>`. |
 |         | anchor (`a`)                        | HTML     | ✔️         |                                                         |
 |         | relative path                       | HTML     | ✔️         |                                                         |
-|         | absolute path                       | HTML     |           |                                                         |
+|         | absolute path                       | HTML     | ✔️         |                                                         |
 |         | fragment identifier                 | HTML     |           |                                                         |
-|         | image                               | HTML     |           |                                                         |
+|         | image                               | HTML     | ✔️         |                                                         |
 |         | `video`                             | HTML     |           |                                                         |
 |         | `width`                             | HTML     | ✔️         | Technically implemented in CSS.                         |
 |         | `height`                            | HTML     | ✔️         | Technically implemented in CSS.                         |
-|         | `alt`                               | HTML     |           |                                                         |
+|         | `alt`                               | HTML     | ✔️         |                                                         |
 |         | `table`                             | HTML     |           |                                                         |
 |         | row                                 | HTML     |           |                                                         |
 |         | data cell                           | HTML     |           |                                                         |
