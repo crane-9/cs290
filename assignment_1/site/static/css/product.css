@@ -1,0 +1,50 @@
+
+body {
+    overflow: hidden;
+}
+
+div#container {
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+
+    background-color: #0004;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main  {
+    position: relative;
+    height: 80dvh;
+    width: 75dvw;
+    z-index: 2;
+
+    border-radius: 1em;
+    background-color: color-mix(in srgb, var(--popup-bg) 85%,  transparent);
+    filter: drop-shadow(0 0 10px black);
+
+    padding: 3em 2em;
+}
+
+#nav-back {
+    display: inline-flex;
+    flex-flow: nowrap;
+    align-items: center;
+    gap: 1em;
+
+    position: relative;
+    left: 0;
+    top: -2em;
+}
+
+#product-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.product-interactive {
+    -ms-grid-row-span: 2;
+}
+

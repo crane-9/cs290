@@ -45,7 +45,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | table footer                        | HTML     |           |                                                         |
 |         | spanning columns                    | HTML     |           |                                                         |
 | **P2**  | class attribute                     | HTML     | ✔️         |                                                         |
-|         | class selector                      | CSS      |           |                                                         |
+|         | class selector                      | CSS      | ✔️         |                                                         |
 |         | id attribute                        | HTML     | ✔️         |                                                         |
 |         | id selector                         | CSS      | ✔️         |                                                         |
 |         | role attribute                      | HTML     |           |                                                         |
@@ -60,14 +60,14 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `text-decoration`                   | CSS      | ✔️         |                                                         |
 |         | `line-height`                       | CSS      |           |                                                         |
 |         | `color` (multiple methods)          | CSS      | ✔️         |                                                         |
-|         | `border`                            | CSS      |           |                                                         |
+|         | `border`                            | CSS      | ✔️         | Disabled border for `button` element, and partial borders used elsewhere. |
 |         | `padding`                           | CSS      | ✔️         |                                                         |
 |         | `margin`                            | CSS      | ✔️         |                                                         |
 | **P3**  | `background-color`                  | CSS      | ✔️         |                                                         |
-|         | `background-image`                  | CSS      |           |                                                         |
+|         | `background-image`                  | CSS      | ✔️         |                                                         |
 |         | `overflow`                          | CSS      | ✔️         |                                                         |
 |         | `box-sizing`                        | CSS      |           |                                                         |
-|         | vendor prefix properties            | CSS      |           |                                                         |
+|         | vendor prefix properties            | CSS      | ✔️         | Used to place an SVG image as a `::before` psuedoelement. |
 |         | `float`                             | CSS      |           |                                                         |
 |         | inheritance                         | CSS      |           |                                                         |
 |         | clear                               | CSS      |           |                                                         |
@@ -76,9 +76,9 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `z-index`                           | CSS      | ✔️         |                                                         |
 |         | `display`                           | CSS      | ✔️         |                                                         |
 |         | fixed-width layout                  | Design   |           |                                                         |
-|         | fluid layout                        | Design   |           |                                                         |
-|         | responsive layout                   | Design   |           |                                                         |
-|         | `@media` query                      | CSS      |           |                                                         |
+|         | fluid layout                        | Design   | ✔️         |                                                         |
+|         | responsive layout                   | Design   | ✔️         |                                                         |
+|         | `@media` query                      | CSS      | ✔️         |                                                         |
 |         | `viewport`                          | HTML     | ✔️         |                                                         |
 |         | navigation list                     | Design   |           |                                                         |
 |         | breadcrumbs                         | Design   |           |                                                         |

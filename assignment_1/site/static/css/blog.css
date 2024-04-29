@@ -20,6 +20,7 @@ main#blog {
     flex-flow: column nowrap;
     gap: 0;
     padding: 1ex 1em;
+    border-radius: var(--corner-rad);
 }
 
 .article-header {
@@ -48,10 +49,8 @@ main#blog {
     padding-right: 1em;
 }
 
-.article-readmore {
-    
-
-}
+/* .article-readmore {
+} */
 
 .article-content p:first-child {
     margin-top: 0

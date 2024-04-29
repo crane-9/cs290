@@ -19,6 +19,7 @@
     --text-color: #dbdbdb;
 
     --card-bg: color-mix(in srgb, black 70%, transparent);
+    --popup-bg: #2f2633;
     
     --coral: #f24973;
     --pink: #C73FC1;
@@ -27,6 +28,8 @@
     
     --header-font: JoyStix, monospace;
     --body-font: "Ubuntu Mono", monospace;
+
+    --corner-rad: 3px;
 }
 
 
@@ -133,10 +136,41 @@ a:hover, a::selection {
     color: var(--yellow);
 }
 
-/** */
+/* Make buttons inherit base styles as a starting point. */
+button {
+    font: inherit;
+    padding: 1ex 2em;
+    border: none;
+    border-radius: var(--corner-rad);
+}
+
+/*  */
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid var(--text-color);
+}
+
+th, td {
+    padding: 1ex 1em;
+}
+
+/** Specific utility classes. */
 .clearfix::after {
     clear: both;
     content: "";
     display: block;
     height: 0;
+}
+
+.link-wrap {
+    display: contents;
+    color: inherit!important;
+}
+
+/* for single unicode characters that could use some emphasis */
+.char {
+    font-size: 1.25rem;
 }

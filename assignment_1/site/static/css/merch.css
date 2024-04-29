@@ -22,8 +22,6 @@ main#merch {
 }
 
 .product {
-    cursor:pointer;
-
     background-color: var(--card-bg);
     padding: 1em;
     position: relative;
@@ -34,6 +32,19 @@ main#merch {
     transition: background-color 200ms ease-in-out;
 
     text-shadow: black 0 2px 5px;
+    border-radius: var(--corner-rad);
+}
+
+.sale {
+    outline: 5px solid color-mix(in srgb, var(--pink) 70%, transparent);
+    outline-offset: 5px;
+    transition: outline-color 200ms ease-in-out;
+
+    color: var(--pink);
+}
+
+.sale:hover {
+    outline-color: var(--pink);
 }
 
 img.thumbnail {
@@ -82,6 +93,34 @@ img.thumbnail {
     font-size: 12px;
 }
 
+button#merch-sort {
+    background-color: transparent;
+    color: var(--pink);
+}
+
+button#merch-sort::before {
+    --size: 1em;
+    
+    content: " ";
+    -webkit-mask: url(../filter.svg);
+    mask: url(../filter.svg);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+
+    display: inline-block;
+    background-color: var(--pink);
+    vertical-align: bottom;
+    height: var(--size);
+    width: var(--size);
+
+    margin-right: 1ex;
+}
+
+button#merch-sort:hover {
+    background-color: #fff2;
+    background-blend-mode: overlay;
+}
+
 /**
     MOBILE LAYOUT
 */
@@ -99,6 +138,10 @@ img.thumbnail {
     transition: background-color 100ms ease-in-out;
 }
 
+.sale:hover {
+    transition: outline-color 100ms ease-in-out;
+}
+
 .product:hover img.thumbnail {
     translate: 0 -10px;
     transition: translate 400ms ease-in-out;
@@ -106,7 +149,7 @@ img.thumbnail {
     animation-name: idletwirl;
     animation-duration: 3s;
     animation-timing-function: linear;
-    animation-direction:normal;
+    animation-direction: normal;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
 }
@@ -122,7 +165,7 @@ img.thumbnail {
 
 @keyframes twirlreturn {
     from {
-        rotate: 0 1 0 -360deg;
+        rotate: 0 1 0 -180deg;
     }
     to {
         rotate: 0 1 0 0deg;
