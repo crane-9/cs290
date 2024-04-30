@@ -1,4 +1,9 @@
 
+:root {
+    --control-idle: #fff4;
+    --control-active: #fff7;
+}
+
 body {
     overflow: hidden;
 }
@@ -15,8 +20,10 @@ div#container {
     justify-content: center;
 }
 
+/* Fixed size (responsive to screenwidth). */
 main  {
     position: relative;
+    overflow: auto;
     height: 80dvh;
     width: 75dvw;
     z-index: 2;
@@ -26,6 +33,7 @@ main  {
     filter: drop-shadow(0 0 10px black);
 
     padding: 3em 2em;
+
 }
 
 #nav-back {
@@ -35,8 +43,14 @@ main  {
     gap: 1em;
 
     position: relative;
-    left: 0;
+    left: -1em;
     top: -2em;
+
+    color: var(--text-color);
+}
+
+#nav-back:hover {
+    color: color-mix(in srgb, var(--text-color), transparent)
 }
 
 #product-info {
@@ -45,6 +59,115 @@ main  {
 }
 
 .product-interactive {
-    -ms-grid-row-span: 2;
+    grid-row: 1 / 3;
 }
+
+
+.image-window {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+button.control {
+    position: absolute;
+    background-color: var(--control-idle);
+
+    -webkit-mask-size: cover;
+    mask-size: cover;
+
+    height: 4rem;
+    width: 2rem;
+
+    /* Using a variable just for the sake of convenience -- this is the distance between each button and the edge of the container. */
+    --distance: 2em;
+}
+
+button.control:hover {
+    background-color: var(--control-active);
+}
+
+#left.control {
+    -webkit-mask-image: url(../right.svg);
+    mask-image: url(../right.svg);
+    transform: rotate(180deg);
+
+    left: var(--distance);
+}
+
+
+#right.control {
+    -webkit-mask-image: url(../right.svg);
+    mask-image: url(../right.svg);
+
+    right: var(--distance);
+}
+
+#slide-indicator {
+    position: absolute;
+    bottom: 1em;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+#slide-indicator > div {
+    /* little circle dots */
+    border-radius: 50%;
+    height: 1ex;
+    width: 1ex;
+    background-color: var(--control-idle);
+}
+
+#slide-indicator > div:hover {
+    /* imply that these are clickable.... */
+    background-color: color-mix(in srgb, var(--control-idle), var(--control-active));
+}
+
+#slide-indicator > div:first-child {
+    background-color: var(--control-active);
+}
+
+#product-thumbnail {
+    image-rendering: pixelated;
+    max-width: 100%;
+    min-width: 400px;
+}
+
+.button-menu {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1ex 1em;
+    width: 70%;
+    margin: 1ex auto;
+}
+
+.button-menu button {
+    background-color: var(--text-color);
+    font: 18px var(--header-font);
+}
+
+.button-menu button:hover {
+    background-color: color-mix(in srgb, var(--pink), var(--text-color));
+}
+
+button[role=link] {
+    background-color: var(--pink);
+}
+
+button[role=link]:hover {
+    background-color: var(--coral);
+}
+
+.product-specs table {
+    width: 100%;
+}
+
+
 

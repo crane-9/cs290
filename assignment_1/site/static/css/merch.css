@@ -48,7 +48,7 @@ main#merch {
 }
 
 img.thumbnail {
-    image-rendering: crisp-edges; /* for pixel art*/
+    image-rendering: pixelated; /* for pixel art*/
     width: 100%;
     max-width: 200px;
 
@@ -96,6 +96,8 @@ img.thumbnail {
 button#merch-sort {
     background-color: transparent;
     color: var(--pink);
+    font-variant: small-caps;
+    font-size: 1.3rem;
 }
 
 button#merch-sort::before {

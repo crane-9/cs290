@@ -17,7 +17,8 @@
     <!-- Dim the background. -->
     <div id="container">
         <main>
-            <a href="merch.html" id="nav-back"><span class="char">☓</span><span>close</span></a>
+            <!-- This A is meant to be a button that closes the popup for the window, hence its role as a button. -->
+            <a href="merch.html" id="nav-back" class="char" role="button">☓</a>
 
             <!-- Three categories of product information.
                 Interactive: image slideshow, "add to cart" and "buy" buttons.
@@ -27,11 +28,25 @@
             <section id="product-info">
                 
                 <div class="product-interactive">
-                    <img src="./static/img/green_potion.png" alt="A green potion." id="product-thumbnail" />
+                    <div class="image-window">
+                        <img src="./static/img/green_potion.png" alt="A green potion." id="product-thumbnail" />
+                        
+                        <!-- Non-functional controls for swiping through other images -->
+                        <button class="control" id="left"></button>
+                        <button class="control" id="right"></button>
+
+                        <!-- Non-functional indicator for swiping through imaginary images! -->
+                        <div id="slide-indicator">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
 
                     <div class="button-menu">
                         <button>Add to Cart</button>
-                        <button>Buy Now</button>
+                        <button role="link">Buy Now!</button>
                         <button>Favorite</button>
                     </div>
                 </div>
@@ -39,33 +54,50 @@
                 <div class="product-summary">
                     <h2>Product Name</h2>
                     <div class="product-summary-body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi sit dolores quaerat quod reiciendis consectetur, voluptatum quo perferendis maiores. Ipsa dolorum quis quam maxime sapiente, nisi recusandae magnam ipsam?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi sit dolores quaerat quod reiciendis consectetur, voluptatum quo perferendis maiores. Ipsa dolorum quis quam maxime sapiente, nisi recusandae magnam ipsam?</p>
+                        <p>Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. Nec feugiat in fermentum posuere. Eu mi bibendum neque egestas congue quisque egestas diam in. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem. Purus ut faucibus pulvinar elementum. Condimentum lacinia quis vel eros donec ac odio tempor.</p>
+                        <ul>
+                            <li>Unique selling point</li>
+                            <li>Unique selling point</li>
+                            <li>Unique selling point</li>
+                            <li>Unique selling point</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="product-specs">
                     <table>
+                        <caption>Product Details</caption>
                         <thead>
-
+                            <tr>
+                                <th>Field</th>
+                                <th>Specification</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th>hheoiah</th>
-                                <th>hheoiah</th>
-                                <th>hheoiah</th>
+                                <td>Color</td>
+                                <td>Green</td>
                             </tr>
                             <tr>
-                                <td>hheoiah</td>
-                                <td>hheoiah</td>
-                                <td>hheoiah</td>
+                                <td>Effect</td>
+                                <td>Commune with nature</td>
                             </tr>
                             <tr>
-                                <td>hheoiah</td>
-                                <td>hheoiah</td>
-                                <td>hheoiah</td>
+                                <td>Viscosity</td>
+                                <td>1,000 mPa</td>
+                            </tr>
+                            </tr>
+                            <tr>
+                                <td>Format</td>
+                                <td>USB 3.0</td>
+                            <!-- Specific note/disclaimer to demonstrate a use of colspan. -->
+                            <tr>
+                                <td colspan="2">Not compatible with <b>Pink potion</b></td>
                             </tr>
                         </tbody>
+                        <tfoot>
+
+                        </tfoot>
                     </table>
                 </div>
 

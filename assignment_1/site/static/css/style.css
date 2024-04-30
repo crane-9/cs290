@@ -123,17 +123,17 @@ footer {
 }
 
 a {
-    color: var(--orange);
+    color: var(--pink);
     text-decoration: none;
 }
 
 a:visited {
-    color: var(--coral);
+    color: var(--orange);
 }
 
 a:hover, a::selection {
     /** Including selection to avoid contrast conflict. */
-    color: var(--yellow);
+    color: var(--coral);
 }
 
 /* Make buttons inherit base styles as a starting point. */
@@ -155,6 +155,15 @@ table, th, td {
 
 th, td {
     padding: 1ex 1em;
+}
+
+table caption {
+    text-align: left;
+    padding: 1ex 0;
+
+    /* bold and italic for emphasis. not using color as this is not clickable and i don't want to imply as much */
+    font-style: italic;
+    font-weight: 700;
 }
 
 /** Specific utility classes. */

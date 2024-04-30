@@ -24,7 +24,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `title`                             | HTML     | ✔️         |                                                         |
 |         | headers (at least 3 from `h1`-`h6`) | HTML     | ✔️         |                                                         |
 |         | paragraphs (`p`)                    | HTML     | ✔️         |                                                         |
-|         | lists (`ol`, `ul`, `dl`)            | HTML     |           |                                                         |
+|         | lists (`ol`, `ul`, `dl`)            | HTML     | ✔️         |                                                         |
 |         | line breaks (`br`)                  | HTML     |           | I will be avoiding line breaks, as I prefer for CSS to control my page's line spacing. However, they may be utilized in blog posts, as realistically, a site admin would include a `<br>`. |
 |         | anchor (`a`)                        | HTML     | ✔️         |                                                         |
 |         | relative path                       | HTML     | ✔️         |                                                         |
@@ -35,30 +35,30 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `width`                             | HTML     | ✔️         | Technically implemented in CSS.                         |
 |         | `height`                            | HTML     | ✔️         | Technically implemented in CSS.                         |
 |         | `alt`                               | HTML     | ✔️         |                                                         |
-|         | `table`                             | HTML     |           |                                                         |
-|         | row                                 | HTML     |           |                                                         |
-|         | data cell                           | HTML     |           |                                                         |
-|         | border                              | HTML     |           |                                                         |
-|         | table caption                       | HTML     |           |                                                         |
-|         | table header                        | HTML     |           |                                                         |
-|         | table body                          | HTML     |           |                                                         |
+|         | `table`                             | HTML     | ✔️         |                                                         |
+|         | row                                 | HTML     | ✔️         |                                                         |
+|         | data cell                           | HTML     | ✔️         |                                                         |
+|         | border                              | HTML     | ✔️         |                                                         |
+|         | table caption                       | HTML     | ✔️         |                                                         |
+|         | table header                        | HTML     | ✔️         |                                                         |
+|         | table body                          | HTML     | ✔️         |                                                         |
 |         | table footer                        | HTML     |           |                                                         |
-|         | spanning columns                    | HTML     |           |                                                         |
+|         | spanning columns                    | HTML     | ✔️         |                                                         |
 | **P2**  | class attribute                     | HTML     | ✔️         |                                                         |
 |         | class selector                      | CSS      | ✔️         |                                                         |
 |         | id attribute                        | HTML     | ✔️         |                                                         |
 |         | id selector                         | CSS      | ✔️         |                                                         |
-|         | role attribute                      | HTML     |           |                                                         |
-|         | attribute selectors                 | CSS      |           |                                                         |
+|         | role attribute                      | HTML     | ✔️         |                                                         |
+|         | attribute selectors                 | CSS      | ✔️         | Used to select buttons with the "link" role on the products page. |
 |         | `font-family`                       | CSS      | ✔️         |                                                         |
 |         | `font-size`                         | CSS      | ✔️         |                                                         |
-|         | `font-style`                        | CSS      |           |                                                         |
-|         | `font-variant`                      | CSS      |           |                                                         |
-|         | `font-weight`                       | CSS      |           |                                                         |
+|         | `font-style`                        | CSS      | ✔️         |                                                         |
+|         | `font-variant`                      | CSS      | ✔️         |                                                         |
+|         | `font-weight`                       | CSS      | ✔️         |                                                         |
 |         | `font` property shorthand           | CSS      | ✔️         |                                                         |
 |         | `text-align`                        | CSS      | ✔️         |                                                         |
 |         | `text-decoration`                   | CSS      | ✔️         |                                                         |
-|         | `line-height`                       | CSS      |           |                                                         |
+|         | `line-height`                       | CSS      | ✔️         |                                                         |
 |         | `color` (multiple methods)          | CSS      | ✔️         |                                                         |
 |         | `border`                            | CSS      | ✔️         | Disabled border for `button` element, and partial borders used elsewhere. |
 |         | `padding`                           | CSS      | ✔️         |                                                         |
@@ -68,8 +68,8 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `overflow`                          | CSS      | ✔️         |                                                         |
 |         | `box-sizing`                        | CSS      |           |                                                         |
 |         | vendor prefix properties            | CSS      | ✔️         | Used to place an SVG image as a `::before` psuedoelement. |
-|         | `float`                             | CSS      |           |                                                         |
-|         | inheritance                         | CSS      |           |                                                         |
+|         | `float`                             | CSS      | ✔️         |                                                         |
+|         | inheritance                         | CSS      | ✔️         | Used with for `button` element, inheriting main font style and size. |
 |         | clear                               | CSS      |           |                                                         |
 |         | (clearfix and overflow)             | CSS      |           |                                                         |
 |         | `position`                          | CSS      | ✔️         |                                                         |
@@ -166,3 +166,6 @@ These mockups helped me get a sense of the general layout for the `/blog` and `/
 I went with a very simple color scheme to begin with, as it is what came to mind. However, it is a bit limited and could use some work. The overall darkness of the pages make it feel a bit like a void, which isn't a feeling I'm personally opposed to, but I recognize it is not conventional.
 
 
+## Attributions:
+
+Chevron SVG was created by Dazzle UI and obtained from [SVGRepo.com](https://www.svgrepo.com/svg/533661/chevron-right).
