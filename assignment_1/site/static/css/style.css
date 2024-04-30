@@ -117,9 +117,15 @@ footer {
     flex: 1 0 auto;
 
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    padding-top: 2em;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding: 2em 0;
+    align-items: flex-end;
+    gap: 1em;
+}
+
+footer p {
+    margin: 0;
 }
 
 a {
@@ -183,6 +189,36 @@ tfoot td {
     border: 2px solid var(--pink);
 }
 
+/** Sitemap Styling */
+main#sitemap {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    flex: 5 0 auto;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2em;
+    justify-content: center;
+}
+
+#sitemap .group {
+    background-color: var(--card-bg);
+    border-radius: var(--corner-rad);
+    padding: 2em 1em;
+    box-sizing: border-box;
+    width: 300px;
+}
+
+.group h3 {
+    margin: 0;
+    text-align: center;
+}
+
+
 /** Specific utility classes. */
 .clearfix::after {
     clear: both;
@@ -199,4 +235,25 @@ tfoot td {
 /* for single unicode characters that could use some emphasis */
 .char {
     font-size: 1.25rem;
+}
+
+.group {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1ex;
+}
+
+
+/* 
+    MOBILE LAYOUT
+*/
+
+@media (max-width: 800px) {
+    main {
+        width: 95%;
+    }
+    
+    #sitemap .container {
+        flex-direction: column;
+    }
 }

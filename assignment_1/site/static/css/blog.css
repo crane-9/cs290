@@ -15,12 +15,12 @@ main#blog {
 .blog-article {
     background-color: var(--card-bg);
     background-blend-mode: multiply;
+    border-radius: var(--corner-rad);
 
     display: flex;
     flex-flow: column nowrap;
     gap: 0;
     padding: 1ex 1em;
-    border-radius: var(--corner-rad);
 }
 
 .article-header {
@@ -69,4 +69,29 @@ main#blog {
     flex-flow: column wrap;
     min-width: max-content;
     float: right
+}
+
+
+/* 
+    MOBILE LAYOUT
+*/
+
+@media (max-width: 800px) {
+    main#blog {
+        min-width: unset;
+        width: 95%;
+    }
+
+    .article-content {
+        flex-direction: column-reverse;
+    }
+
+    .article-tags {
+        float: none;
+        flex-direction: row;
+    }
+
+    .blog-article {
+        max-width: 100%;
+    }
 }

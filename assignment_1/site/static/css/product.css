@@ -23,7 +23,7 @@ div#container {
 /* Fixed size (responsive to screenwidth). */
 main  {
     position: relative;
-    overflow: auto;
+    overflow: hidden auto;
     height: 80dvh;
     width: 75dvw;
     z-index: 2;
@@ -229,4 +229,15 @@ button[role=link]:hover {
     color: var(--pink);
     outline: 3px solid var(--pink);
     outline-offset: 3px;
+}
+
+
+/* 
+    MOBILE LAYOUT
+*/
+@media (max-width: 800px) {
+    #product-info {
+        display: flex;
+        flex-flow: column nowrap;
+    }
 }

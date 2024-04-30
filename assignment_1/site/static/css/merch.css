@@ -151,12 +151,6 @@ button#merch-sort:hover {
     z-index: 5;
 }
 
-.dropdown .group {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1ex;
-}
-
 /* Show when parent is being hovered. */
 .dropdown-container:hover .dropdown {
     display: flex;
@@ -166,6 +160,22 @@ button#merch-sort:hover {
     MOBILE LAYOUT
 */
 @media (max-width: 800px) {
+    #merch-nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: unset;
+        padding-bottom: 1em;
+    }
+
+    .dropdown {
+        width: 90dvw;
+        left: 5dvw;
+        top: 300px;
+        right: unset;
+        bottom: unset;
+        box-sizing: border-box;
+    }
+
     #merch-content {
         grid-template-columns: 1fr 1fr;
     }
