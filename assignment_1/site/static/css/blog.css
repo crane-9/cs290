@@ -47,23 +47,25 @@ main#blog {
 
 .article-body {
     padding-right: 1em;
+
+    position: relative;
 }
 
-/* .article-readmore {
-} */
-
-.article-content p:first-child {
-    margin-top: 0
+/* Aligns "read more" link to the bottom of the container. */
+.article-readmore {
+    position: absolute;
+    bottom: 0;
+    margin-top: 1em;
 }
 
-.article-content p:last-child {
-    margin-bottom: 0;
+.article-meta {
+    flex: 1 0 auto;
 }
 
 .article-tags {
     display: flex;
     gap: 1ex;
     flex-flow: column wrap;
-    margin-left: 1.5em;
     min-width: max-content;
+    float: right
 }
