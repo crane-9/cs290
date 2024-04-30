@@ -144,7 +144,15 @@ button {
     border-radius: var(--corner-rad);
 }
 
-/*  */
+input {
+    accent-color: var(--orange);
+}
+
+label > input {
+    margin-right: 0.8em; 
+}
+
+/* Table specifications */
 table {
     border-collapse: collapse;
 }
@@ -164,6 +172,15 @@ table caption {
     /* bold and italic for emphasis. not using color as this is not clickable and i don't want to imply as much */
     font-style: italic;
     font-weight: 700;
+}
+
+/* Styling the footer for extra emphasis. */
+tfoot {
+    font-weight: 700;
+}
+
+tfoot td {
+    border: 2px solid var(--pink);
 }
 
 /** Specific utility classes. */

@@ -27,7 +27,28 @@
         <!-- This is the merch page. -->
         <nav id="merch-nav">
             <h2 class="category-label">Category: ALL</h2>
-            <button id="merch-sort">Sort and Filter</button>
+
+            <div class="dropdown-container">
+                <button id="merch-sort">Sort and Filter</button>
+                
+                <div class="dropdown">
+                    
+                    <div class="group">
+                        <span class="group-title">Sort Price</span>
+
+                        <label for="asc"><input type="radio" name="price-sort" id="price-asc" value="1">Ascending</label>
+                        <label for="asc"><input type="radio" name="price-sort" id="price-asc" value="-1" checked>Descending</label>
+                    </div>
+
+                    <div class="group">
+                        <span class="group-title">Filter Category</span>
+                        <label for="potion-cat"><input type="checkbox" name="potion-cat" id="potion-cat" checked>Potions</label>
+                        <label for="wands-cat"><input type="checkbox" name="wands-cat" id="wands-cat" checked>Magic wands</label>
+                        <label for="shoes-cat"><input type="checkbox" name="shoes-cat" id="shoes-cat" checked>Fancy shoes</label>
+                    </div>
+
+                </div>
+            </div>            
         </nav>
 
         <section id="merch-content">

@@ -17,15 +17,22 @@
     <!-- Dim the background. -->
     <div id="container">
         <main>
-            <!-- This A is meant to be a button that closes the popup for the window, hence its role as a button. -->
-            <a href="merch.html" id="nav-back" class="char" role="button">☓</a>
-
             <!-- Three categories of product information.
                 Interactive: image slideshow, "add to cart" and "buy" buttons.
                 Summary: Name, description.
                 Specs: Specification table.
             -->
             <section id="product-info">
+                <!-- Breadcrumbs from shop all the way to current potion. -->
+                <div class="breadcrumbs">
+                    <a href="merch.html">Shop</a>
+                    <span class="divider">/</span>
+                    <a href="merch.html">All items</a>
+                    <span class="divider">/</span>
+                    <a href="merch.html#potions">Potions</a>
+                    <span class="divider">/</span>
+                    <span class="current">Green Potion</span>
+                </div>
                 
                 <div class="product-interactive">
                     <div class="image-window">
@@ -53,6 +60,9 @@
 
                 <div class="product-summary">
                     <h2>Product Name</h2>
+                    <!-- I structure prices like this for the ease of templating, either with JS or Jinja -- only worrying about filling in the dollars and cents wipes out a chore or two. -->
+                    <h3 class="product-price">55 <span class="cents">99</span></h3>
+
                     <div class="product-summary-body">
                         <p>Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. Nec feugiat in fermentum posuere. Eu mi bibendum neque egestas congue quisque egestas diam in. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem. Purus ut faucibus pulvinar elementum. Condimentum lacinia quis vel eros donec ac odio tempor.</p>
                         <ul>
@@ -61,6 +71,8 @@
                             <li>Unique selling point</li>
                             <li>Unique selling point</li>
                         </ul>
+
+                        <p>Not quite what you're looking for? Find more <a href="#related">here</a>.</p>
                     </div>
                 </div>
 
@@ -75,6 +87,10 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>Volume</td>
+                                <td>3 fl.Oz</td>
+                            </tr>
+                            <tr>
                                 <td>Color</td>
                                 <td>Green</td>
                             </tr>
@@ -86,26 +102,95 @@
                                 <td>Viscosity</td>
                                 <td>1,000 mPa</td>
                             </tr>
-                            </tr>
-                            <tr>
-                                <td>Format</td>
-                                <td>USB 3.0</td>
                             <!-- Specific note/disclaimer to demonstrate a use of colspan. -->
                             <tr>
                                 <td colspan="2">Not compatible with <b>Pink potion</b></td>
                             </tr>
+                            <tr>
+                                <td>Interface</td>
+                                <td>USB 3.0</td>
+                            </tr>
                         </tbody>
-                        <tfoot>
 
+                        <!-- Using the footer as a bottom-line summary that wizards would probably want to find quickly? Sure. -->
+                        <tfoot>
+                            <tr>
+                                <td>Total magic units (per gallon)</td>
+                                <td>32 MU/G</td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
-
             </section>
 
             <!-- Related products somehow algorithmically generated. -->
-            <section id="related">
+            <section class="related-products" id="related">
+                <h3>Related products</h3>
 
+                <!-- Displays related items. -->
+                <div class="related-scroll">
+
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related clearfix">
+                            <span class="product-price">55 <span class="cents">99</span></span>
+
+                            <img src="static/img/blue_potion.png" alt="A blue potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related clearfix">
+                            <span class="product-price">55 <span class="cents">99</span></span>
+
+                            <img src="static/img/purple_potion.png" alt="A purple potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related sale clearfix">
+                            <span class="product-price">44 <span class="cents">79</span></span>
+
+                            <img src="static/img/grey_potion.png" alt="A grey potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related clearfix">
+                            <span class="product-price">55 <span class="cents">99</span></span>
+
+                            <img src="static/img/orange_potion.png" alt="An orange potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related clearfix">
+                            <span class="product-price">55 <span class="cents">99</span></span>
+
+                            <img src="static/img/red_potion.png" alt="A red potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+
+                    <a href="product.html" class="link-wrap" role="button">
+                        <div class="product-related clearfix">
+                            <span class="product-price">55 <span class="cents">99</span></span>
+
+                            <img src="static/img/white_potion.png" alt="A white potion." class="thumbnail">
+
+                            <h3 class="product-name">Product Name</h3>
+                        </div>
+                    </a>
+
+                </div>
             </section>
         </main>
     </div>

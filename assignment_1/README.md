@@ -7,6 +7,7 @@ This readme documents my process in completing Projects 1 - 3.
 - [Design](#project-design)
     - [Plan](#plan-meeting-requirements)
     - [Sketches](#design-sketches)
+- [Attributions](#attributions)
 
 
 ## Project Requirements
@@ -29,7 +30,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | anchor (`a`)                        | HTML     | ✔️         |                                                         |
 |         | relative path                       | HTML     | ✔️         |                                                         |
 |         | absolute path                       | HTML     | ✔️         |                                                         |
-|         | fragment identifier                 | HTML     |           |                                                         |
+|         | fragment identifier                 | HTML     | ✔️         |                                                         |
 |         | image                               | HTML     | ✔️         |                                                         |
 |         | `video`                             | HTML     |           |                                                         |
 |         | `width`                             | HTML     | ✔️         | Technically implemented in CSS.                         |
@@ -42,7 +43,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | table caption                       | HTML     | ✔️         |                                                         |
 |         | table header                        | HTML     | ✔️         |                                                         |
 |         | table body                          | HTML     | ✔️         |                                                         |
-|         | table footer                        | HTML     |           |                                                         |
+|         | table footer                        | HTML     | ✔️         |                                                         |
 |         | spanning columns                    | HTML     | ✔️         |                                                         |
 | **P2**  | class attribute                     | HTML     | ✔️         |                                                         |
 |         | class selector                      | CSS      | ✔️         |                                                         |
@@ -59,31 +60,31 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `text-align`                        | CSS      | ✔️         |                                                         |
 |         | `text-decoration`                   | CSS      | ✔️         |                                                         |
 |         | `line-height`                       | CSS      | ✔️         |                                                         |
-|         | `color` (multiple methods)          | CSS      | ✔️         |                                                         |
+|         | `color` (multiple methods)          | CSS      | ✔️?        |                                                         |
 |         | `border`                            | CSS      | ✔️         | Disabled border for `button` element, and partial borders used elsewhere. |
 |         | `padding`                           | CSS      | ✔️         |                                                         |
 |         | `margin`                            | CSS      | ✔️         |                                                         |
 | **P3**  | `background-color`                  | CSS      | ✔️         |                                                         |
 |         | `background-image`                  | CSS      | ✔️         |                                                         |
 |         | `overflow`                          | CSS      | ✔️         |                                                         |
-|         | `box-sizing`                        | CSS      |           |                                                         |
+|         | `box-sizing`                        | CSS      | ✔️         |                                                         |
 |         | vendor prefix properties            | CSS      | ✔️         | Used to place an SVG image as a `::before` psuedoelement. |
 |         | `float`                             | CSS      | ✔️         |                                                         |
 |         | inheritance                         | CSS      | ✔️         | Used with for `button` element, inheriting main font style and size. |
 |         | clear                               | CSS      |           |                                                         |
-|         | (clearfix and overflow)             | CSS      |           |                                                         |
+|         | clearfix                            | CSS      |           |                                                         |
 |         | `position`                          | CSS      | ✔️         |                                                         |
 |         | `z-index`                           | CSS      | ✔️         |                                                         |
 |         | `display`                           | CSS      | ✔️         |                                                         |
-|         | fixed-width layout                  | Design   |           |                                                         |
+|         | fixed-width layout                  | Design   | ✔️         | My dropdown has a fixed-width, I hope this counts.      |
 |         | fluid layout                        | Design   | ✔️         |                                                         |
 |         | responsive layout                   | Design   | ✔️         |                                                         |
 |         | `@media` query                      | CSS      | ✔️         |                                                         |
 |         | `viewport`                          | HTML     | ✔️         |                                                         |
 |         | navigation list                     | Design   |           |                                                         |
-|         | breadcrumbs                         | Design   |           |                                                         |
-|         | drop down menu                      | Design   |           |                                                         |
-|         | sitemap                             | Design   |           |                                                         |
+|         | breadcrumbs                         | Design   | ✔️         |                                                         |
+|         | drop down menu                      | Design   | ✔️         |                                                         |
+|         | sitemap                             | Design   | ✔️         |                                                         |
 |         | search boxes                        | Design   |           |                                                         |
 
 
@@ -104,6 +105,7 @@ HTML pages I will write:
 - Admin page (`/admin`)
     * *As noted and implied by assignment scope, this page will not be functional. Additionally, it may not be terribly thorough.
     - Maybe I could do an admin login page (`/admin-login`)?
+    - **Edit**: Unfortunately, I'm not going to be making this page. I think that I have plenty already. This would be a great next addition if I return to this project.
 
 - Sitemap (`/sitemap`)
     * *This will be both a prototype of what the sitemap would look like within the hypothetical implementation of this site skeleton, and for the sake of easy navigation/access while developing/debugging/grading.
@@ -168,4 +170,4 @@ I went with a very simple color scheme to begin with, as it is what came to mind
 
 ## Attributions:
 
-Chevron SVG was created by Dazzle UI and obtained from [SVGRepo.com](https://www.svgrepo.com/svg/533661/chevron-right).
+Chevron SVG was created by Dazzle UI and obtained from [SVGRepo.com](https://www.svgrepo.com/svg/533661/chevron-right) (utilized on the `/product` page).

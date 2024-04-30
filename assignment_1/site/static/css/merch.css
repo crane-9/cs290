@@ -89,7 +89,7 @@ img.thumbnail {
     content: "$";
 }
 
-.product-price span.cents {
+.product-price .cents {
     font-size: 12px;
 }
 
@@ -123,6 +123,45 @@ button#merch-sort:hover {
     background-blend-mode: overlay;
 }
 
+/* Dropdown */
+.dropdown-container {
+    display: contents;
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+
+    position: absolute;
+    /* 
+    Sort of confused about how the position is working, it's not as expected.
+     Got the values from fiddling with in-browser inspect element.
+     Doesn't look good on all browsers. :(
+     */
+    right: 123px;
+    bottom: 453px;
+
+    flex-flow: column nowrap;
+    gap: 1em;
+
+    background-color: var(--popup-bg);
+    border-radius: var(--corner-rad );
+    padding: 1em 2em;
+    width: 150px;
+    z-index: 5;
+}
+
+.dropdown .group {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1ex;
+}
+
+/* Show when parent is being hovered. */
+.dropdown-container:hover .dropdown {
+    display: flex;
+}
+
 /**
     MOBILE LAYOUT
 */
@@ -131,7 +170,6 @@ button#merch-sort:hover {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 
 
 /** hover animations */
