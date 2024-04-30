@@ -48,15 +48,11 @@ main#blog {
 .article-body {
     padding-right: 1em;
     line-height: 1.2;
-
-    position: relative;
 }
 
-/* Aligns "read more" link to the bottom of the container. */
-.article-readmore {
-    position: absolute;
-    bottom: 0;
-    margin-top: 1em;
+.article-body p:last-child {
+    margin-bottom: 0;
+    margin-top: auto;
 }
 
 .article-meta {

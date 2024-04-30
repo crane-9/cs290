@@ -7,12 +7,13 @@ This readme documents my process in completing Projects 1 - 3.
 - [Design](#project-design)
     - [Plan](#plan-meeting-requirements)
     - [Sketches](#design-sketches)
+- [Reflection](#resultreflection)
 - [Attributions](#attributions)
 
 
 ## Project Requirements
 
-For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 4). Here is a table of those requirements, whether I met each requirement, and any notes on why I may have not utilized a certain element/attribute/property/design element.
+For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 4). Here is a table of those requirements, whether I met each requirement, and any notes on why I may have/have not utilized a certain element/attribute/property/design element.
 
 | Project | Code piece                          | Language | Utilized? | Notes                                                   |
 |--------:|:-----------------------------------:|:---------|:----------|:--------------------------------------------------------|
@@ -72,7 +73,7 @@ For this project, I am combining the requirements for Projects 1 - 3 (Weeks 1 - 
 |         | `float`                             | CSS      | ✔️         |                                                         |
 |         | inheritance                         | CSS      | ✔️         | Used with for `button` element, inheriting main font style and size. |
 |         | clear                               | CSS      |           |                                                         |
-|         | clearfix                            | CSS      |           |                                                         |
+|         | clearfix                            | CSS      |           | I technically implemented a clearfix class, but I don't think I have a place to make use of it in my code. |
 |         | `position`                          | CSS      | ✔️         |                                                         |
 |         | `z-index`                           | CSS      | ✔️         |                                                         |
 |         | `display`                           | CSS      | ✔️         |                                                         |
@@ -163,11 +164,39 @@ These mockups helped me get a sense of the general layout for the `/blog` and `/
     <div style="background-color: #f3f3f3; flex:auto;"></div>
     <div style="background-color: #C73FC1; flex:auto;"></div>
     <div style="background-color: #1A121D; flex:auto;"></div>
+    <div style="background-color: #f24973; flex:auto;"></div>
 </div>
 
 I went with a very simple color scheme to begin with, as it is what came to mind. However, it is a bit limited and could use some work. The overall darkness of the pages make it feel a bit like a void, which isn't a feeling I'm personally opposed to, but I recognize it is not conventional.
 
 
-## Attributions:
+## Result/Reflection
+
+Deviations from the plan:
+- No admin page was completed.
+- No divider flare added (see the fancy borders in the [design sketch](#design-sketches))
+
+Aside from that, I overall built what I expected: a front-end template for a blog/merch site. I definitely got lost and distracted with some CSS animation, which I always enjoy. This is also the first time I have implemented an iframe.
+
+I generally like the look of the site, though it is definitely rough around the edges. While building this site, I realized I tend to use flexbox for absolutely everything -- hardly an exaggeration. I want to challenge myself in the future to use flexbox less -- for instance, `float` seems like a viable replacement for some uses.
+
+New properties/attributes I learned about:
+
+- `role` HTML attribute:
+
+    - I have never used `role` before, though it's something I have on my list of things to learn given its place in accessibility.
+
+- `float` and `clear` CSS properties: I haven't used these since before I knew what I was doing. I tend to use flexbox instead, and it seems that people tend to discourage the use of `float`. I think that it has its applications though.
+
+- `font-variant`: I had never heard of this one before. I especially appreciate `small-caps` and I'll be using this in the future.
+    
+    - Also, `font` and font shorthand, I didn't know that was an option!
+
+- Table `caption`, `thead`, `tbody`, and `tfoot`. I've used tables before, but without an explicit `tbody`. Some browsers inject a `tbody` element it seems, which I have found annoying. Now that I understand there is not just a body, but head and foot, I can better appreciate tables.
+
+I'm not fully happy with this project, but I believe I made something reasonable that illustrates my understanding. 
+
+
+## Attributions
 
 Chevron SVG was created by Dazzle UI and obtained from [SVGRepo.com](https://www.svgrepo.com/svg/533661/chevron-right) (utilized on the `/product` page).

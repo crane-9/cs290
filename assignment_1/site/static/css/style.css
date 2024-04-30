@@ -63,6 +63,8 @@ body {
 
     display: flex;
     flex-flow: column nowrap;
+
+    overflow-x: hidden;
 }
 
 header#site-header {
@@ -107,6 +109,7 @@ header#site-header a:hover {
 main {
     margin: 0 auto;
     width: 65%;
+    flex: 2 0 auto;
 }
 
 /** A nice lil copyright footer. */
@@ -114,7 +117,7 @@ footer {
     font: 0.8rem var(--header-font);
     
     text-align: center;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
 
     display: flex;
     flex-flow: row nowrap;
@@ -222,9 +225,10 @@ main#sitemap {
 /** Specific utility classes. */
 .clearfix::after {
     clear: both;
-    content: "";
+    content: " ";
     display: block;
     height: 0;
+    visibility: hidden;
 }
 
 .link-wrap {
@@ -255,5 +259,47 @@ main#sitemap {
     
     #sitemap .container {
         flex-direction: column;
+    }
+}
+
+
+/* ANIMATION */
+
+main#index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#greeter {
+    animation: circle 2.34s ease-out infinite alternate,
+               fade 3s linear infinite;
+
+    font-size: 1.3rem;
+
+    
+}
+
+
+@keyframes fade {
+    0% {
+        color: var(--coral);
+    } 25% {
+        color: var(--pink);
+    } 50% {
+        color: var(--orange);
+    } 75% {
+        color: var(--yellow);
+    } 100% {
+        color: var(--coral);
+    }
+}
+
+
+@keyframes circle {
+    0% {
+        transform: rotate(0deg) translateX(150px) rotate(0deg);
+    } 100% {
+        transform: rotate(360deg) translateX(150px) rotate(-360deg);
     }
 }
