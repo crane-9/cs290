@@ -33,12 +33,13 @@ this is my styling for stuff. yeah
     /* general style patterns */
     --outline-dark-thick: 3px solid var(--caput);    
     --outline-dark-thin: 1px solid var(--caput);
-    --outline-light-thick: 3px solid var(--paper);
+    --outline-light: 0.95px var(--paper);
 }
 
 
 body {
     background-color: var(--paper);
+    color: var(--caput-grey);
     font-family: var(--body-font);
 
     margin: 0;
@@ -49,9 +50,17 @@ body {
     gap: 0;
 }
 
+/* labels for screenreaders, worry about it later. */
+.sr-label {
+    display: none;
+}
+
+
 button, input {
     font: inherit;
     color: inherit;
+    border: none;
+    background-color: transparent;
 }
 
 h1, h2, h3 {
@@ -75,9 +84,12 @@ a:hover {
 
 /* main layout -- test values for display only.*/
 header {
-    height: 5em;
-    background: var(--asparagus);
+    padding: 3em 2em 1em;
+}
 
+#title {
+    color: var(--caput);
+    margin: 0;
 }
 
 main {
@@ -85,11 +97,69 @@ main {
 }
 
 nav {
-    background: var(--sage);
-    height: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 2em;
+    margin: 1em 0;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+    gap: 1em;
 }
 
 footer {
-    background: var(--fawn);
-    height: 5em;
+    font-family: var(--heading-font);
+    padding: 1em 2em;
+    border-top: var(--outline-dark-thin);
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+button.icon {
+    --icon-size: 1.4em;
+    border-radius: 3px;
+    padding: 0.5ex 1ex;
+}
+
+button.icon:hover {
+    background-color: color-mix(in srgb, var(--fawn), transparent);
+}
+
+button.icon.btn-active {
+    background: var(--fawn);
+}
+
+button.icon::before {
+    content: "";
+    -webkit-mask-size: cover;
+    mask-size: cover;
+
+    background-color: var(--caput-grey);
+    height: var(--icon-size);
+    width: var(--icon-size);
+    display: block;
+}
+
+button#display-log::before {
+    -webkit-mask-image: url(../list.svg);
+    mask-image: url(../list.svg);
+}
+
+button#display-calendar::before {
+    -webkit-mask-image: url(../calendar.svg);
+    mask-image: url(../calendar.svg);
+}
+
+button#open-settings::before {
+    -webkit-mask-image: url(../settings.svg);
+    mask-image: url(../settings.svg);
+}
+

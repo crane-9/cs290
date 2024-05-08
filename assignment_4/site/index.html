@@ -15,15 +15,30 @@
     <!-- hello beautiful world -->
 
     <!-- logo. ohhh i can put the version number here too. yay -->
-    <header></header>
+    <header>
+        <h1 id="title">Tarot Journal</h1>
+    </header>
 
     <!-- display buttons + settings button. -->
-    <nav></nav>
+    <nav>
+        <div class="nav-left">
+            <button class="icon btn-active" id="display-log"><span class="sr-label">Log Layout</span></button>
+            <button class="icon" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
+        </div>
+
+        <div class="nav-right">
+            <!-- perhaps popover? -->
+            <button class="icon" id="open-settings"><span class="sr-label">Open Settings</span></button>
+        </div>
+    </nav>
 
     <!-- element to be manipulated by javascript  -->
     <main id="main"></main>
 
     <!-- footer message -- unplanned, but probably basics and links to privacy policy, other info. -->
-    <footer></footer>
+    <footer>
+        <span>&copy; 2024</span>
+        <a href="/privacy-policy">Privacy policy</a>
+    </footer>
 </body>
 </html>
