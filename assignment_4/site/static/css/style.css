@@ -1,0 +1,95 @@
+/* 
+this is my styling for stuff. yeah
+*/
+
+:root {
+    --caput: #502419;
+    --caput-grey: #45302b;
+    --caput-grey-light: #634e49;
+
+    --asparagus: #7ea172;
+    --asparagus-dark: #638e54;
+
+    --green-grad-0: #8daa76;
+    --green-grad-1: #a3b67c;
+    --green-grad-2: #b7c281;
+
+    --sage: #c7cb85;
+
+    --fawn: #e7a977;
+    --fawn-red: #ef7e58;
+    --fawn-orange: #f4a040;
+    --fawn-yellow: #f8b65e;
+    
+    --peach: #ebbe9b;
+
+    /* colorpick later */
+    --paper: #f4e4dc; 
+
+    /* fonts */
+    --heading-font: "Sedan SC", "Merriweather", serif;
+    --body-font: "FreeSans", "Ariel", sans;
+
+    /* general style patterns */
+    --outline-dark-thick: 3px solid var(--caput);    
+    --outline-dark-thin: 1px solid var(--caput);
+    --outline-light-thick: 3px solid var(--paper);
+}
+
+
+body {
+    background-color: var(--paper);
+    font-family: var(--body-font);
+
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0;
+}
+
+button, input {
+    font: inherit;
+    color: inherit;
+}
+
+h1, h2, h3 {
+    font-family: var(--heading-font);
+}
+
+a {
+    text-decoration: none;
+    color: var(--asparagus-dark);
+}
+
+a:visited {
+    color: var(--asparagus-dark);
+}
+
+a:hover {
+    color: var(--green-grad-0);
+}
+
+/* NOTE: links do not pass contrast test against bg -- consider bolding or just darker greens!. */
+
+/* main layout -- test values for display only.*/
+header {
+    height: 5em;
+    background: var(--asparagus);
+
+}
+
+main {
+    flex-grow: 3;
+}
+
+nav {
+    background: var(--sage);
+    height: 1em;
+}
+
+footer {
+    background: var(--fawn);
+    height: 5em;
+}
