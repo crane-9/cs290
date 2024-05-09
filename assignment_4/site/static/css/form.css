@@ -1,0 +1,44 @@
+/* 
+    styling for form slements
+*/
+
+input, textarea {
+    background-color: var(--offwhite);
+    border: var(--outline-dark-thick);
+    border-radius: 5px;
+    padding: 1ex 1em;
+}
+
+input[type=text] {
+    font-size: 1.2rem;
+}
+
+textarea {
+    font-size: 0.9rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+form {
+    display: grid;
+}
+
+#card-select-popover {
+    flex-flow: column nowrap;
+    overflow: hidden;
+}
+
+.card-selection {
+    flex: 1 0 auto;
+    overflow-y: auto;
+
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    margin: 1em auto;
+    max-width: 90%;
+}
+

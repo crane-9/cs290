@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>tarot journal</title>
+    <title>Tarot Journal - New Entry</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+    <link rel="stylesheet" href="/static/css/form.css">
 
     <!-- many scripts will go here -->
+    <script type="module" src="/static/js/entrySetup.js"></script>
+
 </head>
 <body>
-    
-    <!-- hello beautiful world -->
 
     <!-- logo. ohhh i can put the version number here too. yay -->
     <header>
@@ -23,24 +25,54 @@
     <!-- display buttons + settings button. -->
     <nav>
         <div class="nav-left">
-            <button class="icon btn-active" id="display-log"><span class="sr-label">Log Layout</span></button>
+            <button class="icon" id="display-log"><span class="sr-label">Log Layout</span></button>
             <button class="icon" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
         </div>
 
         <div class="nav-right">
-            <!-- perhaps popover? -->
             <button class="icon" id="open-settings" popovertarget="settings-popover"><span class="sr-label">Open Settings</span></button>
         </div>
     </nav>
 
-    <!-- element to be manipulated by javascript  -->
-    <main id="main"></main>
+    <main>
 
+        <form id="new-entry">
+            <!-- main text entries -->
+            <input class="heading-font" type="text" name="entry-title" id="entry-title" value="DATE Entry" />
+            <textarea name="entry-body" id="entry-body" rows="5" placeholder="Entry body..."></textarea>
+            <input class="heading-font" type="date" name="entry-date" id="entry-date" required />
+
+            <!-- card adding interface -->
+            <div class="cards-interface">
+                <!-- spot for injecting card elems -->
+                <div id="card-pool"></div>
+
+                <button class="icon bordered" id="plus" popovertarget="card-select-popover" type="button">
+                    <span class="sr-label">Add Card</span>
+                </button>
+
+            </div>
+        </form>
+
+        <section popover id="card-select-popover">
+            <h2>Add Card</h2>
+
+            <button class="icon close" popovertarget="card-select-popover">
+                <span class="sr-label">Close Settings</span>
+            </button>
+
+            <!-- Auto-populated by `entrySetup.js` -->
+            <div class="card-selection" id="card-selector"></div>
+
+        </section>
+
+    </main>
+    
     <!-- settings popover -->
     <section popover id="settings-popover">
         <h2>Settings</h2>
 
-        <button class="icon" id="close" popovertarget="settings-popover">
+        <button class="icon close" popovertarget="settings-popover">
             <span class="sr-label">Close Settings</span>
         </button>
 

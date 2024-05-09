@@ -6,7 +6,6 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 1em;
-    padding: 2em;
  }
 
 .log-entry, .log-entry-new {
