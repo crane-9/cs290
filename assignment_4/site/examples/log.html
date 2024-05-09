@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>tarot journal</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/log.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+
+    <!-- many scripts will go here -->
+</head>
+<body>
+    
+    <!-- hello beautiful world -->
+
+    <!-- logo. ohhh i can put the version number here too. yay -->
+    <header>
+        <h1 id="title">Tarot Journal</h1>
+    </header>
+
+    <!-- display buttons + settings button. -->
+    <nav>
+        <div class="nav-left">
+            <button class="icon btn-active" id="display-log"><span class="sr-label">Log Layout</span></button>
+
+            <!-- wrap for easy preview navigation -->
+            <a href="./calendar.html" class="invisible">
+                <button class="icon" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <!-- perhaps popover? -->
+            <button class="icon" id="open-settings"><span class="sr-label">Open Settings</span></button>
+        </div>
+    </nav>
+
+    <!-- element to be manipulated by javascript  -->
+    <main id="main">
+
+        <!-- prototype new entry component -->
+        <a href="/new-entry.html" class="invisible">
+            <div class="log-entry-new">
+                <div class="icon" id="new-entry">
+                    <span class="sr-label">Create New Entry</span>
+                </div>
+            </div>
+        </a>
+        
+        <!-- prototype log entry component -->
+        <div class="log-entry">
+            
+            <div class="entry-content">
+                <h3 class="entry-title"><a href="#">Entry 05/05/2024</a></h3>
+
+                <div class="entry-body">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit nemo accusamus facilis accusantium totam ipsum vel ea maiores esse molestias, eos officiis eius, nihil saepe dolor odit nesciunt sunt magnam. ...</p>
+                </div>
+            </div>
+
+            <div class="cards">
+                
+                <span class="card icon cups reversed"></span>
+                <span class="card icon swords"></span>
+                <span class="card icon wands"></span>
+                <span class="card icon pentacles"></span>
+                <span class="card major-arcana major-5"></span>
+                <span class="card major-arcana major-15 reversed"></span>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <!-- footer message -- unplanned, but probably basics and links to privacy policy, other info. -->
+    <footer>
+        <span>&copy; 2024</span>
+        <a href="/privacy-policy">Privacy policy</a>
+    </footer>
+</body>
+</html>

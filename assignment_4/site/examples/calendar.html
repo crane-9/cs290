@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>tarot journal</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/calendar.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+
+    <!-- many scripts will go here -->
+</head>
+<body>
+    
+    <!-- hello beautiful world -->
+
+    <!-- logo. ohhh i can put the version number here too. yay -->
+    <header>
+        <h1 id="title">Tarot Journal</h1>
+    </header>
+
+    <!-- display buttons + settings button. -->
+    <nav>
+        <div class="nav-left">
+            <!-- wrap for easy preview navigation -->
+            <a href="./log.html" class="invisible">
+                <button class="icon" id="display-log"><span class="sr-label">Log Layout</span></button>
+            </a>
+
+            <button class="icon btn-active" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
+        </div>
+
+        <div class="nav-right">
+            <!-- perhaps popover? -->
+            <button class="icon" id="open-settings"><span class="sr-label">Open Settings</span></button>
+        </div>
+    </nav>
+
+    <!-- element to be manipulated by javascript  -->
+    <main id="main">
+        <table id="calendar">
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                <tr>
+                    <td class="other-month">
+                        <div class="date">28</div>
+                    </td>
+                    <td class="other-month">
+                        <div class="date">29</div>
+                    </td>
+                    <td class="other-month">
+                        <div class="date">30</div>
+                    </td>
+                    <td>
+                        <div class="date">1</div>
+                    </td>
+                    <td>
+                        <div class="date">2</div>
+                    </td>
+                    <td>
+                        <div class="date">3</div>
+                    </td>
+                    <td>
+                        <div class="date">4</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="date">5</div>
+                    </td>
+                    <td>
+                        <div class="date">6</div>
+                    </td>
+                    <td>
+                        <div class="date">4</div>
+                    </td>
+                    <td>
+                        <div class="date">8</div>
+                    </td>
+                    <td>
+                        <div class="date">9</div>
+                    </td>
+                    <td>
+                        <div class="date">10</div>
+                    </td>
+                    <td>
+                        <div class="date">11</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="date">12</div>
+                    </td>
+                    <td>
+                        <div class="date">13</div>
+                    </td>
+                    <td>
+                        <div class="date">14</div>
+                    </td>
+                    <td>
+                        <div class="date">15</div>
+                    </td>
+                    <td>
+                        <div class="date">16</div>
+                    </td>
+                    <td>
+                        <div class="date">17</div>
+                    </td>
+                    <td>
+                        <div class="date">18</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="date">19</div>
+                    </td>
+                    <td>
+                        <div class="date">20</div>
+                    </td>
+                    <td>
+                        <div class="date">21</div>
+                    </td>
+                    <td>
+                        <div class="date">22</div>
+                    </td>
+                    <td>
+                        <div class="date">23</div>
+                    </td>
+                    <td>
+                        <div class="date">24</div>
+                    </td>
+                    <td>
+                        <div class="date">25</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="date">26</div>
+                    </td>
+                    <td>
+                        <div class="date">27</div>
+                    </td>
+                    <td>
+                        <div class="date">28</div>
+                    </td>
+                    <td>
+                        <div class="date">29</div>
+                    </td>
+                    <td>
+                        <div class="date">30</div>
+                    </td>
+                    <td>
+                        <div class="date">31</div>
+                    </td>
+                    <td class="other-month">
+                        <div class="date">1</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- footer message -- unplanned, but probably basics and links to privacy policy, other info. -->
+    <footer>
+        <span>&copy; 2024</span>
+        <a href="/privacy-policy">Privacy policy</a>
+    </footer>
+</body>
+</html>

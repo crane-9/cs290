@@ -1,0 +1,52 @@
+/**
+ * Styling specific to the log layout.
+ */
+
+ #main {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 2em;
+ }
+
+.log-entry, .log-entry-new {
+    border: var(--outline-dark-thick);
+    border-radius: 5px;
+
+    box-sizing: border-box;
+    min-height: 100px;
+    padding: 1ex 1em;
+}
+
+.log-entry-new {
+    /* Simply center the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: var(--transition-background-color);
+}
+
+.log-entry-new:hover {
+    background-color: color-mix(in srgb, var(--fawn-orange), transparent);
+    transition: var(--transition-hover-background-color);
+}
+
+.log-entry {
+    background: color-mix(in srgb, var(--caput) 40%, transparent);
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0 1em;
+
+    transition: var(--transition-translate);
+}
+
+.log-entry:hover {
+    translate: 25px 0;
+    transition: var(--transition-hover-translate);
+}
+
+.entry-content, .entry-title a {
+    color: var(--paper);
+}

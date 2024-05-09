@@ -1,0 +1,50 @@
+
+#calendar {
+    border: var(--outline-dark-thick);
+    border-collapse: collapse;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+tbody {
+    border-collapse: collapse;
+}
+
+:is(td, th) {
+    border: var(--outline-dark-thick);
+    width: 150px;   
+}
+
+td {
+    height: 100px;
+    position: relative;
+    transition: var(--transition-background-color);
+}
+
+
+td:hover {
+    background-color: color-mix(in srgb, var(--fawn), transparent);
+    transition: var(--transition-hover-background-color);
+}
+
+td.other-month {
+    background-color: color-mix(in srgb, var(--caput) 40%, transparent);
+}
+
+td .date {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-size: 1rex;
+    padding: 0.5ex 1ex;
+    border: var(--outline-dark-thin);
+    border-left-width: 0;
+    border-top-width: 0;
+    border-bottom-right-radius: 3px;
+}
+
+.other-month .date {
+    color: var(--paper);
+    border-color: var(--paper);
+}

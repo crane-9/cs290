@@ -1,0 +1,149 @@
+
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1ex;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    outline: var(--outline-dark-thin);
+    border-radius: 3px;
+    background-color: var(--paper);
+
+    /* Set proportions, use font-size to configure scale. */
+    font-size: 7px;
+    width: 7em;
+    height: 13em;
+}
+
+.card.icon::before {
+    /* --icon-size: 1rem; */
+    height: unset;
+    width: unset;
+    box-sizing: border-box;
+    
+    min-height: 100%;
+    min-width: 100%;
+    scale: 1.5;
+    
+    -webkit-mask-size: contain;
+    mask-size: unset;
+    background-color: var(--fawn-orange);
+}
+
+.reversed::before {
+    transform: scale(-1);
+}
+
+
+.card.cups::before {
+    --icon-url: url(/static/cup.svg);
+}
+
+.card.pentacles::before {
+    --icon-url: url(/static/pentacle.svg);
+}
+
+.card.swords::before {
+    --icon-url: url(/static/sword.svg);
+}
+
+.card.wands::before {
+    --icon-url: url(/static/wand.svg);
+}
+
+.card.major-arcana::before {
+    color: var(--fawn-orange);
+    font-family: var(--heading-font);
+    font-size: 2.3em;
+    scale: 1 3;
+}
+
+.major-0::before {
+    content: "0";
+}
+
+.major-1::before {
+    content: "I";
+}
+
+.major-2::before {
+    content: "II";
+}
+
+.major-3::before {
+    content: "III";
+}
+
+.major-4::before {
+    content: "IV";
+}
+
+.major-5::before {
+    content: "V";
+}
+.major-6::before {
+    content: "VI";
+}
+
+.major-7::before {
+    content: "VII";
+}
+
+.major-8::before {
+    content: "VIII";
+}
+.major-9::before {
+    content: "IX";
+}
+
+.major-10::before {
+    content: "X";
+}
+
+.major-11::before {
+    content: "XI";
+}
+.major-12::before {
+    content: "XII";
+}
+
+.major-13::before {
+    content: "XIII";
+}
+
+.major-14::before {
+    content: "XIV";
+}
+.major-15::before {
+    content: "XV";
+}
+
+.major-16::before {
+    content: "XVI";
+}
+
+.major-17::before {
+    content: "XVII";
+}
+.major-18::before {
+    content: "XVIII";
+}
+
+.major-19::before {
+    content: "XIX";
+}
+
+.major-20::before {
+    content: "XX";
+}
+
+.major-21::before {
+    content: "XXI";
+}

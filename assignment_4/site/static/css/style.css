@@ -34,6 +34,17 @@ this is my styling for stuff. yeah
     --outline-dark-thick: 3px solid var(--caput);    
     --outline-dark-thin: 1px solid var(--caput);
     --outline-light: 0.95px var(--paper);
+
+    /* transition values */
+    --transition-background-color: 100ms background-color ease-in;
+    --transition-hover-background-color: 200ms background-color ease-in-out;
+
+    --transition-translate: 200ms translate ease-in;
+    --transition-hover-translate: 300ms translate ease-in-out;
+}
+
+::selection {
+    background-color: color-mix(in srgb, var(--asparagus) 40%, transparent);
 }
 
 
@@ -55,7 +66,6 @@ body {
     display: none;
 }
 
-
 button, input {
     font: inherit;
     color: inherit;
@@ -64,6 +74,10 @@ button, input {
 }
 
 h1, h2, h3 {
+    font-family: var(--heading-font);
+}
+
+thead {
     font-family: var(--heading-font);
 }
 
@@ -78,6 +92,11 @@ a:visited {
 
 a:hover {
     color: var(--green-grad-0);
+}
+
+/* uility wrapper for navigation */
+a.invisible {
+    display: contents;
 }
 
 /* NOTE: links do not pass contrast test against bg -- consider bolding or just darker greens!. */
@@ -123,7 +142,11 @@ footer {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-button.icon {
+
+/* 
+    ICON BUTTONS
+*/
+.icon {
     --icon-size: 1.4em;
     border-radius: 3px;
     padding: 0.5ex 1ex;
@@ -137,29 +160,38 @@ button.icon.btn-active {
     background: var(--fawn);
 }
 
-button.icon::before {
+.icon::before {
     content: "";
-    -webkit-mask-size: cover;
-    mask-size: cover;
 
     background-color: var(--caput-grey);
     height: var(--icon-size);
     width: var(--icon-size);
     display: block;
+
+    -webkit-mask-image: var(--icon-url);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-image: var(--icon-url);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: cover;
 }
 
-button#display-log::before {
-    -webkit-mask-image: url(../list.svg);
-    mask-image: url(../list.svg);
+#display-log::before {
+    --icon-url: url(/static/list.svg)
 }
 
-button#display-calendar::before {
-    -webkit-mask-image: url(../calendar.svg);
-    mask-image: url(../calendar.svg);
+#display-calendar::before {
+    --icon-url: url(/static/calendar.svg);
 }
 
-button#open-settings::before {
-    -webkit-mask-image: url(../settings.svg);
-    mask-image: url(../settings.svg);
+#open-settings::before {
+    --icon-url: url(/static/settings.svg);
+}
+
+#new-entry::before {
+    --icon-url: url(/static/plus.svg);
+    --icon-size: 2.5em;
 }
 
