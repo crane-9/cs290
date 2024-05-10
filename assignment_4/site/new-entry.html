@@ -25,12 +25,20 @@
     <!-- display buttons + settings button. -->
     <nav>
         <div class="nav-left">
-            <button class="icon" id="display-log"><span class="sr-label">Log Layout</span></button>
-            <button class="icon" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
+            <button class="icon i-log" id="display-log"><span class="sr-label">Log Layout</span></button>
+            <button class="icon i-calendar" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
         </div>
 
         <div class="nav-right">
-            <button class="icon" id="open-settings" popovertarget="settings-popover"><span class="sr-label">Open Settings</span></button>
+            <button class="icon i-settings" popovertarget="settings-popover"><span class="sr-label">Open Settings</span></button>
+        </div>
+    </nav>
+
+    <nav id="entry-actions">
+        <div class="nav-right">
+            <button class="icon i-save" id="save">
+                <span class="sr-label">Save Entry</span>
+            </button>
         </div>
     </nav>
 
@@ -47,7 +55,7 @@
                 <!-- spot for injecting card elems -->
                 <div id="card-pool"></div>
 
-                <button class="icon bordered" id="plus" popovertarget="card-select-popover" type="button">
+                <button class="icon bordered i-plus"popovertarget="card-select-popover" type="button">
                     <span class="sr-label">Add Card</span>
                 </button>
 

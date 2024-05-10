@@ -28,7 +28,8 @@ this is my styling for stuff. yeah
 
     /* fonts */
     --heading-font: "Sedan SC", "Merriweather", serif;
-    --body-font: "FreeSans", "Ariel", sans;
+    --body-font: "Times New Roman", Times, serif;
+    /* --body-font: "FreeSans", "Ariel", sans-serif; */
 
     /* general style patterns */
     --outline-dark-thick: 3px solid var(--caput);    
@@ -48,7 +49,7 @@ this is my styling for stuff. yeah
 }
 
 :focus-visible {
-    outline: dashed var(--fawn-orange) 2px;
+    outline: dashed var(--asparagus) 2px;
     outline-offset: 1px;
 }
 
@@ -144,6 +145,11 @@ nav {
     gap: 1em;
 }
 
+/* Only child .nav-right should still be on the right. */
+.nav-right:only-child {
+    margin-left: auto;
+}
+
 footer {
     font-family: var(--heading-font);
     padding: 1em 2em;
@@ -152,6 +158,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
 
 /* 
     BASE POPOVER.
@@ -262,24 +269,29 @@ button.icon.btn-active {
     mask-size: cover;
 }
 
-#display-log::before {
+.i-log::before {
     --icon-url: url(/static/list.svg)
 }
 
-#display-calendar::before {
+.i-calendar::before {
     --icon-url: url(/static/calendar.svg);
 }
 
-#open-settings::before {
+.i-settings::before {
     --icon-url: url(/static/settings.svg);
 }
 
-#plus::before {
+.i-plus::before {
     --icon-url: url(/static/plus.svg);
     --icon-size: 2.5em;
 }
 
-.close::before {
+
+.i-close::before {
     --icon-url: url(/static/plus.svg);
     transform: rotateZ(45deg);
+}
+
+.i-save::before {
+    --icon-url: url(/static/save.svg);
 }
