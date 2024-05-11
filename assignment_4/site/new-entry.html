@@ -35,7 +35,17 @@
     </nav>
 
     <nav id="entry-actions">
+        <div class="nav-left">
+            
+            <button class="icon i-back">
+                <span class="sr-label">Save Draft and Return</span>
+            </button>
+        </div>
+
         <div class="nav-right">
+            <button class="icon i-close">
+                <span class="sr-label">Discard Entry</span>
+            </button>
             <button class="icon i-save" id="save">
                 <span class="sr-label">Save Entry</span>
             </button>
@@ -43,67 +53,77 @@
     </nav>
 
     <main>
-
-        <form id="new-entry">
-            <!-- main text entries -->
-            <input class="heading-font" type="text" name="entry-title" id="entry-title" value="DATE Entry" />
-            <textarea name="entry-body" id="entry-body" rows="5" placeholder="Entry body..."></textarea>
-            <input class="heading-font" type="date" name="entry-date" id="entry-date" required />
+        <section id="new-entry-input">
+            <div class="fields">
+                <!-- main text entries -->
+                <input class="heading-font" type="text" name="entry-title" id="entry-title" value="DATE Entry" />
+                <input class="heading-font" type="date" name="entry-date" id="entry-date" required />
+                <textarea name="entry-body" id="entry-body" rows="5" placeholder="Entry body..."></textarea>
+            </div>
 
             <!-- card adding interface -->
             <div class="cards-interface">
                 <!-- spot for injecting card elems -->
                 <div id="card-pool"></div>
 
-                <button class="icon bordered i-plus"popovertarget="card-select-popover" type="button">
+                <button class="icon bordered i-plus" id="open-card-popover" popovertarget="card-select-popover" type="button">
                     <span class="sr-label">Add Card</span>
                 </button>
-
             </div>
-        </form>
+
+        </section>
+        <!-- Div for injecting user feedback. -->
+        <div id="interface-feedback">Draft saved!</div>
 
         <section popover id="card-select-popover">
-            <h2>Add Card</h2>
-
-            <button class="icon close" popovertarget="card-select-popover">
-                <span class="sr-label">Close Settings</span>
-            </button>
-
-            <!-- Auto-populated by `entrySetup.js` -->
-            <div class="card-selection" id="card-selector"></div>
-
+            <div class="popover-wrapper">
+                <div class="popover-header">
+                    <h2>Add Card</h2>
+                
+                    <button class="icon i-close" popovertarget="card-select-popover">
+                        <span class="sr-label">Close Settings</span>
+                    </button>
+                </div>
+                
+                <div class="popover-content">
+                    <!-- Auto-populated by `entrySetup.js` -->
+                    <div class="card-selection" id="card-selector"></div>
+                
+                </div>
+            </div>
         </section>
 
     </main>
     
     <!-- settings popover -->
     <section popover id="settings-popover">
-        <h2>Settings</h2>
-
-        <button class="icon close" popovertarget="settings-popover">
-            <span class="sr-label">Close Settings</span>
-        </button>
-
-        <div class="settings">
-            <div class="radio">
-                <h3>Default layout</h3>
-
-                <label for="default-log">
-                    <input type="radio" name="default-layout" id="default-log" value="log">
-                    Log
-                </label>
-                
-                <label for="default-calendar">
-                    <input type="radio" name="default-layout" id="default-calendar" value="calendar">
-                    Calendar
-                </label>
+        <div class="popover-wrapper">
+            <div class="popover-header">
+                <h2>Settings</h2>
+            
+                <button class="icon i-close" popovertarget="settings-popover">
+                    <span class="sr-label">Close Settings</span>
+                </button>
             </div>
 
-            <label for="hide-entry-body" class="heading-font">
-                Hide entry body text
-                <input type="checkbox" name="hide-entry-body" id="hide-entry-body">
-            </label>
-
+            <div class="popover-content settings">
+                <div class="radio">
+                    <h3>Default layout</h3>
+                    <label for="default-log">
+                        <input type="radio" name="default-layout" id="default-log" value="log">
+                        Log
+                    </label>
+            
+                    <label for="default-calendar">
+                        <input type="radio" name="default-layout" id="default-calendar" value="calendar">
+                        Calendar
+                    </label>
+                </div>
+                <label for="hide-entry-body" class="heading-font">
+                    Hide entry body text
+                    <input type="checkbox" name="hide-entry-body" id="hide-entry-body">
+                </label>
+            </div>
         </div>
     </section>
 

@@ -13,6 +13,9 @@ enum Suit {
     Wands = "Wands"
 };
 
+const Suits_Iter = Object.values(Suit);
+console.log(Suits_Iter);
+
 // Define helper types for valid ranges.
 type RankRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 type NumberRange =  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21;
@@ -82,6 +85,37 @@ class TarotCard {
     }
 
     /**
+     * Generates the starting bits for the card's unique identifier code.
+     * @returns Prefix to the card's unique code.
+     */
+    __code_prefix(): string {
+        return "" + Number(this.reversed) + Number(this.arcana === "major");
+    }
+
+    /**
+     * @abstract
+     * Generates the latter half of the card's unique identifier code.
+     */
+    __code_suffix(): string {
+        throw new Error(ABC_ERROR);
+    }
+
+    /**
+     * Generate unique code.
+     */
+    get_data_code(): string {
+        return this.__code_prefix() + ":" + this.__code_suffix();
+    }
+
+    /**
+     * @abstract
+     * Returns the unique class name to display the given card.
+     */
+    get_classnames(): string[] {
+        throw new Error(ABC_ERROR);
+    }
+
+    /**
      * @abstract
      * Method should return the card's title.
      */
@@ -89,6 +123,18 @@ class TarotCard {
         throw new Error(ABC_ERROR);
     }
 
+    /**
+     * Builds an element to represent the given card.
+     * @param [elem="div"] Defaults to "div". The tagname for the created element.
+     */
+    build_element(elem: string = "div"): HTMLElement {
+        let div = document.createElement(elem);
+        div.classList.add("card", ...this.get_classnames());
+        div.setAttribute("data-tarot-code", this.get_data_code());
+        
+        return div;
+    }    
+    
     /**
      * Invert reversed status.
      */
@@ -110,6 +156,14 @@ class MinorArcana extends TarotCard {
         super();
         this.__rank = rank;
         this.__suit = suit;
+    }
+
+    __code_suffix(): string {
+        return "" + this.__rank.toString(16) + Suits_Iter.indexOf(this.__suit);
+    }
+
+    get_classnames(): string[] {
+        return ["icon", this.__suit.toLowerCase()];
     }
 
     get_title(): string {
@@ -137,6 +191,14 @@ class MajorArcana extends TarotCard {
         this.__number = number;
     }
 
+    __code_suffix(): string {
+        return this.__number.toString(TITLES.length);
+    }
+
+    get_classnames(): string[] {
+        return ["major-arcana", "major-" + this.__number];
+    }
+
     get_title(): string {
         return TITLES[this.__number];
     }
@@ -155,9 +217,9 @@ function buildDeck(): TarotCard[] {
     let deck: TarotCard[] = [];
 
     // Build all minor arcana
-    [Suit.Cups, Suit.Pentacles, Suit.Swords, Suit.Wands].forEach(( s: Suit )=> {
+    Suits_Iter.forEach(( suit: Suit )=> {
         for (let r = 1; r < 15; r++) {
-            deck.push(new MinorArcana(r as RankRange, s));
+            deck.push(new MinorArcana(r as RankRange, suit));
         }
     });
 
@@ -169,11 +231,11 @@ function buildDeck(): TarotCard[] {
     return deck;
 }
 
-// // Manually verify functionality
-// buildDeck().forEach(card => {
-//     console.log(card.get_title())
-// })
-
 const DECK = buildDeck();
+
+// // Manually verify functionality
+// DECK.forEach(card => {
+//     console.log(card.get_title(), card.get_data_code())
+// })
 
 export { DECK, MajorArcana, MinorArcana, buildDeck };

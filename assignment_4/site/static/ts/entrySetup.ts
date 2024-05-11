@@ -4,6 +4,7 @@
 
 import { DECK, MajorArcana, MinorArcana } from "./cards.js";
 
+const CARD_POOL = document.getElementById("card-pool") as HTMLElement;
 
 /**
  * 
@@ -17,21 +18,34 @@ function populateCardSelection(id: string = "card-selector") {
     for (let card of DECK) {
         // Basic structure.
         let button = document.createElement("button");
+        let div = card.build_element();
         let caption = document.createElement("span");
         
+        button.classList.add("card-button");
         caption.classList.add("button-caption");
         caption.innerText = card.get_title();
 
-        // Conditional styling.
-        if (card.arcana == "minor") {
-            button.classList.add("card", "icon", (card as MinorArcana).get_suit().toLowerCase());
-        } else {
-            button.classList.add("card", "major-arcana", `major-${(card as MajorArcana).get_numeral()}`);
-        }
+        button.addEventListener("click", (ev: MouseEvent) => {
+            // Mark as selected!
+            const className = "selected";
+            let isSelected = button.classList.contains(className);
+
+            if (isSelected) {
+                button.classList.remove(className);
+            }
+            else {
+                button.classList.add(className);
+            }
+            // Add to pool.
+            CARD_POOL.appendChild(div.cloneNode(true));
+        });
         
+        button.appendChild(div);
         button.appendChild(caption);
         parent.appendChild(button);
     }
 }
 
 populateCardSelection();
+
+// Connect save draft, save, and delete buttons

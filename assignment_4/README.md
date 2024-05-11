@@ -136,3 +136,4 @@ I plan to simply render entries to the page using JavaScript and the DOM. `HTMLE
 https://www.svgrepo.com/svg/533389/calendar-days
 https://www.svgrepo.com/svg/489022/list
 https://www.svgrepo.com/svg/532997/plus-large
+https://www.svgrepo.com/svg/524954/settings

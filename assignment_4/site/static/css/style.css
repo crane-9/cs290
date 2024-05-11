@@ -77,6 +77,7 @@ button, input, textarea {
     color: inherit;
     border: none;
     background-color: transparent;
+    border-radius: 5px;
 }
 
 input {
@@ -194,6 +195,24 @@ footer {
     top: calc(0% + 2em);
 }
 
+.popover-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    overflow: hidden;
+}
+
+.popover-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+/* The reason I use a flex .popover-wrapper class is for this sizing to remain consistent and allow scrollbar. I'm unsure if it could work another way -- but currently, removing `display: flex;` from `.popover-wrapper` disables the scroll for the popover content! */
+.popover-content {
+    overflow-y: auto;
+}
+
 
 .settings {
     display: flex;
@@ -222,33 +241,30 @@ footer {
 /* 
     BUTTONS + ICONS
 */
-.button-caption {
-    font: 0.5rem var(--heading-font);
-    position: absolute;
-    bottom: 0%;
-}
 
 button {
+    cursor: pointer;
+    font-family: var(--heading-font);
     position: relative;
+}
+
+.bordered {
+    border: var(--outline-dark-thick);
+    border-radius: 5px;
+}
+
+button.icon:hover {  /* Specific effect for icon *buttons*. */
+    background-color: color-mix(in srgb, var(--fawn), transparent);
+}
+
+.btn-active {  /* Ex: The navigator button for the current page. */
+    background: var(--fawn);
 }
 
 .icon {
     --icon-size: 1.4em;
     border-radius: 3px;
     padding: 0.5ex 1ex;
-}
-
-button.icon:hover {
-    background-color: color-mix(in srgb, var(--fawn), transparent);
-}
-
-button.icon.btn-active {
-    background: var(--fawn);
-}
-
-.bordered {
-    border: var(--outline-dark-thick);
-    border-radius: 5px;
 }
 
 .icon::before {
@@ -267,18 +283,26 @@ button.icon.btn-active {
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: cover;
+
+    margin: auto;
 }
 
-.i-log::before {
-    --icon-url: url(/static/list.svg)
+.i-back::before {
+    --icon-size: 1.2rem;
+    --icon-url: url(/static/back.svg);
 }
 
 .i-calendar::before {
     --icon-url: url(/static/calendar.svg);
 }
 
-.i-settings::before {
-    --icon-url: url(/static/settings.svg);
+.i-close::before {
+    --icon-url: url(/static/plus.svg);
+    transform: rotateZ(45deg);
+}
+
+.i-log::before {
+    --icon-url: url(/static/list.svg)
 }
 
 .i-plus::before {
@@ -286,12 +310,10 @@ button.icon.btn-active {
     --icon-size: 2.5em;
 }
 
-
-.i-close::before {
-    --icon-url: url(/static/plus.svg);
-    transform: rotateZ(45deg);
-}
-
 .i-save::before {
     --icon-url: url(/static/save.svg);
+}
+
+.i-settings::before {
+    --icon-url: url(/static/settings.svg);
 }

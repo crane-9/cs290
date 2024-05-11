@@ -1,3 +1,6 @@
+/**
+ * Styling specific to cards. 
+ */
 
 .cards {
     display: flex;
@@ -20,6 +23,10 @@
     font-size: 7px;
     width: 7em;
     height: 13em;
+    padding: 1ex;
+
+    /* Set variable local to .card class to be accessed for both icons and text color. */ 
+    --symbol-color: var(--caput);
 }
 
 .card.icon::before {
@@ -34,7 +41,7 @@
     
     -webkit-mask-size: contain;
     mask-size: unset;
-    background-color: var(--paper);
+    background-color: var(--symbol-color);
 }
 
 .reversed::before {
@@ -59,7 +66,7 @@
 }
 
 .card.major-arcana::before {
-    color: var(--paper);
+    color: var(--symbol-color);
     font-family: var(--heading-font);
     font-size: 2.3em;
     scale: 1 3;
