@@ -81,6 +81,25 @@ nav#entry-actions {
     padding: 1em 2em 0;
 }
 
+.pool-slot {
+    display: grid;
+    grid-template-areas: ". card controls ."
+                         "caption caption caption caption";
+}
+
+.pool-slot .card {
+    grid-area: card;
+}
+
+.card-controls {
+    display: grid;
+    grid-area: controls;
+}
+
+.pool-slot span {
+    grid-area: caption;
+}
+
 #open-card-popover {
     grid-area: a;
 }

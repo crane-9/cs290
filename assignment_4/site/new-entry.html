@@ -37,16 +37,16 @@
     <nav id="entry-actions">
         <div class="nav-left">
             
-            <button class="icon i-back">
+            <button class="icon i-back" id="save-draft" title="Save Draft and Return">
                 <span class="sr-label">Save Draft and Return</span>
             </button>
         </div>
 
         <div class="nav-right">
-            <button class="icon i-close">
+            <button class="icon i-close" title="Discard Entry">
                 <span class="sr-label">Discard Entry</span>
             </button>
-            <button class="icon i-save" id="save">
+            <button class="icon i-save" id="save" title="Save Entry">
                 <span class="sr-label">Save Entry</span>
             </button>
         </div>
@@ -66,7 +66,7 @@
                 <!-- spot for injecting card elems -->
                 <div id="card-pool"></div>
 
-                <button class="icon bordered i-plus" id="open-card-popover" popovertarget="card-select-popover" type="button">
+                <button class="icon bordered i-plus" id="open-card-popover" popovertarget="card-select-popover" type="button" title="Add Card">
                     <span class="sr-label">Add Card</span>
                 </button>
             </div>

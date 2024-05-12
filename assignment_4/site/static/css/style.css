@@ -287,6 +287,10 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
     margin: auto;
 }
 
+.icon.red::before {
+    background-color: var(--fawn-red);
+}
+
 .i-back::before {
     --icon-size: 1.2rem;
     --icon-url: url(/static/back.svg);
@@ -308,6 +312,10 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
 .i-plus::before {
     --icon-url: url(/static/plus.svg);
     --icon-size: 2.5em;
+}
+
+.i-flip::before {
+    --icon-url: url(/static/rotate.svg);
 }
 
 .i-save::before {

@@ -123,18 +123,32 @@ class TarotCard {
         throw new Error(ABC_ERROR);
     }
 
-    /**
+     /**
      * Builds an element to represent the given card.
      * @param [elem="div"] Defaults to "div". The tagname for the created element.
      */
-    build_element(elem: string = "div"): HTMLElement {
+    buildElement(elem: string = "div"): HTMLElement {
         let div = document.createElement(elem);
         div.classList.add("card", ...this.get_classnames());
+        div.title = this.get_title();
         div.setAttribute("data-tarot-code", this.get_data_code());
         
         return div;
-    }    
+    }
     
+    /**
+     * Simple shortcut method for creating an element to label
+     * @param elem Element tag name to create.
+     * @param classes List of classes to assign to the element.
+     * @returns An element with the given classes containing an innerText of the card's title.
+     */
+    buildLabel(elem: string = "span", ...classes: string[]): HTMLElement {
+        const span = document.createElement(elem);
+        span.classList.add(...classes);
+        span.innerText = this.get_title();
+        return span;
+    }
+       
     /**
      * Invert reversed status.
      */
@@ -238,4 +252,4 @@ const DECK = buildDeck();
 //     console.log(card.get_title(), card.get_data_code())
 // })
 
-export { DECK, MajorArcana, MinorArcana, buildDeck };
+export { DECK, TarotCard, MajorArcana, MinorArcana, buildDeck };
