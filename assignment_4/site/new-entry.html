@@ -5,28 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tarot Journal - New Entry</title>
-
+    
+    <!-- Scripts and styling -->
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/cards.css">
     <link rel="stylesheet" href="/static/css/form.css">
 
-    <!-- many scripts will go here -->
     <script type="module" src="/static/js/entrySetup.js"></script>
-
 </head>
 <body>
-
-    <!-- logo. ohhh i can put the version number here too. yay -->
+    <!-- Header with logo + version note. -->
     <header>
         <h1 id="title">Tarot Journal</h1>
         <span>v0.1</span>
     </header>
 
-    <!-- display buttons + settings button. -->
+    <!-- Navigation buttons -->
     <nav>
         <div class="nav-left">
-            <button class="icon i-log" id="display-log"><span class="sr-label">Log Layout</span></button>
-            <button class="icon i-calendar" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
+            <a href="./index.html#view-log" class="invisible"><button class="icon i-log" id="display-log"><span class="sr-label">Log Layout</span></button></a>
+
+            <a href="./index.html#view-calendar" class="invisible"><button class="icon i-calendar" id="display-calendar"><span class="sr-label">Calendar Layout</span></button></a>
         </div>
 
         <div class="nav-right">
@@ -34,6 +33,7 @@
         </div>
     </nav>
 
+    <!-- Secondary nav for entry page. -->
     <nav id="entry-actions">
         <div class="nav-left">
             
@@ -43,9 +43,11 @@
         </div>
 
         <div class="nav-right">
-            <button class="icon i-close" title="Discard Entry">
-                <span class="sr-label">Discard Entry</span>
-            </button>
+            <a href="./index.html" class="invisible">
+                <button class="icon i-close" title="Discard Entry">
+                    <span class="sr-label">Discard Entry</span>
+                </button>
+            </a>
             <button class="icon i-save" id="save" title="Save Entry">
                 <span class="sr-label">Save Entry</span>
             </button>
@@ -55,27 +57,26 @@
     <main>
         <section id="new-entry-input">
             <div class="fields">
-                <!-- main text entries -->
+                <!-- Text inputs -->
                 <input class="heading-font" type="text" name="entry-title" id="entry-title" placeholder="Entry Title" />
                 <input class="heading-font" type="date" name="entry-date" id="entry-date" required />
                 <textarea name="entry-body" id="entry-body" rows="5" placeholder="Entry body..."></textarea>
             </div>
 
-            <!-- card adding interface -->
+            <!-- Active cards display and management interface. -->
             <div class="cards-interface">
-                <!-- spot for injecting card elems -->
-                <div id="card-pool"></div>
 
+                <!-- Specific elements for injecting active card info. -->
+                <div id="card-pool"></div>
                 <p id="cards-list"></p>
 
+                <!-- Open popover to add new card(s). -->
                 <button class="icon bordered i-plus" id="open-card-popover" popovertarget="card-select-popover" type="button" title="Add Card">
                     <span class="sr-label">Add Card</span>
                 </button>
             </div>
 
         </section>
-        <!-- Div for injecting user feedback. -->
-        <div id="interface-feedback">Draft saved!</div>
 
         <section popover id="card-select-popover">
             <div class="popover-wrapper">
@@ -97,7 +98,7 @@
 
     </main>
     
-    <!-- settings popover -->
+    <!-- General settings popover. -->
     <section popover id="settings-popover">
         <div class="popover-wrapper">
             <div class="popover-header">
@@ -129,10 +130,10 @@
         </div>
     </section>
 
-    <!-- footer message -- unplanned, but probably basics and links to privacy policy, other info. -->
+    <!-- Footer message -->
     <footer>
         <span>&copy; 2024</span>
-        <a href="/privacy-policy">Privacy policy</a>
+        <a href="/privacy-policy.html">Privacy policy</a>
     </footer>
 </body>
 </html>

@@ -102,7 +102,6 @@ class TarotCard {
             card = new MinorArcana(rank, suit);
         }
         
-        console.log(cardCode, general, specific, isReversed, typeof isMajor, card);
         // Reverse if needed.
         if (isReversed) card.reverse();
 
@@ -170,10 +169,12 @@ class TarotCard {
      * Builds an element to represent the given card.
      * @param [elem="div"] Defaults to "div". The tagname for the created element.
      */
-    buildElement(elem: string = "div"): HTMLElement {
+    buildElement(elem: string = "div", fullTitle?: boolean): HTMLElement {
         let div = document.createElement(elem);
         div.classList.add("card", ...this.getClassnames());
-        div.title = this.getTitle();
+        if (fullTitle && this.reversed) div.classList.add("reversed");
+
+        div.title = fullTitle? this.getTitleFull() : this.getTitle();
         div.setAttribute("data-tarot-code", this.getDataCode());
         
         return div;
@@ -298,7 +299,5 @@ const DECK = buildDeck();
 // DECK.forEach(card => {
 //     console.log(card.get_title(), card.get_data_code())
 // })
-
-console.log(TarotCard.parse("11:9"));
 
 export { DECK, TarotCard, MajorArcana, MinorArcana, buildDeck };

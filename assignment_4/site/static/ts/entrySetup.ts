@@ -3,12 +3,18 @@
  */
 
 import { DECK, TarotCard } from "./cards.js";
-import { JournalEntry } from "./entry.js";
+import { DRAFT_KEY, JournalEntry } from "./entry.js";
 import { createButton } from "./generation.js";
 
 
+// Get outputs.
 const CARD_POOL = document.getElementById("card-pool") as HTMLElement;
 const CARD_LIST = document.getElementById("cards-list") as HTMLElement;
+
+// Get inputs.
+const TITLE_INPUT = document.getElementById("entry-title") as HTMLInputElement;
+const DATE_INPUT = document.getElementById("entry-date") as HTMLInputElement;
+const BODY_INPUT = document.getElementById("entry-body") as HTMLTextAreaElement;
 
 
 /**
@@ -101,22 +107,46 @@ function populateCardSelection(id: string = "card-selector") {
 }
 
 
-// Connect save and save draft buttons.
-(document.getElementById("save") as HTMLButtonElement).onclick = (ev: MouseEvent) => {
-    ev.preventDefault();
-
+/**
+ * Saves the current input to `localStorage`.
+ * @param isDraft If true, saves current input as draft.
+ */
+function saveEntry(isDraft?: boolean): void {
     // get the things
+    let cards: string[] = [];
+
+    document.querySelectorAll(".pool-slot").forEach((elem: Element) => {
+        let cardElem = elem.firstElementChild;
+        let value = cardElem?.getAttribute("data-tarot-code");
+
+        if (value) cards.push(value);
+    });
 
     // create entry
+    const entry = JournalEntry.newEntry(TITLE_INPUT.value, BODY_INPUT.value, DATE_INPUT.valueAsDate?.getTime() as number, cards);
 
-    // save entry
-};
+    console.log(entry.id);
+
+    // save entry to appropriate key
+    isDraft? entry.saveDraft() : entry.save();
+
+    // if not draft -- remove current draft.
+    if (!isDraft) localStorage.removeItem(DRAFT_KEY);
+
+    // then navigate back to index.
+    location.pathname = "./index.html";
+}
+
+
+// Connect save and save draft buttons.
+(document.getElementById("save") as HTMLButtonElement).onclick = (ev: MouseEvent) => saveEntry();
+(document.getElementById("save-draft") as HTMLButtonElement).onclick = (ev: MouseEvent) => saveEntry(true);
 
 // Autofill date input with today.
 const today = new Date();
-(document.getElementById("entry-date") as HTMLInputElement).valueAsDate = today;
+DATE_INPUT.valueAsDate = today;
 
-(document.getElementById("entry-title") as HTMLInputElement).value = `Entry for ${today.toLocaleDateString()}`;
+TITLE_INPUT.value = `Entry for ${today.toLocaleDateString()}`;
 
 // Call population functions.
 populateCardSelection();

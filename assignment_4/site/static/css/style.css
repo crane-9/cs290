@@ -80,6 +80,15 @@ body {
     display: none;
 }
 
+/* Minimally used, but styling regardless. */
+code {
+    background: var(--caput-grey-light);
+    border-radius: 3px;
+    color: var(--paper);
+
+    padding: 0.5ex 1ex;
+}
+
 button, input, textarea {
     font: inherit;
     color: inherit;
@@ -245,6 +254,16 @@ footer {
 .settings .radio :not(h3) {
     margin-left: 1em;
 }
+
+#reset-storage {
+    background-color: var(--fawn-red);
+    padding: 1ex 0;
+}
+
+#reset-storage:hover {
+    background-color: color-mix(in hsl, var(--fawn-red) 70%, var(--peach));
+}
+
 
 /* 
     BUTTONS + ICONS
