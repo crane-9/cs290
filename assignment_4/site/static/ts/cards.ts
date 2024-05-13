@@ -77,6 +77,38 @@ class TarotCard {
     reversed: boolean;
     arcana?: string;
 
+    /**
+     * Creates a card from the given code, returning a MajorArcana or MinorArcana object.
+     * @param cardCode Code for the given card.
+     */
+    static parse(cardCode: string): TarotCard {
+        const [ general, specific ] = cardCode.split(":");
+        
+        let generalParse: boolean[] = [];
+        [...general].forEach((stringDigit: string) => {
+            generalParse.push(Boolean(Number(stringDigit)));
+        });
+        
+        const [ isReversed, isMajor ] = generalParse;
+        
+        let card: TarotCard;
+        
+        // Two different processes
+        if (isMajor) {
+            card = new MajorArcana(parseInt(specific, TITLES.length) as NumberRange);
+        } else {
+            let rank = parseInt(specific[0], 16) as RankRange;
+            let suit = Suits_Iter[parseInt(specific[1])];
+            card = new MinorArcana(rank, suit);
+        }
+        
+        console.log(cardCode, general, specific, isReversed, typeof isMajor, card);
+        // Reverse if needed.
+        if (isReversed) card.reverse();
+
+        return card;
+    }
+
     constructor() {
         if (this.constructor == TarotCard)
             throw new Error(ABC_ERROR);
@@ -266,5 +298,7 @@ const DECK = buildDeck();
 // DECK.forEach(card => {
 //     console.log(card.get_title(), card.get_data_code())
 // })
+
+console.log(TarotCard.parse("11:9"));
 
 export { DECK, TarotCard, MajorArcana, MinorArcana, buildDeck };
