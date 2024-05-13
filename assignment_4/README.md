@@ -15,16 +15,16 @@ Javascript
 
 Taken from the assignment page: 
 
-- [ ] Input
+- [x] Input
 - [ ] Output
-- [ ] Variables (number, string, boolean, object)
+- [x] Variables (number, string, boolean, object)
 - [ ] Errors and avoiding
-- [ ] Conditions
-- [ ] Repetition
-- [ ] Arrays
-- [ ] Functions
-- [ ] Scope
-- [ ] Events
+- [x] Conditions
+- [x] Repetition
+- [x] Arrays
+- [x] Functions
+- [x] Scope
+- [x] Events
 
 
 ### Concept
@@ -137,3 +137,4 @@ https://www.svgrepo.com/svg/533389/calendar-days
 https://www.svgrepo.com/svg/489022/list
 https://www.svgrepo.com/svg/532997/plus-large
 https://www.svgrepo.com/svg/524954/settings
+https://www.svgrepo.com/svg/510172/rotate-left

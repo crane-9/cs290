@@ -1,8 +1,11 @@
-/* 
-this is my styling for stuff. yeah
-*/
+/**
+ * General styling settings for Tarot Journal.
+ * This file will be included on every page.
+ */
+
 
 :root {
+    /* Color palette */
     --caput: #502419;
     --caput-grey: #45302b;
     --caput-grey-light: #634e49;
@@ -26,22 +29,27 @@ this is my styling for stuff. yeah
     --paper: #f4e4dc; 
     --offwhite: #fcf7f5;
 
-    /* fonts */
+    /* Fonts */
     --heading-font: "Sedan SC", "Merriweather", serif;
     --body-font: "Times New Roman", Times, serif;
-    /* --body-font: "FreeSans", "Ariel", sans-serif; */
 
-    /* general style patterns */
+    /* Outline/border patterns. */
     --outline-dark-thick: 3px solid var(--caput);    
     --outline-dark-thin: 1px solid var(--caput);
     --outline-light: 0.95px var(--paper);
 
-    /* transition values */
+    /* Transition animation settings for easy consistency!*/
     --transition-background-color: 100ms background-color ease-in;
     --transition-hover-background-color: 200ms background-color ease-in-out;
 
     --transition-translate: 200ms translate ease-in;
     --transition-hover-translate: 300ms translate ease-in-out;
+
+    --transition-spin: 200ms rotate ease-in-out;
+    --transition-hover-spin: 300ms rotate ease-out;
+
+    --transition-transform: 250ms transform ease-out;
+    --transition-reversed-transform: 400 transform ease-in-out;
 }
 
 ::selection {

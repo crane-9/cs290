@@ -56,7 +56,7 @@
         <section id="new-entry-input">
             <div class="fields">
                 <!-- main text entries -->
-                <input class="heading-font" type="text" name="entry-title" id="entry-title" value="DATE Entry" />
+                <input class="heading-font" type="text" name="entry-title" id="entry-title" placeholder="Entry Title" />
                 <input class="heading-font" type="date" name="entry-date" id="entry-date" required />
                 <textarea name="entry-body" id="entry-body" rows="5" placeholder="Entry body..."></textarea>
             </div>
@@ -65,6 +65,8 @@
             <div class="cards-interface">
                 <!-- spot for injecting card elems -->
                 <div id="card-pool"></div>
+
+                <p id="cards-list"></p>
 
                 <button class="icon bordered i-plus" id="open-card-popover" popovertarget="card-select-popover" type="button" title="Add Card">
                     <span class="sr-label">Add Card</span>

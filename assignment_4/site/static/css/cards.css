@@ -42,11 +42,16 @@
     -webkit-mask-size: contain;
     mask-size: unset;
     background-color: var(--symbol-color);
+
+    transition: var(--transition-transform);
 }
+
 
 .reversed::before {
     transform: scale(-1);
+    transition: var(--transition-reversed-transform);
 }
+
 
 
 .card.cups::before {

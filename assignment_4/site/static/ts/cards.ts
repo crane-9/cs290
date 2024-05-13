@@ -88,7 +88,7 @@ class TarotCard {
      * Generates the starting bits for the card's unique identifier code.
      * @returns Prefix to the card's unique code.
      */
-    __code_prefix(): string {
+    __codePrefix(): string {
         return "" + Number(this.reversed) + Number(this.arcana === "major");
     }
 
@@ -96,22 +96,22 @@ class TarotCard {
      * @abstract
      * Generates the latter half of the card's unique identifier code.
      */
-    __code_suffix(): string {
+    __codeSuffix(): string {
         throw new Error(ABC_ERROR);
     }
 
     /**
      * Generate unique code.
      */
-    get_data_code(): string {
-        return this.__code_prefix() + ":" + this.__code_suffix();
+    getDataCode(): string {
+        return this.__codePrefix() + ":" + this.__codeSuffix();
     }
 
     /**
      * @abstract
      * Returns the unique class name to display the given card.
      */
-    get_classnames(): string[] {
+    getClassnames(): string[] {
         throw new Error(ABC_ERROR);
     }
 
@@ -119,8 +119,19 @@ class TarotCard {
      * @abstract
      * Method should return the card's title.
      */
-    get_title(): string {
+    getTitle(): string {
         throw new Error(ABC_ERROR);
+    }
+
+    /**
+     * The card's title including reversed status.
+     */
+    getTitleFull(): string {
+        const title = this.getTitle();
+        
+        if (this.reversed) return `${title} (Reversed)`;
+        
+        return title;
     }
 
      /**
@@ -129,23 +140,27 @@ class TarotCard {
      */
     buildElement(elem: string = "div"): HTMLElement {
         let div = document.createElement(elem);
-        div.classList.add("card", ...this.get_classnames());
-        div.title = this.get_title();
-        div.setAttribute("data-tarot-code", this.get_data_code());
+        div.classList.add("card", ...this.getClassnames());
+        div.title = this.getTitle();
+        div.setAttribute("data-tarot-code", this.getDataCode());
         
         return div;
     }
     
     /**
      * Simple shortcut method for creating an element to label
-     * @param elem Element tag name to create.
+     * @param options For label configuration. Two current options: `elem` for element tagname, and `fullTitle` for whether or not to include the reversal status.
      * @param classes List of classes to assign to the element.
      * @returns An element with the given classes containing an innerText of the card's title.
      */
-    buildLabel(elem: string = "span", ...classes: string[]): HTMLElement {
-        const span = document.createElement(elem);
-        span.classList.add(...classes);
-        span.innerText = this.get_title();
+    buildLabel(options: any, ...classes: string[]): HTMLElement {
+        const span = document.createElement(options.elem == null? "span": options.elem);
+
+        if (classes.length) span.classList.add(...classes);
+
+        // Conditional title.
+        span.innerText = options.fullTitle? this.getTitleFull(): this.getTitle();
+
         return span;
     }
        
@@ -172,15 +187,15 @@ class MinorArcana extends TarotCard {
         this.__suit = suit;
     }
 
-    __code_suffix(): string {
+    __codeSuffix(): string {
         return "" + this.__rank.toString(16) + Suits_Iter.indexOf(this.__suit);
     }
 
-    get_classnames(): string[] {
+    getClassnames(): string[] {
         return ["icon", this.__suit.toLowerCase()];
     }
 
-    get_title(): string {
+    getTitle(): string {
         return `${RANK_MAP[this.__rank]} of ${this.__suit.toString()}`
     }
 
@@ -205,19 +220,19 @@ class MajorArcana extends TarotCard {
         this.__number = number;
     }
 
-    __code_suffix(): string {
+    __codeSuffix(): string {
         return this.__number.toString(TITLES.length);
     }
 
-    get_classnames(): string[] {
+    getClassnames(): string[] {
         return ["major-arcana", "major-" + this.__number];
     }
 
-    get_title(): string {
+    getTitle(): string {
         return TITLES[this.__number];
     }
 
-    get_numeral(): number {
+    getNumeral(): number {
         return this.__number;
     }
 }

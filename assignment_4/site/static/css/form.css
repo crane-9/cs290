@@ -41,9 +41,9 @@ nav#entry-actions {
 /* Main layout(s) */
 
 #new-entry-input {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-flow: column;
+    display: flex;
+    gap: 1em;
+    align-items: start;
 }
 
 .fields {
@@ -63,22 +63,25 @@ nav#entry-actions {
 
 #entry-body {
     grid-area: b;
+    min-height: 3rem;
 }
 
 .cards-interface {
-    display: grid;
-    grid-template-areas: "c c c"
-                         ". a .";
-    gap: 1em;    
+    display: flex;
+    gap: 1em;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    flex-grow: 1;
 }
 
 #card-pool {
-    grid-area: c;
+    width: 100%;
     
     display: flex;
     flex-flow: row wrap;
     gap: 1em;
-    padding: 1em 2em 0;
+    justify-content: center;
 }
 
 .pool-slot {
@@ -98,6 +101,43 @@ nav#entry-actions {
 
 .pool-slot span {
     grid-area: caption;
+}
+
+#cards-list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1ex 1em;
+    justify-content: center;
+}
+
+/* Fancy styling/text logic in CSS for user feedback. */
+#cards-list:empty::before {
+    content: "No cards have been selected.";
+    font-style: italic;
+}
+
+#cards-list span {
+    font-family: var(--heading-font);
+}
+
+#cards-list span::before, #cards-list span::after {
+    font-family: var(--body-font);
+}
+
+#cards-list span::after {
+    content: ", ";
+}
+
+#cards-list span:last-child::before {
+    content: "and ";
+}
+
+#cards-list span:last-child:first-child::before {
+    content: "";
+}
+
+#cards-list span:last-child::after {
+    content: ".";
 }
 
 #open-card-popover {
@@ -156,4 +196,21 @@ nav#entry-actions {
     #new-entry-input {
         display: block;
     }
+
+    #card-pool {
+        padding-top: 1em;
+    }
+}
+
+
+/* Animations */
+
+/* Animating the flip icon on hover to try and demonstrate the button's function. */
+.i-flip::before {
+    transition: var(--transition-spin);
+}
+
+.i-flip:hover::before {
+    rotate: -360deg;
+    transition: var(--transition-hover-spin);
 }
