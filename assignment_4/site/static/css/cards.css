@@ -55,19 +55,19 @@
 
 
 .card.cups::before {
-    --icon-url: url(/static/cup.svg);
+    --icon-url: url(/static/img/cup.svg);
 }
 
 .card.pentacles::before {
-    --icon-url: url(/static/pentacle.svg);
+    --icon-url: url(/static/img/pentacle.svg);
 }
 
 .card.swords::before {
-    --icon-url: url(/static/sword.svg);
+    --icon-url: url(/static/img/sword.svg);
 }
 
 .card.wands::before {
-    --icon-url: url(/static/wand.svg);
+    --icon-url: url(/static/img/wand.svg);
 }
 
 .card.major-arcana::before {

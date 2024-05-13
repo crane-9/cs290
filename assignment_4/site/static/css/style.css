@@ -320,35 +320,35 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
 
 .i-back::before {
     --icon-size: 1.2rem;
-    --icon-url: url(/static/back.svg);
+    --icon-url: url(/static/img/back.svg);
 }
 
 .i-calendar::before {
-    --icon-url: url(/static/calendar.svg);
+    --icon-url: url(/static/img/calendar.svg);
 }
 
 .i-close::before {
-    --icon-url: url(/static/plus.svg);
+    --icon-url: url(/static/img/plus.svg);
     transform: rotateZ(45deg);
 }
 
 .i-log::before {
-    --icon-url: url(/static/list.svg)
+    --icon-url: url(/static/img/list.svg)
 }
 
 .i-plus::before {
-    --icon-url: url(/static/plus.svg);
+    --icon-url: url(/static/img/plus.svg);
     --icon-size: 2.5em;
 }
 
 .i-flip::before {
-    --icon-url: url(/static/rotate.svg);
+    --icon-url: url(/static/img/rotate.svg);
 }
 
 .i-save::before {
-    --icon-url: url(/static/save.svg);
+    --icon-url: url(/static/img/save.svg);
 }
 
 .i-settings::before {
-    --icon-url: url(/static/settings.svg);
+    --icon-url: url(/static/img/settings.svg);
 }

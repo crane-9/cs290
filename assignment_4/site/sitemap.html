@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tarot Journal - Privacy Policy</title>
+    <title>Tarot Journal - Sitemap</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
 
     <!-- many scripts will go here -->
+    <script type="module" src="/static/js/settings.js"></script>
 </head>
 <body>
     
-    <!-- hello beautiful world -->
-
     <!-- logo. ohhh i can put the version number here too. yay -->
     <header>
         <h1 id="title">Tarot Journal</h1>
@@ -23,8 +22,8 @@
     <!-- display buttons + settings button. -->
     <nav>
         <div class="nav-left">
-            <a href="./index.html#view-log" class="invisible"><button class="icon i-log" id="display-log"><span class="sr-label">Log Layout</span></button></a>
-            <a href="./index.html#view-calendar" class="invisible"><button class="icon i-calendar" id="display-calendar"><span class="sr-label">Calendar Layout</span></button></a>
+            <button class="icon i-log" id="display-log"><span class="sr-label">Log Layout</span></button>
+            <button class="icon i-calendar" id="display-calendar"><span class="sr-label">Calendar Layout</span></button>
         </div>
 
         <div class="nav-right">
@@ -34,13 +33,11 @@
     </nav>
 
     <main class="info">
-        <h2>Privacy Policy</h2>
+        <h2>Sitemap</h2>
 
-        <p>This site's code works entirely client-side, meaning that zero information is sent to a server. Any information entered on the <a href="/new-entry.html">entry page</a> is stored solely in the user's browser's storage.</p>
+        
 
-        <p>This means that data protection is entirely the responsibility of the user.</p>
-
-        <p>For more information on the <code>localStorage</code> API, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">click here</a>.</p>
+        <p>Note: While viewing site locally, please use <code>assignment_4/site</code> as server root for best results.</p>
     </main>
 
     <!-- settings popover -->
@@ -48,10 +45,12 @@
         <div class="popover-wrapper">
             <div class="popover-header">
                 <h2>Settings</h2>
+
                 <button class="icon i-close" popovertarget="settings-popover">
                     <span class="sr-label">Close Settings</span>
                 </button>
             </div>
+
             <div class="popover-content settings">
                 <div class="radio">
                     <h3>Default layout</h3>
@@ -65,10 +64,13 @@
                         Calendar
                     </label>
                 </div>
+                
                 <label for="hide-entry-body" class="heading-font">
                     Hide entry body text
                     <input type="checkbox" name="hide-entry-body" id="hide-entry-body">
                 </label>
+
+                <button id="reset-storage">Delete Data</button>
             </div>
         </div>
     </section>
