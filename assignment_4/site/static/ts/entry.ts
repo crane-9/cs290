@@ -4,6 +4,13 @@
  * This script holds key constants for accessing localstorage
  */
 
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js"; // ignore error
+
+// Simple configuration: allow breaks.
+marked.use({
+    breaks: true
+});
+
 import { TarotCard } from "./cards.js";
 import { createElement } from "./generation.js";
 
@@ -185,7 +192,8 @@ class JournalEntry {
         title.innerHTML = `<a href="#">${this.title}</a>`
 
         const body = createElement("div", "entry-body");
-        if (!hideBody) body.innerText = this.body;
+
+        if (!hideBody) body.innerHTML = marked.parse(this.body);  // Because there is no server involved, I do not sanitize. This bothers me, but realistically in this specific case, anything that causes trouble for the user was likely their intention.
         else body.innerText = `(${this.body.length} characters of text...)`;
 
         // List the card names.

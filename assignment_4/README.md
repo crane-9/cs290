@@ -157,7 +157,7 @@ Primarily throughout this project, I did manual testing: I attempted to use the 
 
     > Alternatively: travel to any page on the site from `/sitemap.html`.
 
-2. From `/new-entry.html`, enter a memorable title and pay attention to the inputted date. Enter memorable body text, or none at all.
+2. From `/new-entry.html`, enter a memorable title and pay attention to the inputted date. Enter memorable body text, or none at all. Basic markdown is supported for the body text.
 
     ![Blank entry input page](./readme-src/entry_empty.png)
 
