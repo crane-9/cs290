@@ -1,33 +1,42 @@
 # Assignment 4
 
-Javascript
+> This project was built with typescript. To set up, please run:
+>   ```sh
+>   mkdir ./assignment_4/site/static/js
+>   npm install
+>   npx tsc
+>   ```
+> The appropriate in/out directories should already be configured in `tsconfig.json` at the time of this commit.
 
 
-- [Requirements](#requirements)
+- [Assignment requirements](#requirements)
 - [Concept](#concept)
     - [Mockup](#mockup)
     - [Data design](#data-design)
     - [Content rendering](#content-rendering)
+- [Testing](#testing)
+    - [How to test](#how-to-test)
+- [Outcome](#outcome)
 - [Attributions](#attributions)
 
 
-### Requirements
+## Requirements
 
 Taken from the assignment page: 
 
-- [x] Input
-- [ ] Output
-- [x] Variables (number, string, boolean, object)
-- [ ] Errors and avoiding
-- [x] Conditions
-- [x] Repetition
-- [x] Arrays
-- [x] Functions
-- [x] Scope
-- [x] Events
+- [✔️ ] Input
+- [✔️ ] Output
+- [✔️ ] Variables (number, string, boolean, object)
+- [✔️ ] Errors and avoiding
+- [✔️ ] Conditions
+- [✔️ ] Repetition
+- [✔️ ] Arrays
+- [✔️ ] Functions
+- [✔️ ] Scope
+- [✔️ ] Events
 
 
-### Concept
+## Concept
 
 I plan to build a proof-of-concept for a single-page application[1] daily journal for tarot card readings. This is something I would personally be interested in using because it could provide specific functionality specific to the mechanics and structure of tarot readings that other journalling applications lack.
 
@@ -36,7 +45,7 @@ On the technical side, all data will be stored locally via `localStorage`. For t
 > ^[1] This project will not truly be one single page, as it is easier to navigate the user to a `/new-entry` page for input, as opposed to using JavaScript to populate the page with static information.
 
 
-#### Mockup
+### Mockup
 
 ![concept mockup](./readme-src/concept.png)
 
@@ -75,7 +84,7 @@ Notes:
 9. As the major arcana are only symbolized by Roman numerals, I do not need to worry about creating assets for these, I may just use the heading font and stretch it vertically for stylization.
 
 
-#### Data Design
+### Data Design
 
 This application will have a few key classes of data involved in the rendering of the log and calendar pages:
 
@@ -126,15 +135,93 @@ For the proof-of-concept, I aim to utilize these two properties:
 I believe that covers data design.
 
 
-#### Content rendering
+### Content rendering
 
 I plan to simply render entries to the page using JavaScript and the DOM. `HTMLElement` objects will be structured by being assigned children of one another, and the appropriate attributes (`class`, `id`, `href`, so on). 
 
 
-### Attributions
+---
 
-https://www.svgrepo.com/svg/533389/calendar-days
-https://www.svgrepo.com/svg/489022/list
-https://www.svgrepo.com/svg/532997/plus-large
-https://www.svgrepo.com/svg/524954/settings
-https://www.svgrepo.com/svg/510172/rotate-left
+## Testing
+
+Primarily throughout this project, I did manual testing: I attempted to use the feature as intended, printed a lot of information to the console, and watched the resulting data and behavior carefully.
+
+
+### How to test
+
+1. Upon opening the site, you should be greeted with an empty index page, save for a big "+" button:
+
+    ![Empty index page example](./readme-src/index_empty.png)
+
+    Click this button to navigate to the `/new-entry.html` page.
+
+    > Alternatively: travel to any page on the site from `/sitemap.html`.
+
+2. From `/new-entry.html`, enter a memorable title and pay attention to the inputted date. Enter memorable body text, or none at all.
+
+    ![Blank entry input page](./readme-src/entry_empty.png)
+
+    > Note: As shown in the above screenshot, I've noticed the ocassional issue that the date input's date does not match the one received through `Date.toDateString()`. This is due to timezone management, though I'm not sure about a workaround when it comes to the date input.
+
+3. To select which tarot cards you drew for a reading, click the "+" button under the text "*No cards have been selected.*" For the sake of testing, select whichever cards will be memorable.
+
+    When selecting a card, it may not be immediately evident that it has been selected. Once you've clicked on the desired cards, clicking the "x" at the top of the popover, or clicking outside of the popover, will close the selection menu. Now you should see the selected cards above the "+" button.
+
+    > Note: A typical tarot reading involves 1 - 3 cards, and I've found this interface is optimized for that range, but can handle more.
+
+    Flip a card or two for the sake of testing by hitting the round arrow button.
+
+4. When your entry is complete, hit the "save" icon in the upper-right corner, below the "settings" gear.
+
+5. You should be taken back to the index log page, and greeted by your latest entry in full.
+
+    ![Populated log page](./readme-src/log.png)
+
+    Clicking the "calendar" icon, you should be taken to the calendar view page, which should show your entry in the expected date.
+
+    ![Populated calendar page.](./readme-src/calendar.png)
+
+That is a walkthrough of the webapp's basic behavior, which should behave for the most part.
+
+
+## Outcome
+
+I was able to fulfill most of what I had planned, with some alterations as I worked on implementing the actual code.
+
+My main struggles and features that I would want to expand on in the future are as follows:
+
+- Single entry view page.
+
+    I did not make a page to view a single entry. I am chosing not to do this because I wanted to reflect the fact that it did not occur to me until a couple days into this project, and I am a bit tired. Functionally speaking, you can still view the complete contents of any entry in the "log" view on the index page. However, a page to view a single entry is fairly basic, and I constantly found myself attempting to open a single journal entry.
+
+- The calendar.
+    
+    Though it "works", there are a couple features I found myself missing once I built the calendar:
+    - I would like to be able to click on any empty cell on the calendar and create an entry for that day.
+    - I would, again, like to be able to click on any *full* cell on the calendar and view the page for that day's tarot entr(y/ies).
+    - I would like to be able to page through previous months and interact with those entries.
+    - I would also like to see what the current month is, and perhaps more information about the entry on hover, or in an info panel below the calendar perhaps.
+    - I would like a good layout on mobile for the calendar. I have written a calendar before in a similar fashion and creating a mobile layout is what I got stuck on before.
+
+- Settings and configurations.
+
+    As I wrote this site, I had a handful of ideas for future settings that would manage the behavior of current and future features.
+
+    Additionally the layout of this popover could be improved upon.
+
+- Title card.
+
+    I couldn't get the title of the page to have the cool green blob behind it as there was in the mockup, but I did not want to hyperfocus on one detail while I could be building the rest of the site.
+
+Overall, I am happy with the outcome of this project. I think it is a solid start that I intend to build on.
+
+
+## Attributions
+
+I used a handful of SVG files all found on SVGRepo, some of which require attributions:
+
+- [Calendar](https://www.svgrepo.com/svg/533389/calendar-days)
+- [List](https://www.svgrepo.com/svg/489022/list)
+- [Plus](https://www.svgrepo.com/svg/532997/plus-large)
+- [Settings](https://www.svgrepo.com/svg/524954/settings)
+- [Rotate](https://www.svgrepo.com/svg/510172/rotate-left)

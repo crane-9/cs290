@@ -63,5 +63,5 @@ LOG_LAYOUT_BTN.onclick = loadLog;
 CAL_LAYOUT_BTN.onclick = loadCal;
 
 // Autofill based on preferences...!
-if (hashPreference !== "#log" || isCalendarDefault) loadCal();
-else loadLog();
+if (hashPreference !== "#calendar" && !isCalendarDefault) loadLog();
+else loadCal();

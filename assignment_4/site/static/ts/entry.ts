@@ -188,8 +188,13 @@ class JournalEntry {
         if (!hideBody) body.innerText = this.body;
         else body.innerText = `(${this.body.length} characters of text...)`;
 
+        // List the card names.
+        const caption = createElement("p");
+        caption.id = "cards-list";
+
         content.appendChild(title);
         content.appendChild(body);
+        content.appendChild(caption);
 
         // Cards
         const cards = createElement("div", "cards");
@@ -197,6 +202,7 @@ class JournalEntry {
         // Populate cards.
         for (let card of this.getCards()) {
             cards.appendChild(card.buildElement("span", true));
+            caption.appendChild(card.buildLabel({ fullTitle: true }));
         }
 
         wrapper.appendChild(content);

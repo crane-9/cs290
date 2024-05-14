@@ -361,3 +361,28 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
     padding-left: 1em;
     border-left: var(--outline-dark-thin);
 }
+
+
+#cards-list span {
+    font-family: var(--heading-font);
+}
+
+#cards-list span::before, #cards-list span::after {
+    font-family: var(--body-font);
+}
+
+#cards-list span::after {
+    content: ", ";
+}
+
+#cards-list span:last-child::before {
+    content: "and ";
+}
+
+#cards-list span:last-child:first-child::before {
+    content: "";
+}
+
+#cards-list span:last-child::after {
+    content: ".";
+}
