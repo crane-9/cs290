@@ -352,3 +352,12 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
 .i-settings::before {
     --icon-url: url(/static/img/settings.svg);
 }
+
+
+/* Other */
+
+.sitemap-sections {
+    margin-left: 2em;
+    padding-left: 1em;
+    border-left: var(--outline-dark-thin);
+}
