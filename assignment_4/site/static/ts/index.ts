@@ -1,6 +1,7 @@
 
 import { buildCalendar } from "./calendarLogic.js";
 import { JournalEntry } from "./entry.js";
+import { DEFAULT_VIEW_KEY, HIDE_BODY_KEY } from "./settings.js";
 
 const MAIN = document.getElementById("main") as HTMLElement;
 
@@ -10,6 +11,10 @@ const CAL_LAYOUT_BTN = document.getElementById("display-calendar") as HTMLButton
 // Get entries once.
 const ENTRIES = JournalEntry.loadAll();
 
+// Gather any needed preference variables.
+const hideBodyText = Boolean(localStorage.getItem(HIDE_BODY_KEY));
+const isCalendarDefault = localStorage.getItem(DEFAULT_VIEW_KEY) === "calendar";
+const hashPreference = location.hash;
 
 // Functions
 
@@ -49,13 +54,14 @@ function loadLog(): void {
     </div>
 </a>`
     for (let entry of ENTRIES) {
-        MAIN.appendChild(entry.createLogEntry());
+        MAIN.appendChild(entry.createLogEntry(hideBodyText));
     }
 }
 
-// listen to buttons.
+// Listen to buttons.
 LOG_LAYOUT_BTN.onclick = loadLog;
 CAL_LAYOUT_BTN.onclick = loadCal;
 
 // Autofill based on preferences...!
-loadLog();
+if (hashPreference !== "#log" || isCalendarDefault) loadCal();
+else loadLog();

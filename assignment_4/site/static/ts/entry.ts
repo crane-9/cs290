@@ -174,7 +174,7 @@ class JournalEntry {
     }
 
 
-    createLogEntry(): HTMLElement {
+    createLogEntry(hideBody: boolean): HTMLElement {
         // Wrapper
         const wrapper = createElement("div", "log-entry");
 
@@ -185,8 +185,8 @@ class JournalEntry {
         title.innerHTML = `<a href="#">${this.title}</a>`
 
         const body = createElement("div", "entry-body");
-        // render markup as html
-        body.innerText = this.body;
+        if (!hideBody) body.innerText = this.body;
+        else body.innerText = `(${this.body.length} characters of text...)`;
 
         content.appendChild(title);
         content.appendChild(body);
