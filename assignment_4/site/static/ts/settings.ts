@@ -1,3 +1,6 @@
+/**
+ * General settings. This script should be present on every page (sans example pages).
+ */
 
 // Organize keys.
 const KEY_PREFIX = "tjsettings-";
@@ -66,4 +69,5 @@ DEL_BTN.onclick = (ev: MouseEvent) => {
     location.reload();
 }
 
+// Export for simplicity's sake, though it would be better to keep these keys in a separate file and use `settings.js` as direct import *only*.
 export { DEFAULT_VIEW_KEY, HIDE_BODY_KEY };

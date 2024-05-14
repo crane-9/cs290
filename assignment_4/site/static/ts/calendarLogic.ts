@@ -5,7 +5,7 @@
 import type { indexed } from "./entry.js";
 
 import { JournalEntry, indexByDate } from "./entry.js";
-import { createButton, createElement } from "./generation.js";
+import { createElement } from "./generation.js";
 
 const WEEKDAYS = [
     "Sunday",
@@ -127,9 +127,8 @@ function addWeek(currentMonth: number, sunday: Date, index: indexed): HTMLTableR
 
 
 /**
- * 
- * @param data 
- * @param month 
+ * Builds the entire calendar.
+ * @param data Array of `JournalEntry` objects to render to the calendar.
  */
 function buildCalendar(data: JournalEntry[]): HTMLTableElement {
     // Index data based on date.

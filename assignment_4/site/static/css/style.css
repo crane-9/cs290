@@ -3,6 +3,11 @@
  * This file will be included on every page.
  */
 
+@font-face {
+    font-family: "Sedan SC";
+    src: url(/static/fonts/sedanSC.ttf) format("truetype");
+}
+
 
 :root {
     /* Color palette */
@@ -360,29 +365,4 @@ button.icon:hover {  /* Specific effect for icon *buttons*. */
     margin-left: 2em;
     padding-left: 1em;
     border-left: var(--outline-dark-thin);
-}
-
-
-#cards-list span {
-    font-family: var(--heading-font);
-}
-
-#cards-list span::before, #cards-list span::after {
-    font-family: var(--body-font);
-}
-
-#cards-list span::after {
-    content: ", ";
-}
-
-#cards-list span:last-child::before {
-    content: "and ";
-}
-
-#cards-list span:last-child:first-child::before {
-    content: "";
-}
-
-#cards-list span:last-child::after {
-    content: ".";
 }

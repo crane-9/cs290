@@ -1,5 +1,6 @@
-// general generation 
-
+/**
+ * Misc helper functions to cut down on repetition in generating so many elements.
+ */
 
 /**
  * Shortcut function to quickly and easily create an element, cutting down on repetition.

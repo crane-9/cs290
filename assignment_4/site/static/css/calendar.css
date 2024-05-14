@@ -1,3 +1,7 @@
+/**
+ * This CSS file has all styling for the calendar.
+ * Utilized for `index.html` and `examples/calendar.html`.
+ */
 
 #calendar {
     border: var(--outline-dark-thin);

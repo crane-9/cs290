@@ -1,3 +1,9 @@
+/**
+ * Code for the index page's behavior regarding:
+ *  - Which view to render and when.
+ *  - How to render each view.
+ *  - Preferences in rendering each view.
+ */
 
 import { buildCalendar } from "./calendarLogic.js";
 import { JournalEntry } from "./entry.js";

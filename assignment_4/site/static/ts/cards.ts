@@ -1,5 +1,5 @@
 /**
- * this file is the tarot card classes and modelling.
+ * Model for the Tarot cards, and a bit of their own templated HTML rendering.
  */
 
 /**

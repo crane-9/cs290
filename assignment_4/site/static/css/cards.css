@@ -1,5 +1,5 @@
 /**
- * Styling specific to cards. 
+ * Styling specific to cards. Utilized in many places.
  */
 
 .cards {
@@ -159,3 +159,30 @@
 .major-21::before {
     content: "XXI";
 }
+
+
+/* Card list logic */
+#cards-list span {
+    font-family: var(--heading-font);
+}
+
+#cards-list span::before, #cards-list span::after {
+    font-family: var(--body-font);
+}
+
+#cards-list span::after {
+    content: ", ";
+}
+
+#cards-list span:last-child::before {
+    content: "and ";
+}
+
+#cards-list span:last-child:first-child::before {
+    content: "";
+}
+
+#cards-list span:last-child::after {
+    content: ".";
+}
+
