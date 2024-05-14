@@ -34,6 +34,7 @@ Taken from the assignment page:
 - [x] Functions
 - [x] Scope
 - [x] Events
+- [x] Library
 
 
 ## Concept
