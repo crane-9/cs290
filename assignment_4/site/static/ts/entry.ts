@@ -1,8 +1,13 @@
-// this is the data model and operations for entries
+/**
+ * Class for holding and managing a single journal entry.
+ * 
+ * This script holds key constants for accessing localstorage
+ */
+
 import { TarotCard } from "./cards.js";
 import { createElement } from "./generation.js";
 
-
+// Organize keys.
 const KEY_PREFIX = "tarotjournal-"
 const ENTRY_PREFIX = KEY_PREFIX + "entry_";
 const ENTRY_COUNT_KEY = KEY_PREFIX + "entry_count";
@@ -33,7 +38,7 @@ class JournalEntry {
     id: number;
     title: string;
     body: string;
-    date: number;
+    date: string;
     cards: string[];
 
     /**
@@ -44,7 +49,13 @@ class JournalEntry {
         const dataStr = localStorage.getItem(ENTRY_PREFIX + id);
         if (dataStr === null) throw {error: `No entry with id ${id} found.`, notFound: true};
 
-        const data = JSON.parse(dataStr);
+        // Announce outside of the error catching block.
+        let data;
+        try {
+            data = JSON.parse(dataStr);
+        } catch (err) {
+            console.log(err);
+        }
         return new JournalEntry(data.id, data.title, data.body, data.date, data.cards);
     }
 
@@ -62,7 +73,6 @@ class JournalEntry {
             let data;
             try {
                 data = JournalEntry.load(x)
-                console.log(data);
             } catch (err) {
                 // Verify error is most likely thrown by my own code.
                 if ((err as any).notFound) break;
@@ -81,16 +91,17 @@ class JournalEntry {
      * Creates a new entry with the given information
      * @param title Entry title.
      * @param body Entry body.
-     * @param date Entry date as number (milliseconds).
+     * @param date Entry date as `Date` object.
      * @param cards Entry cards as an array of codes.
      * @returns The new `JournalEntry` object.
      */
-    static newEntry(title: string, body: string, date: number, cards: string[]): JournalEntry {
+    static newEntry(title: string, body: string, date: Date, cards: string[]): JournalEntry {
         // Count new entry.
         const id = countNewEntry();
-        console.log("new entry's id: ", id);
 
-        return new JournalEntry(id, title, body, date, cards);
+        console.log("saving to date", date);
+
+        return new JournalEntry(id, title, body, date.toDateString(), cards);
     }
 
     /**
@@ -101,7 +112,7 @@ class JournalEntry {
      * @param date The entry's date.
      * @param cards Cards associated with the entry, as an array of representative strings.
      */
-    constructor(id: number, title: string, body: string, date: number, cards: string[]) {
+    constructor(id: number, title: string, body: string, date: string, cards: string[]) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -201,4 +212,46 @@ class JournalEntry {
 }
 
 
-export { JournalEntry, DRAFT_KEY };
+type indexed = Record<number, Record<number, Record<number, JournalEntry[]>>>;
+
+/**
+ * Organizes entries by year, month, and date
+ * @param entries Array of entries to organize by date.
+ * @returns A nested structure of maps.
+ *      First layer: year.
+ *      Second layer: month.
+ *      Third layer: date. Contains an array of entries.
+ */
+function indexByDate(entries: JournalEntry[]): indexed {
+    let index: indexed = {};
+
+    /** Quick helper to check for existing section and create it */
+    const checkAndSet = (parent: Record<number, any>, value: number, emptyState: object): any => {
+        let existing = parent[value];
+
+        // If undefined, define in the local variable and in parent object.
+        if (existing === undefined) existing = parent[value] = emptyState;
+        return existing;
+    }
+
+    // Loop for each entry.
+    for (let entry of entries) {
+        // Clumsy workaround for an issue with timezones.
+        let entryDate = new Date(entry.date);
+        entryDate.setDate(entryDate.getDate() + 1);
+
+        let yearBook = checkAndSet(index, entryDate.getFullYear(), {});
+        let monthBook = checkAndSet(yearBook, entryDate.getMonth(), {});
+        let dateArr = checkAndSet(monthBook, entryDate.getDate(), []);
+
+        dateArr.push(entry);
+    }
+
+    console.log(index);
+
+    return index;
+}
+
+
+export type { indexed }
+export { JournalEntry, DRAFT_KEY, indexByDate };

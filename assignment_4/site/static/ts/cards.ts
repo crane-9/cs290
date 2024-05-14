@@ -14,7 +14,6 @@ enum Suit {
 };
 
 const Suits_Iter = Object.values(Suit);
-console.log(Suits_Iter);
 
 // Define helper types for valid ranges.
 type RankRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;

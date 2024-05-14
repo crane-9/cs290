@@ -123,9 +123,12 @@ function saveEntry(isDraft?: boolean): void {
     });
 
     // create entry
-    const entry = JournalEntry.newEntry(TITLE_INPUT.value, BODY_INPUT.value, DATE_INPUT.valueAsDate?.getTime() as number, cards);
-
-    console.log(entry.id);
+    const entry = JournalEntry.newEntry(
+        TITLE_INPUT.value,
+        BODY_INPUT.value,
+        DATE_INPUT.valueAsDate as Date, 
+        cards
+    );
 
     // save entry to appropriate key
     isDraft? entry.saveDraft() : entry.save();

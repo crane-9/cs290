@@ -1,21 +1,21 @@
 
 #calendar {
-    border: var(--outline-dark-thick);
-    border-collapse: collapse;
+    border: var(--outline-dark-thin);
+    border-spacing: 0;
     border-radius: 3px;
     margin: 0 auto;
+
+    /* Silly: but I am not going to use `border-collapse` so that I can have ever-so-slightly rounded corners. */
 }
 
-tbody {
-    border-collapse: collapse;
-}
 
-:is(td, th) {
-    border: var(--outline-dark-thick);
+td, th {
+    border: var(--outline-dark-thin);
     width: 150px;   
 }
 
 td {
+    box-sizing: border-box;
     height: 100px;
     position: relative;
     transition: var(--transition-background-color);
@@ -28,7 +28,9 @@ td:hover {
 }
 
 td.other-month {
-    background-color: color-mix(in srgb, var(--caput) 40%, transparent);
+    /* Shortcut mix that can be reached from child elments. */
+    --bg-color: color-mix(in srgb, var(--caput) 40%, var(--paper));
+    background-color: var(--bg-color);
 }
 
 td .date {
@@ -38,6 +40,7 @@ td .date {
 
     font-size: 1rex;
     padding: 0.5ex 1ex;
+    background-color: color-mix(in lch, var(--paper), transparent);
     border: var(--outline-dark-thin);
     border-left-width: 0;
     border-top-width: 0;
@@ -45,6 +48,18 @@ td .date {
 }
 
 .other-month .date {
-    color: var(--paper);
     border-color: var(--paper);
+    background-color: color-mix(in lch, var(--bg-color), transparent);
+    color: var(--paper);
+}
+
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1ex;
+}
+
+.card-wrapper .card {
+    font-size: 5px;
 }
