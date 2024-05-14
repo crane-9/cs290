@@ -24,16 +24,16 @@
 
 Taken from the assignment page: 
 
-- [✔️ ] Input
-- [✔️ ] Output
-- [✔️ ] Variables (number, string, boolean, object)
-- [✔️ ] Errors and avoiding
-- [✔️ ] Conditions
-- [✔️ ] Repetition
-- [✔️ ] Arrays
-- [✔️ ] Functions
-- [✔️ ] Scope
-- [✔️ ] Events
+- [x] Input
+- [x] Output
+- [x] Variables (number, string, boolean, object)
+- [x] Errors and avoiding
+- [x] Conditions
+- [x] Repetition
+- [x] Arrays
+- [x] Functions
+- [x] Scope
+- [x] Events
 
 
 ## Concept
