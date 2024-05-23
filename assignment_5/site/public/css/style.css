@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "NintendoDS BIOS";
+    src: url('/static/fonts/NDS-bios.ttf');
+}
+
+
+:root {
+    --skyblue-0: #7FD7F6;
+    --skyblue-1: #C4EDFB;
+
+    --grassgreen-0: #7EC893;
+
+    --text-color: #0E0E25;
+
+    --red: #FF6C81;
+    --orange: #FFAC6C;
+    --yellow: #FFEF6C;
+    --green: #A0FF6C;
+    --blue: #6CDFFF;
+    --indigo: #6CA3FF;
+    --violet: #AA6CFF;
+
+    --menu-trim: #959595;
+    --menu-body: #E9E9E9;
+    --menu-input: #FFFFFF;
+}
+
+body {
+    background: linear-gradient(to top, var(--skyblue-1), var(--skyblue-0));
+    color: var(--text-color);
+    font: 18px "NintendoDS BIOS";
+    
+    margin: 0;
+    height: 100dvh;
+}
