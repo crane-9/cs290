@@ -1,103 +1,79 @@
+/**
+ * This handles the dragging of floating menus. 
+ * As a note: this is code that I have used in the past. For this project, I have made many changes and realized I have some issues in what I've written in the past!
+ */
 
-// begin config variables:
-const DRAG_CLASS_NAME = "floating-menu"; // CANNOT include spaces.
-const ENFORCE_LIMITS = true; // keeps the draggables from going offpage
+const DRAG_CLASS_NAME = "floating-menu";
 
-// end config variable.
 
-var topZ = 1;
-
+// Init global vars.
+var topZ = 1;  // Init top Z value.
 var offsetX: number, offsetY: number;
 var leftLim: number, topLim: number;
 var current: HTMLElement | undefined = undefined;
 
 
-/** recursively disables drag for the given element. */
-function disableDrag(e: HTMLElement, parent?: HTMLElement): void {
-    if (e.tagName == "IMG" || e.tagName == "A") {
-        e.setAttribute("draggable", "false");
-    } 
-    if (e.tagName === "A") {
-        // dbl click navigation
-        (e as HTMLElement).ondblclick = function (ev: MouseEvent) {
-            window.location.href = (e as HTMLAnchorElement).href;
-        };
-        (e as HTMLElement).onclick = function (ev: MouseEvent) {
-            ev.preventDefault();
-        }
-    }
-    
-    // WOOO recursion
-    for (let child of Array.from(e.children)) {
-        disableDrag(child as HTMLElement, parent === undefined? e : parent);
-    }
-}
-
-
-// events: for each element of the given class, set their reactions to mouse events.
+// For each element of the given class, set their reactions to mouse events.
 document.querySelectorAll("." + DRAG_CLASS_NAME).forEach((e) => {    
     const handle = e.firstElementChild as HTMLElement;
-    disableDrag(handle);
 
-    // configure events.
-    handle.onclick = (ev: MouseEvent) => {
-        ev.preventDefault();
+    // Event
+    handle.addEventListener('mousedown',(ev: MouseEvent) => {
+        // Ignore non-left clicks.
+        if (ev.button > 1) return;
+        
+        // Set as current element.
+        current = e as HTMLElement;
 
-        // grab element.
-        if ((e as HTMLElement).style.zIndex === "" || topZ - 1 != Number((e as HTMLElement).style.zIndex)) {
-            (e as HTMLElement).style.zIndex = "" + topZ;
+        // Put element on top
+        if (current.style.zIndex === "" || topZ - 1 != Number(current.style.zIndex)) {
+            current.style.zIndex = "" + topZ;
             topZ ++;
         }
-    }; 
 
-    handle.onmousedown = (ev: MouseEvent) => {
-        // only pay attention to left clicks.
-        if (ev.button > 1) {
-            console.log(ev.button);
-            return;
-        }
-
-        // get element and offset
-        current = e as HTMLElement;
+        // Calculate offset.
         offsetX = current.offsetLeft - ev.clientX;
         offsetY = current.offsetTop - ev.clientY;
         
-        // set limits
+        // Set limits
         leftLim = (current.offsetParent as HTMLElement).clientWidth - current.clientWidth;
         topLim = (current.offsetParent as HTMLElement).clientHeight - current.clientHeight;
 
         // you are now grabbing.
         handle.style.cursor = "grabbing";
-    };
+    });
 
-    handle.onmouseup = () => {
+    // End of the drag.
+    handle.addEventListener('mouseup', () => {
         current = undefined;
         handle.style.removeProperty("cursor");
-    };
+    });
 });
 
 
-// this is the important part:
-document.onmousemove = (ev: MouseEvent) => {
+// Actual movement:
+document.addEventListener('mousemove', (ev: MouseEvent) => {
+    // Ignore like 90% of the time!
     if (current === undefined) return;
 
+    // Calculate new position.
     let leftVal = ev.pageX + offsetX - scrollX;
     let topVal = ev.pageY + offsetY - scrollY;
 
-    if (ENFORCE_LIMITS) {
-        if (leftVal < 0) leftVal = 0;
-        if (topVal < 0) topVal = 0;
-        
-        if (leftVal > leftLim) leftVal = leftLim;
-        if (topVal > topLim) topVal = topLim;
-    }
+    // Enforce position limits.
+    if (leftVal < 0) leftVal = 0;
+    if (topVal < 0) topVal = 0;
+    
+    if (leftVal > leftLim) leftVal = leftLim;
+    if (topVal > topLim) topVal = topLim;
 
+    // Set new positions.
     current.style.left = leftVal + "px";
     current.style.top = topVal + "px";
 
-    // for safety
+    // Unset positional properties that won't be overridden by the previous. Do this onmove so as to avoid unnecessary/confusing movement.
     if (current.style.bottom !== "unset" || current.style.right !== "unset") {
         current.style.bottom = "unset";
         current.style.right = "unset";
     }
-}
+});
