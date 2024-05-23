@@ -67,12 +67,12 @@ document.querySelectorAll("." + DRAG_CLASS_NAME).forEach((e) => {
         topLim = (current.offsetParent as HTMLElement).clientHeight - current.clientHeight;
 
         // you are now grabbing.
-        current.style.cursor = "grabbing";
+        handle.style.cursor = "grabbing";
     };
 
     handle.onmouseup = () => {
         current = undefined;
-        (e as HTMLElement).style.removeProperty("cursor");
+        handle.style.removeProperty("cursor");
     };
 });
 
