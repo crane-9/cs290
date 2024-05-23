@@ -3,12 +3,14 @@
  */
 
 
-let sizes: Record<string, number> = {
+// Set brush size range. Pixel values mapped to CSS class names.
+const sizes: Record<string, number> = {
     'sm': 2,
     'md': 5,
     'lg': 12,
     'xl': 20
 };
+
 
 /**
  * Class holds all doodle data.
