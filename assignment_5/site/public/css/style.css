@@ -5,6 +5,7 @@
 
 
 :root {
+    /* COLORS */
     --skyblue-0: #7FD7F6;
     --skyblue-1: #C4EDFB;
 
@@ -23,13 +24,178 @@
     --menu-trim: #959595;
     --menu-body: #E9E9E9;
     --menu-input: #FFFFFF;
+
+    /* SNIPPETS */
+    --menu-border: 1px solid var(--menu-trim);
+    --menu-radius: 3px;
+
+    /* FONT */
+    --body-font: "NintendoDS BIOS";
+    --font-size: 18px;
+
+    /* SPACING */
+    --menu-grid-gap: 1ex;
 }
+
+::selection {
+    background-color: color-mix(in srgb, var(--skyblue-1), transparent);
+}
+
+:focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 1px;
+}
+
 
 body {
     background: linear-gradient(to top, var(--skyblue-1), var(--skyblue-0));
     color: var(--text-color);
-    font: 18px "NintendoDS BIOS";
+    font: var(--font-size) var(--body-font);
     
     margin: 0;
     height: 100dvh;
 }
+
+button, canvas, input, textarea {
+    background-color: transparent;
+    border: var(--menu-border);
+    border-radius: var(--menu-radius);
+    font: inherit;
+}
+
+canvas {
+    background-color: white;
+}
+
+input[type=color] {
+    padding: 0;
+    border: none;
+}
+
+input[type=text], textarea {
+    background-color: var(--menu-input);
+    padding: 0.5ex 1ex;
+
+    resize: vertical;
+    min-height: 1em;
+}
+
+.sr-label {
+    display: none;
+}
+
+
+/* ICONS */
+
+.icon {
+    --icon-size: 1.4em;
+    border-radius: 3px;
+    padding: 0.5ex 1ex;
+}
+
+button.icon {
+    border: none;
+}
+
+button.icon:hover {
+    background-color: color-mix(in srgb, var(--menu-trim) 20%, transparent);
+}
+
+.icon::before {
+    content: "";
+
+    background-color: var(--menu-trim);
+    height: var(--icon-size);
+    width: var(--icon-size);
+    display: block;
+
+    -webkit-mask-image: var(--icon-url);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-image: var(--icon-url);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+
+    margin: auto;
+}
+
+
+.i-send::before {
+    --icon-url: url("/static/img/send.svg")
+}
+
+
+/* MENU styling */
+
+.floating-menu {
+    border: var(--menu-border);
+    border-radius: var(--menu-radius);
+    cursor: grab;
+
+    opacity: 0.8;
+    position: absolute;
+}
+
+.floating-menu:focus-within, .floating-menu:hover {
+    opacity: 1;
+}
+
+.menu-title {
+    background-color: color-mix(in srgb, var(--menu-body) 70%, transparent);
+    border-bottom: var(--menu-border);
+    padding: 1ex 1.5ex;
+    user-select: none;
+}
+
+.menu-contents {
+    background-color: var(--menu-body);
+    padding: 1ex 1.5ex;
+}
+
+
+/* SPECIFIC MENU LAYOUTS */
+#message-menu {
+    bottom: 1em;
+    left: 1em;
+}
+
+#message-menu .menu-contents {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--menu-grid-gap);
+
+    width: 300px;
+}
+
+#username {
+    flex: 1 0 auto;
+}
+
+#message-input {
+    flex: 1 0 auto;
+}
+
+#art-menu {
+    left: 1em;
+    top: 60%;    
+}
+
+#join-menu {
+    right: 1em;
+    top: 40%;
+}
+
+#create-menu {
+    right: 1em;
+    top: 50%;
+}
+
+.menu-contents.simple-h {
+    display: grid;
+    grid-auto-flow: column;
+    gap: var(--menu-grid-gap);
+}
+
+

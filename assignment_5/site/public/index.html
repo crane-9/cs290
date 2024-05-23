@@ -4,14 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>hello node</title>
+    <title>Cloudfair</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     
-    <p>hello node</p>
+    <!-- Prototype menu -->
+    <section id="message-menu" class="floating-menu">
+        <div class="menu-title">
+            <span>send message :)</span>
+        </div>
+        <div class="menu-contents">
+            <input type="text" name="username" id="username" placeholder="username..." />
+            <input type="color" name="usercolor" id="usercolor" />
+            <textarea name="message-input" id="message-input" rows="1" placeholder="type message..."></textarea>
+            <button id="send-message" class="icon i-send">
+                <span class="sr-label">send message</span>
+            </button>
+        </div>
+    </section>
 
+    <section id="art-menu" class="floating-menu">
+        <div class="menu-title">
+            <span>draw a beautiful</span>
+        </div>
+        <div class="menu-contents">
+            <canvas id="canvas"></canvas>
+        </div>
+    </section>
 
+    <section id="join-menu" class="floating-menu">
+        <div class="menu-title">
+            <span>join a room</span>
+        </div>
+        <div class="menu-contents simple-h">
+            <input type="text" name="room-id" id="room-id" placeholder="enter room ID" />
+            <button id="join-room" class="icon i-send"></button>
+        </div>
+    </section>
+
+    <section id="create-menu" class="floating-menu">
+        <div class="menu-title">
+            <span>create a room</span>
+        </div>
+        <div class="menu-contents simple-h">
+            <input type="text" name="room-id" id="room-id" placeholder="enter a unique room ID" />
+            <button id="join-room" class="icon i-send"></button>
+        </div>
+    </section>
+
+    <script type="module" src="/static/js/draggable.js"></script>
 </body>
 </html>
