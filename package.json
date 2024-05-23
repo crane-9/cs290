@@ -1,5 +1,12 @@
 {
-  "dependencies": {
-    "typescript": "^5.4.5"
-  }
+    "scripts": {
+        "build4": "npx tsc -p assignment_4",
+        "build5": "npx tsc && npx tsc -p assignment_5/site/public",
+        "run5": "nodejs assignment_5/site/server/js/server.js"
+    },
+    "dependencies": {
+        "socket.io": "^4.7.5",
+        "socket.io-client": "^4.7.5",
+        "typescript": "^5.4.5"
+    }
 }

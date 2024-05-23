@@ -1,12 +1,11 @@
 # Assignment 4
 
-> This project was built with typescript. To set up, please run:
+> This project was built with Typescript. To set up, please run:
 >   ```sh
 >   mkdir ./assignment_4/site/static/js
 >   npm install
->   npx tsc
+>   npm run build4
 >   ```
-> The appropriate in/out directories should already be configured in `tsconfig.json` at the time of this commit.
 
 
 - [Assignment requirements](#requirements)
