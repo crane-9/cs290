@@ -16,9 +16,12 @@
             <span>send message :)</span>
         </div>
         <div class="menu-contents">
-            <input type="text" name="username" id="username" placeholder="username..." />
+            <input type="text" name="username" id="username" minlength="1" maxlength="18" placeholder="username..." />
+
             <input type="color" name="usercolor" id="usercolor" />
-            <textarea name="message-input" id="message-input" rows="1" placeholder="type message..."></textarea>
+
+            <textarea name="message-input" id="message-input" rows="1" minlength="1" maxlength="80" placeholder="type message..."></textarea>
+
             <button id="send-message" class="icon i-send">
                 <span class="sr-label">send message</span>
             </button>
@@ -30,7 +33,40 @@
             <span>draw a beautiful</span>
         </div>
         <div class="menu-contents">
-            <canvas id="canvas"></canvas>
+            <div class="doodle-tools">
+                <button class="color-b" id="color-red">
+                    <span class="sr-label">change drawing color to red</span>
+                </button>
+                <button class="color-b" id="color-orange">
+                    <span class="sr-label">change drawing color to orange</span>
+                </button>
+                <button class="color-b" id="color-yellow">
+                    <span class="sr-label">change drawing color to yellow</span>
+                </button>
+                <button class="color-b" id="color-green">
+                    <span class="sr-label">change drawing color to green</span>
+                </button>
+                <button class="color-b" id="color-blue">
+                    <span class="sr-label">change drawing color to blue</span>
+                </button>
+                <button class="color-b" id="color-indigo">
+                    <span class="sr-label">change drawing color to indigo</span>
+                </button>
+                <button class="color-b" id="color-violet">
+                    <span class="sr-label">change drawing color to violet</span>
+                </button>
+                <button class="color-b" id="color-black">
+                    <span class="sr-label">change drawing color to black</span>
+                </button>
+                <button class="color-b" id="color-white">
+                    <span class="sr-label">change drawing color to white</span>
+                </button>
+
+                <button id="doodle-size" class="sm">
+                    <span class="sr-label">cycle stroke size</span>
+                </button>
+            </div>
+            <canvas id="doodle-canvas"></canvas>
         </div>
     </section>
 
@@ -40,7 +76,9 @@
         </div>
         <div class="menu-contents simple-h">
             <input type="text" name="room-id" id="room-id" placeholder="enter room ID" />
-            <button id="join-room" class="icon i-send"></button>
+            <button id="join-room" class="icon i-arrow">
+                <span class="sr-label">join room</span>
+            </button>
         </div>
     </section>
 
@@ -50,10 +88,14 @@
         </div>
         <div class="menu-contents simple-h">
             <input type="text" name="room-id" id="room-id" placeholder="enter a unique room ID" />
-            <button id="join-room" class="icon i-send"></button>
+            <button id="join-room" class="icon i-arrow">
+                <span class="sr-label">create room</span>
+            </button>
         </div>
     </section>
 
-    <script type="module" src="/static/js/draggable.js"></script>
+    <script type="module" src="/static/scripts/doodle.js"></script>
+    <script type="module" src="/static/scripts/draggable.js"></script>
+    <script type="module" src="/static/scripts/message.js"></script>
 </body>
 </html>

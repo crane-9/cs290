@@ -52,8 +52,9 @@ body {
     color: var(--text-color);
     font: var(--font-size) var(--body-font);
     
-    margin: 0;
     height: 100dvh;
+    margin: 0;
+    overflow: hidden;
 }
 
 button, canvas, input, textarea {
@@ -61,10 +62,6 @@ button, canvas, input, textarea {
     border: var(--menu-border);
     border-radius: var(--menu-radius);
     font: inherit;
-}
-
-canvas {
-    background-color: white;
 }
 
 input[type=color] {
@@ -83,6 +80,98 @@ input[type=text], textarea {
 .sr-label {
     display: none;
 }
+
+.doodle-tools {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: calc(var(--menu-grid-gap) / 2);
+    margin-bottom: var(--menu-grid-gap);
+
+    height: 1em;
+}
+
+/* COLOR BUTTONS */
+
+.color-b {
+    flex: 1 0 auto;
+}
+
+#color-red {
+    background-color: var(--red);
+}
+
+#color-orange {
+    background-color: var(--orange);
+}
+
+#color-yellow {
+    background-color: var(--yellow);
+}
+
+#color-green {
+    background-color: var(--green);
+}
+
+#color-blue {
+    background-color: var(--blue);
+}
+
+#color-indigo {
+    background-color: var(--indigo);
+}
+
+#color-violet {
+    background-color: var(--violet);
+}
+
+#color-black {
+    background-color: black;
+}
+
+#color-white {
+    background-color: white;
+}
+
+#doodle-size {
+    flex: 1 1 auto;
+    background-color: white;
+
+    position: relative;
+    clip-path: inset(0 0 0 0);
+}
+
+#doodle-size::before {
+    content: "";
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    translate: -50% -50%;
+
+    width: var(--size);
+    height: var(--size);
+}
+
+/* Sizes are not accurate to drawing size. */
+#doodle-size.sm {
+    --size: 1px;
+}
+
+#doodle-size.md {
+    --size: 5px;
+}
+
+#doodle-size.lg {
+    --size: 10px
+}
+
+#doodle-size.xl {
+    --size: 20px
+}
+
 
 
 /* ICONS */
@@ -126,13 +215,17 @@ button.icon:hover {
     --icon-url: url("/static/img/send.svg")
 }
 
+.i-arrow::before {
+    --icon-url: url('/static/img/arrow.svg');
+}
+
 
 /* MENU styling */
 
 .floating-menu {
     border: var(--menu-border);
     border-radius: var(--menu-radius);
-    cursor: grab;
+    box-sizing: border-box;
 
     opacity: 0.8;
     position: absolute;
@@ -147,6 +240,7 @@ button.icon:hover {
     border-bottom: var(--menu-border);
     padding: 1ex 1.5ex;
     user-select: none;
+    cursor: grab;
 }
 
 .menu-contents {
@@ -175,11 +269,13 @@ button.icon:hover {
 
 #message-input {
     flex: 1 0 auto;
+    max-height: 3em;
+    box-sizing: border-box;
 }
 
 #art-menu {
     left: 1em;
-    top: 60%;    
+    top: 55%;  
 }
 
 #join-menu {
@@ -197,5 +293,3 @@ button.icon:hover {
     grid-auto-flow: column;
     gap: var(--menu-grid-gap);
 }
-
-

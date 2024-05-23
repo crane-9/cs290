@@ -1,7 +1,7 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "js"
-    },
-    "include": ["ts"]
+        "module": "ESNext",
+        "moduleResolution": "Classic"
+    }
 }
