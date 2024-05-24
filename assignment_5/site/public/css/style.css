@@ -25,6 +25,9 @@
     --menu-body: #E9E9E9;
     --menu-input: #FFFFFF;
 
+    /* GRADIENTS */
+    --cloud: white;
+
     /* SNIPPETS */
     --menu-border: 1px solid var(--menu-trim);
     --menu-radius: 3px;
@@ -219,6 +222,30 @@ button.icon:hover {
     --icon-url: url('/static/img/arrow.svg');
 }
 
+/* CLOUD styling */
+
+.cloud {
+    background: var(--cloud);
+    
+    position: relative;
+}
+
+/* Variations */
+.c1 {
+    clip-path: url("/static/img/cloud1.svg");
+}
+
+.c2 {
+
+}
+
+.c3 {
+
+}
+
+.c4 {
+
+}
 
 /* MENU styling */
 
@@ -275,17 +302,20 @@ button.icon:hover {
 
 #art-menu {
     left: 1em;
-    top: 55%;  
+    top: 55%;
+    display: none;
 }
 
 #join-menu {
     right: 1em;
     top: 40%;
+    display: none;
 }
 
 #create-menu {
     right: 1em;
     top: 50%;
+    display: none;
 }
 
 .menu-contents.simple-h {
