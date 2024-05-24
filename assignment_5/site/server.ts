@@ -1,51 +1,54 @@
+/**
+ * This is my main server. It contains the HTTP server, Express server, and Socket.IO management.
+ */
 import * as path from "path";
-
+import { createServer } from "http";
 import express, { Request, Response } from "express";
-import { Server } from "socket.io";
+import { Server, Socket } from "socket.io";
 
 import * as config from "./config/config.js";
+import apiRouter from "./routes/api.routes.js";
 
 // Setup
 const publicDir = path.join(__dirname, "public")
 
-
-// Create server and map static assets.
-const server = express();
-server.use('/static', express.static(publicDir));
+const app = express();
+const server = createServer(app);
+const io = new Server(server);
 
 // Routing.
-server.get("/", (req: Request, res: Response) => {
+// Map static assets.
+app.use('/static', express.static(publicDir));
+
+// Main application.
+app.get("/", (req: Request, res: Response) => {
     console.info(`Request received.`);
     res.sendFile(path.join(publicDir, 'index.html'));
 });
 
-// Run and log
+// Connect routers.
+app.use("/api", apiRouter);
+
+
+let users = 0;
+// Socket
+io.on('connection', (socket: Socket) => {
+    const userID = users;
+    users++;
+
+    console.info(`User ${userID} has connected!`);
+
+    // Set up receptions.
+    socket.on('message', (msg: string) => {
+        console.log(`user ${userID} says: ${msg}`);
+    })
+
+    socket.on('disconnect', () => {
+        console.info(`User ${userID} has disconnected!`);
+    })
+});
+
+
+// Run and log.
 server.listen(config.PORT);
 console.log(`Server running on http://localhost:${config.PORT} !`);
-
-// const server = createServer(
-//     (req: IncomingMessage, res: ServerResponse) => {
-//         console.info(`Request received.`);
-
-//         let s = fs.createReadStream(index);
-//         let type = config.MIME_KEY[path.extname(index).slice(1)] || 'text/plain';
-
-
-//         s.on('open', () => {
-//             res.writeHead(200, {'Content-Type': type});
-//             s.pipe(res);
-//         });
-
-//         s.on('error', (err: any) => {
-//             console.error(err);
-//             res.writeHead(400, {"Content-Type": "application/json"});
-//             res.end(JSON.stringify({
-//                 status: 400, 
-//                 message: "There was an error.",
-//                 error: true
-//             }));
-//         })
-//     }
-// );
-
-// server.listen(config.PORT);

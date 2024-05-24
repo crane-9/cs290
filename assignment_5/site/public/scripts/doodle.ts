@@ -143,3 +143,5 @@ sizeBtn.addEventListener('click', () => {
 
     sizeCls.push(...sizeCls.splice(0, 1));
 });
+
+export { doodleCanvas };

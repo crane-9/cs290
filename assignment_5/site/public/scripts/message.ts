@@ -1,6 +1,9 @@
 /**
  * Script for the message box.
  */
+import type { Socket } from "socket.io-client";
+
+const socket = (window as any).socket as Socket;
 
 const colorInput = document.getElementById("usercolor") as HTMLInputElement;
 const nameInput = document.getElementById('username') as HTMLInputElement;
@@ -23,10 +26,13 @@ messageInput.addEventListener('keydown', (ev: KeyboardEvent) => {
 });
 
 // Give button functionality.
-sendBtn.addEventListener('click', () => {
+sendBtn.addEventListener('click', (ev: MouseEvent) => {
+    ev.preventDefault();
+    
     // Send message.
     // If not connected to room - just show a cloud as a little demo space.
     // Set it up somehow so that it sends off to another function that worries about this. And yeah. :] yay
+    socket.emit('message', messageInput.value);
 
     // Reset box.
     messageInput.value = '';
