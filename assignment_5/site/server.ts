@@ -39,8 +39,8 @@ io.on('connection', (socket: Socket) => {
     console.info(`User ${userID} has connected!`);
 
     // Set up receptions.
-    socket.on('message', (msg: string) => {
-        console.log(`user ${userID} says: ${msg}`);
+    socket.on('message', (message: MessageEvent) => {
+        io.emit('messageIncoming', message);
     })
 
     socket.on('disconnect', () => {

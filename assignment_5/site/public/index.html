@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+
+    <!-- Container of messages -->
+    <main id="message-container"></main>
     
     <!-- Prototype menu -->
     <section id="message-menu" class="floating-menu">
@@ -94,6 +97,11 @@
         </div>
     </section>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Create socket, available for all the window.
+        window.socket = io();
+    </script>
     <script type="module" src="/static/scripts/doodle.js"></script>
     <script type="module" src="/static/scripts/draggable.js"></script>
     <script type="module" src="/static/scripts/message.js"></script>
