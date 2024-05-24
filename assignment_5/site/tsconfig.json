@@ -4,5 +4,6 @@
         "target": "ESNext",
         "module": "NodeNext",
         "moduleResolution": "NodeNext"
-    }
+    },
+    "exclude": ["./public"]
 }

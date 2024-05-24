@@ -2,6 +2,7 @@
  * 
  */
 import type { Socket } from "socket.io-client";
+import { Cloud } from "./clouds.js";
 
 
 const socket = (window as any).socket as Socket;
@@ -13,7 +14,8 @@ console.log(messageDest);
 
 socket.on('messageIncoming', (message: any) => {
     console.log("message incoming");
-    messageDest.innerText += message.message + "\n";
+    const newCloud = new Cloud(message);
+    newCloud.render();
 });
 
 function sendMessage(message: string, username: string, color: string): void {

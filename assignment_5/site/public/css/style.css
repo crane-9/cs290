@@ -176,6 +176,18 @@ input[type=text], textarea {
 }
 
 
+/* SVG things */
+.icon::before, .cloud {
+    -webkit-mask-image: var(--icon-url);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-image: var(--icon-url);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
 
 /* ICONS */
 
@@ -201,18 +213,8 @@ button.icon:hover {
     width: var(--icon-size);
     display: block;
 
-    -webkit-mask-image: var(--icon-url);
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    mask-image: var(--icon-url);
-    mask-position: center;
-    mask-repeat: no-repeat;
-    mask-size: cover;
-
     margin: auto;
 }
-
 
 .i-send::before {
     --icon-url: url("/static/img/send.svg")
@@ -224,27 +226,71 @@ button.icon:hover {
 
 /* CLOUD styling */
 
+#message-container {
+    display: contents;
+}
+
 .cloud {
+    --pad-y: 2em;
+    --pad-x: 2em;
     background: var(--cloud);
+    box-sizing: border-box;
+    padding: var(--pad-y) var(--pad-x);
+    position: absolute;
     
-    position: relative;
+    height: 200px;
+    width: 300px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+
+/* .cloud-username {
+} */
+
+.cloud-timestamp {
+    opacity: 0.5;
+}
+
+.cloud-message {
+    margin-top: 1em;
+    align-self: center;
+    text-align: center;
 }
 
 /* Variations */
 .c1 {
-    clip-path: url("/static/img/cloud1.svg");
+    --icon-url: url('/static/img/cloud1.svg');
 }
-
 .c2 {
-
+    --icon-url: url('/static/img/cloud2.svg');
+    --pad-x: 4em;
 }
-
 .c3 {
-
+    --icon-url: url('/static/img/cloud3.svg');
+    align-items: start;
 }
-
 .c4 {
-
+    --icon-url: url('/static/img/cloud4.svg');
+}
+.c5 {
+    --icon-url: url('/static/img/cloud5.svg');
+}
+.c6 {
+    --icon-url: url('/static/img/cloud6.svg');
+}
+.c7 {
+    --icon-url: url('/static/img/cloud7.svg');
+    align-items: start;
+}
+.c8 {
+    --icon-url: url('/static/img/cloud8.svg');
+}
+.c9 {
+    --icon-url: url('/static/img/cloud9.svg');
+    align-items: start;
 }
 
 /* MENU styling */
