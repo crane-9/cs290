@@ -11,7 +11,12 @@ const MIME_KEY = {
     js: 'application/javascript'
 } as any;
 
+const TIME_FMT = new Intl.RelativeTimeFormat('en-US', {
+    numeric:  'auto'
+});
+
 export {
+    TIME_FMT,
     MIME_KEY,
     PORT,
 }

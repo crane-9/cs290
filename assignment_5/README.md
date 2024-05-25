@@ -31,3 +31,16 @@ Some notes on my mockups:
 3. I want to create a small window for creating and sending a drawing with a limited size and color palette. I think that would be a fun challenge.
 
 4. I think it would be a good challenge to implement a feature where multiple chat rooms can be created and used. This prototype would be the window via which a user joins a room -- a separate menu would create a room.
+
+A few aspects of this project -- the draggable windows and a canvas you can draw on -- are things that I have written before, and will be easy to copy my old work and modify as needed. 
+
+
+## Update Note
+
+The server-side aspect of this is proving to be fairly simple. Though I have not yet implemented the rooms feature, I don't think it shows off a lot of server-side scripting.
+
+So here is my concept for a solution: an API that allows interferance with the weather of the page. IE: Thunder, nighttime, birds, sunshine. It's silly and might involve some more animations, but I love to build an API.
+
+
+https://www.svgrepo.com/svg/327524/send
+https://www.svgrepo.com/svg/469643/right-arrow

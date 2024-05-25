@@ -3,6 +3,7 @@
  */
 import type { Socket } from "socket.io-client";
 import { Cloud } from "./clouds.js";
+import { ClientMessage } from "@interfaces";
 
 
 const socket = (window as any).socket as Socket;
@@ -22,8 +23,9 @@ function sendMessage(message: string, username: string, color: string): void {
     socket.emit('message', {
         message: message,
         username: username,
-        color: color
-    });
+        color: color,
+        timestamp: new Date().getTime()
+    } as ClientMessage);
 }
 
 export { sendMessage };

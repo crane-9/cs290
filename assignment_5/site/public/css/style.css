@@ -255,9 +255,10 @@ button.icon:hover {
 }
 
 .cloud-message {
-    margin-top: 1em;
     align-self: center;
     text-align: center;
+    margin-top: 1em;
+    word-break: break-all;
 }
 
 /* Variations */
@@ -343,7 +344,6 @@ button.icon:hover {
 #message-input {
     flex: 1 0 auto;
     max-height: 3em;
-    box-sizing: border-box;
 }
 
 #art-menu {
