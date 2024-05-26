@@ -39,6 +39,7 @@ class Cloud {
 
     lifetime: number = 2000;
     secondsPassed: number = 0;
+    opacity: number = 0;
 
     
     /**
@@ -114,6 +115,7 @@ class Cloud {
         this.onPage = true;
 
         // Start animation.
+        this.fadeLoop(1);
         this.animationLoop();
         this.countTime();
     }
@@ -126,7 +128,21 @@ class Cloud {
         if (this.secondsPassed > 0) this.timestamp.innerText = this.secondsPassed + 's ago';
         this.secondsPassed ++;
 
+        if (this.secondsPassed == 10) this.fadeLoop(-1);
+
         setTimeout(this.countTime.bind(this), 1_000);
+    }
+
+    /**
+     * Cloud opacity fading loop.
+     * @param direction Fade direction, `1` or `-1` only. Positive fades in (adding to the opacity), negative fades out (subtracting from the opacity).
+     */
+    fadeLoop(direction: -1 | 1): void {
+        this.opacity += 0.005 * this.secondsPassed * direction;  // Fades out a little faster than fades in.
+        this.element.style.opacity = '' + this.opacity;
+
+        // If less than max opacity, continue loop.
+        if (this.opacity < 0.95) requestAnimationFrame(this.fadeLoop.bind(this, direction));
     }
 
     /**
@@ -143,6 +159,7 @@ class Cloud {
     }
 
     die(): void {
+        // this.fadeLoop(-1);
         this.element.remove();
     }
 }
