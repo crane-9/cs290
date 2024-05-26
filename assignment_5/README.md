@@ -84,4 +84,5 @@ Currently, `routes/` is not really being utilized, and I wonder if I could do so
 https://www.svgrepo.com/svg/509221/settings -- also altered viewbox
 https://www.svgrepo.com/svg/327524/send
 https://www.svgrepo.com/svg/469643/right-arrow
-https://www.svgrepo.com/svg/507736/help -- altered viewBox to enlarge
+https://www.svgrepo.com/svg/507736/help -- altered viewBox to enlarge and removed color
+https://www.svgrepo.com/svg/533273/message-square-pencil
