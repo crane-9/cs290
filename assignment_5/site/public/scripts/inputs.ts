@@ -28,7 +28,7 @@ utils.addEnterAction(messageInput, sendBtn);
 
 
 // Give button functionality.
-sendBtn.addEventListener('click', (ev: MouseEvent) => {
+sendBtn.addEventListener('click', async (ev: MouseEvent) => {
     ev.preventDefault();
     
     // Validate input lengths.
@@ -44,13 +44,13 @@ sendBtn.addEventListener('click', (ev: MouseEvent) => {
         return;
     }
 
-
     // Send message.
     // If not connected to room - just show a cloud as a little demo space.
     // Set it up somehow so that it sends off to another function that worries about this. And yeah. :] yay
-    sendMessage(messageContent, username, colorInput.value, doodleCanvas.exportCanvas());
+    const success = await sendMessage(messageContent, username, colorInput.value, doodleCanvas.exportCanvas());
 
-    
+    if (!success) return;
+
     // Reset canvas + message.
     doodleCanvas.clearCanvas();
     messageInput.value = '';

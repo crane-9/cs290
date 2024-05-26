@@ -11,13 +11,9 @@ interface BaseMessage {
     imageData: string;
 }
 
-interface ClientMessage extends BaseMessage {
-    timestamp: number; // oh boy, dealing with timezones.
-}
+interface ClientMessage extends BaseMessage {}
 
-interface ServerMessage extends BaseMessage {
-    timestamp: string;
-}
+interface ServerMessage extends BaseMessage {}
 
 interface RoomData {
     roomName: string;

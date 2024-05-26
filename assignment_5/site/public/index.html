@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="shortcut icon" href="/static/img/favicon.png" type="image/png">
     <title>Cloudfair</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <!-- Toolbar -- showing windows and opening other things. -->
+    <nav id="toolbar">
+        <button id="open-help" class="icon i-question bordered">
+            <span class="sr-label">open help menu</span>
+        </button>
+
+        <button id="open-settings" class="icon i-gear bordered">
+            <span class="sr-label">open settings menu</span>
+        </button>
+    </nav>
+
+    <!-- Display current room name. -->
+    <span id="current-room"></span>
 
     <!-- Container of messages -->
     <main id="message-container"></main>

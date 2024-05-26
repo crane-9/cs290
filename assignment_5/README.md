@@ -69,7 +69,19 @@ Currently, `routes/` is not really being utilized, and I wonder if I could do so
 `public/scripts/` holds scripts for the client-side application. This is where most of the work is done in this project, as it contains the behavior of draggable windows and clouds, and user input validation.
 
 
+## Issues
+
+### Client-side
+
+- Canvas: After loading/reloading the page, the first stroke on the canvas aborts after about a half-second.
+    - This is not prevented by clicking before drawing.
+    - If the first stroke is less than the approximate half-second, the next stroke will cut off after the remainder of that approximate half-second of draw time.
+    - Every stroke after works perfectly as expected, even after canvas reset.
+
+
 ## Attributions
 
+https://www.svgrepo.com/svg/509221/settings -- also altered viewbox
 https://www.svgrepo.com/svg/327524/send
 https://www.svgrepo.com/svg/469643/right-arrow
+https://www.svgrepo.com/svg/507736/help -- altered viewBox to enlarge

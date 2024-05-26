@@ -33,11 +33,12 @@ class Cloud {
 
     onPage: boolean = false;
 
-    xVelocity: number = 0.05;
+    xVelocity: number = 0.08;
     _xPos: number = 0;
     _yPos: number = 0;
 
     lifetime: number = 2000;
+    secondsPassed: number = 0;
 
     
     /**
@@ -51,20 +52,20 @@ class Cloud {
         
         // Create -- only the timestamp is needed for future modification.
         const username = createElement('span', 'cloud-username');
-        this.timestamp = createElement('span', 'cloud-timestamp');
+        const timestamp = createElement('span', 'cloud-timestamp');
         const messageText = createElement('span', 'cloud-message');
     
         // Define and populate.
         username.innerText = message.username;
         username.style.color = message.color;
 
-        this.timestamp.innerText = message.timestamp;
+        timestamp.innerText = "now";
     
         messageText.innerHTML = message.message;
     
         // Append all children.
         this.element.appendChild(username);
-        this.element.appendChild(this.timestamp);
+        this.timestamp = this.element.appendChild(timestamp);
         this.element.appendChild(messageText);
 
         // Add possible image background
@@ -114,12 +115,27 @@ class Cloud {
 
         // Start animation.
         this.animationLoop();
+        this.countTime();
     }
 
+
+    /**
+     * Runs a loop that displays how long ago the message was sent.
+     */
+    countTime(): void {
+        if (this.secondsPassed > 0) this.timestamp.innerText = this.secondsPassed + 's ago';
+        this.secondsPassed ++;
+
+        setTimeout(this.countTime.bind(this), 1_000);
+    }
+
+    /**
+     * Cloud's movement animation loop.
+     */
     animationLoop(): void {
         this.xPos += this.xVelocity;
         this.lifetime --;
-        this.xVelocity -= 0.00001;
+        this.xVelocity -= 0.00001;  // Apple decelleration.
 
         // Die or request animation.
         if (this.lifetime < 0) this.die();

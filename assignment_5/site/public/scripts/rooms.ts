@@ -14,6 +14,8 @@ const createID = document.getElementById('create-room-id') as HTMLInputElement;
 const joinBtn = document.getElementById("join-room") as HTMLButtonElement;
 const joinID = document.getElementById('join-room-id') as HTMLInputElement;
 
+const currentRoom = document.getElementById('current-room') as HTMLSpanElement;
+
 
 // Set up variables for actions.
 const actions = [
@@ -53,8 +55,8 @@ for (let set of actions) {
 
         if (response.error) return;
 
-        // TODO: display new room you're in.
         set.input.value = '';
+        currentRoom.innerText = roomName;
     });
 
     addEnterAction(set.input, set.button);

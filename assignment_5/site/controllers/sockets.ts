@@ -4,7 +4,6 @@
 import { Server, Socket } from "socket.io"; 
 
 import type { ClientMessage, RoomData } from "../models/interfaces.js";
-import { relativeTimestamp } from "../utils/time.js";
 
 // Init variables
 let users = 0;
@@ -52,14 +51,14 @@ function socketSetup(socket: Socket, io: Server): void {
     socket.on('requestJoin', ({ roomName }: RoomData, callback: Function) => room = joinRoom(false, roomName, socket, room, callback));
 
     // Set up receptions.
-    socket.on('message', (incoming: ClientMessage) => {
-        if (room === null) return;
+    socket.on('message', (incoming: ClientMessage, callback: Function) => {
+        if (room === null) return callback({error: true, message: "you are not in a room."});
 
         // Broadcast to room.
-        io.to(room).emit('messageIncoming', {
-            ...incoming,
-            timestamp: relativeTimestamp(incoming.timestamp)
-        });
+        io.to(room).emit('messageIncoming', incoming);
+
+        // Respond with validation.
+        callback({error: false});
     });
 
     socket.on('disconnect', async () => {
