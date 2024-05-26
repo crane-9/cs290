@@ -4,31 +4,20 @@
 
 import type { ServerMessage } from "@interfaces";
 
+import { createElement } from "./utils.js";
+
 
 const MESSAGE_CONTAINER = document.getElementById("message-container") as HTMLElement;
 
-
 /**
- * Shortcut method to create HTMLElements with the given tagname and class(es).
- * @param tagName Tag name to give the element.
- * @param classes A list of classes to give the element.
- * @returns An HTMLElement object with the given tag and classes.
+ * Randomizes the position of the given element within its parent element.
+ * @param elem The element to randomize the position of.
  */
-function createElement(tagName: string, ...classes: string[]): HTMLElement {
-    const elem = document.createElement(tagName);
-    if (classes.length) {
-        elem.classList.add(...classes);
-    }
-
-    return elem;
-}
-
-function randomizePosition(e: HTMLElement): void {
-    const parent = e.offsetParent as HTMLElement;
+function randomizePosition(elem: HTMLElement): void {
+    const parent = elem.offsetParent as HTMLElement;
     
-    
-    e.style.top = Math.random() * (parent.clientHeight - e.clientHeight) + "px";
-    e.style.left = Math.random() * (parent.clientWidth - e.clientWidth) + "px";
+    elem.style.top = Math.random() * (parent.clientHeight - elem.clientHeight) + "px";
+    elem.style.left = Math.random() * (parent.clientWidth - elem.clientWidth) + "px";
 }
 
 
@@ -117,7 +106,7 @@ class Cloud {
 
         // Randomize starting position. TODO: find some constants for the sizing, esp fi they are also in the css.
         this.yPos = Math.random() * (document.body.clientHeight - 200);
-        this.xPos = Math.random() * (document.body.clientWidth - 300);
+        this.xPos = Math.random() * (document.body.clientWidth - 300) / 1.6;  // Dividing this by 1.6 to restrain to the first 1.6 halves of the screen.
 
         // Put it on the page.
         MESSAGE_CONTAINER.appendChild(this.element);

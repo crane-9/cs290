@@ -4,13 +4,16 @@
 import * as path from "path";
 import { createServer } from "http";
 import express, { Request, Response } from "express";
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
+
 
 import * as config from "./config/config.js";
+import { bindSetup } from "./controllers/sockets.js";
 import apiRouter from "./routes/api.routes.js";
 
+
+
 // Setup
-const publicDir = path.join(__dirname, "public")
 
 const app = express();
 const server = createServer(app);
@@ -18,35 +21,20 @@ const io = new Server(server);
 
 // Routing.
 // Map static assets.
-app.use('/static', express.static(publicDir));
+app.use('/static', express.static(config.PUBLIC_DIR));
 
 // Main application.
 app.get("/", (req: Request, res: Response) => {
     console.info(`Request received.`);
-    res.sendFile(path.join(publicDir, 'index.html'));
+    res.sendFile(path.join(config.PUBLIC_DIR, 'index.html'));
 });
 
 // Connect routers.
 app.use("/api", apiRouter);
 
 
-let users = 0;
-// Socket
-io.on('connection', (socket: Socket) => {
-    const userID = users;
-    users++;
-
-    console.info(`User ${userID} has connected!`);
-
-    // Set up receptions.
-    socket.on('message', (message: MessageEvent) => {
-        io.emit('messageIncoming', message);
-    })
-
-    socket.on('disconnect', () => {
-        console.info(`User ${userID} has disconnected!`);
-    })
-});
+// Bind socket setup to connection event.
+io.on('connection', bindSetup(io));
 
 
 // Run and log.

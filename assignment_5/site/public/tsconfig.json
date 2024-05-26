@@ -3,7 +3,7 @@
     "compilerOptions": {
         "moduleResolution": "Bundler",
         "paths": {
-            "@interfaces": ["../config/interfaces.d.ts"]
+            "@interfaces": ["../models/interfaces.d.ts"]
         }
     },
     "exclude": []

@@ -1,7 +1,8 @@
 # Assignment 5
 
 - [Concept](#concept)
-    - [Drawing](#drawing)
+    - [Mockup drawing](#mockup)
+    - [Data design](#data-design)
 
 
 ## Concept
@@ -17,7 +18,8 @@ Immediate concerns:
 
 Despite concerns, I think it is a fun concept I know I and friends would play with, and more than that, I want to work with websockets. I will call this site "Cloudfaire", a play on "Cloudflare".
 
-### Drawing
+
+### Mockup
 
 ![Site concept](./readme-src/concept.png)
 
@@ -35,12 +37,39 @@ Some notes on my mockups:
 A few aspects of this project -- the draggable windows and a canvas you can draw on -- are things that I have written before, and will be easy to copy my old work and modify as needed. 
 
 
-## Update Note
+### Project Structure
 
-The server-side aspect of this is proving to be fairly simple. Though I have not yet implemented the rooms feature, I don't think it shows off a lot of server-side scripting.
+After some basic research into common structures of NodeJS servers, I have decided to adopt the following structure:
 
-So here is my concept for a solution: an API that allows interferance with the weather of the page. IE: Thunder, nighttime, birds, sunshine. It's silly and might involve some more animations, but I love to build an API.
+```
+site/
+├── config/
+│   └── config.ts
+├── models/
+│   └── interfaces.d.ts
+├── public/
+│   ├── css/
+│   ├── fonts/
+│   ├── img/
+│   ├── scripts/
+│   ├── index.html
+│   └── tsconfig.json
+├── routes/
+├── utils/
+├── server.ts
+└── tsconfig.json
+```
 
+Currently, `routes/` is not really being utilized, and I wonder if I could do something to change that, I like this structure.
+    - * Similarly, `controllers/` is not listed here because it only exists as a directory on my pc. I would like to utilize that too.
+
+
+### Data Design
+
+`public/scripts/` holds scripts for the client-side application. This is where most of the work is done in this project, as it contains the behavior of draggable windows and clouds, and user input validation.
+
+
+## Attributions
 
 https://www.svgrepo.com/svg/327524/send
 https://www.svgrepo.com/svg/469643/right-arrow

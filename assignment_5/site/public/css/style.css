@@ -80,6 +80,10 @@ input[type=text], textarea {
     min-height: 1em;
 }
 
+::placeholder {
+    color: var(--menu-trim);
+}
+
 .sr-label {
     display: none;
 }
@@ -245,6 +249,10 @@ button.icon:hover {
     align-items: flex-end;
     justify-content: center;
     flex-flow: column nowrap;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 /* .cloud-username {
@@ -294,6 +302,45 @@ button.icon:hover {
     align-items: start;
 }
 
+/* ERROR styling */
+
+#error-container {
+    box-sizing: border-box;
+    padding: 1em 4em;
+    height: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1ex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-title, .error-message {
+    background-color: color-mix(in srgb, var(--menu-body) 70%, transparent);
+    user-select: none;
+}
+
+.error-message {
+    border: var(--menu-border);
+    border-radius: var(--menu-radius);
+    padding: 1ex 1.5em;
+}
+
+.input-attention, .input-error {
+    outline: 2px solid var(--input-status-color);
+    outline-offset: 1px;
+}
+
+.input-attention {
+    --input-status-color: var(--yellow);
+}
+
+.input-error {
+    --input-status-color: var(--red);
+}
+
+
 /* MENU styling */
 
 .floating-menu {
@@ -301,7 +348,7 @@ button.icon:hover {
     border-radius: var(--menu-radius);
     box-sizing: border-box;
 
-    opacity: 0.8;
+    opacity: 0.89;
     position: absolute;
 }
 
@@ -310,11 +357,10 @@ button.icon:hover {
 }
 
 .menu-title {
-    background-color: color-mix(in srgb, var(--menu-body) 70%, transparent);
+    /* Shares styling with error message. */
     border-bottom: var(--menu-border);
-    padding: 1ex 1.5ex;
-    user-select: none;
     cursor: grab;
+    padding: 1ex 1.5ex;
 }
 
 .menu-contents {
@@ -349,19 +395,16 @@ button.icon:hover {
 #art-menu {
     left: 1em;
     top: 55%;
-    display: none;
 }
 
 #join-menu {
     right: 1em;
     top: 40%;
-    display: none;
 }
 
 #create-menu {
     right: 1em;
     top: 50%;
-    display: none;
 }
 
 .menu-contents.simple-h {

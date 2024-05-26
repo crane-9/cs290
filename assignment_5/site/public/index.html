@@ -12,6 +12,9 @@
 
     <!-- Container of messages -->
     <main id="message-container"></main>
+
+    <!-- Container of errors -->
+    <aside id="error-container"></aside>
     
     <!-- Prototype menu -->
     <section id="message-menu" class="floating-menu">
@@ -19,11 +22,11 @@
             <span>send message :)</span>
         </div>
         <div class="menu-contents">
-            <input type="text" name="username" id="username" minlength="1" maxlength="18" placeholder="username..." />
+            <input type="text" name="username" id="username" maxlength="18" placeholder="username..." />
 
             <input type="color" name="usercolor" id="usercolor" />
 
-            <textarea name="message-input" id="message-input" rows="1" minlength="1" maxlength="80" placeholder="type message..."></textarea>
+            <textarea name="message-input" id="message-input" rows="1" maxlength="80" placeholder="type message..."></textarea>
 
             <button id="send-message" class="icon i-send">
                 <span class="sr-label">send message</span>
@@ -78,7 +81,7 @@
             <span>join a room</span>
         </div>
         <div class="menu-contents simple-h">
-            <input type="text" name="room-id" id="room-id" placeholder="enter room ID" />
+            <input type="text" id="join-room-id" maxlength='24' placeholder="enter room ID" />
             <button id="join-room" class="icon i-arrow">
                 <span class="sr-label">join room</span>
             </button>
@@ -90,8 +93,8 @@
             <span>create a room</span>
         </div>
         <div class="menu-contents simple-h">
-            <input type="text" name="room-id" id="room-id" placeholder="enter a unique room ID" />
-            <button id="join-room" class="icon i-arrow">
+            <input type="text" id="create-room-id" maxlength='24' placeholder="enter a unique room ID" />
+            <button id="create-room" class="icon i-arrow">
                 <span class="sr-label">create room</span>
             </button>
         </div>
@@ -102,8 +105,6 @@
         // Create socket, available for all the window.
         window.socket = io();
     </script>
-    <script type="module" src="/static/scripts/doodle.js"></script>
-    <script type="module" src="/static/scripts/draggable.js"></script>
-    <script type="module" src="/static/scripts/message.js"></script>
+    <script type="module" src="/static/scripts/app.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@ interface BaseMessage {
     message: string;
     username: string;
     color: string;
-    imageData: string | null;
+    imageData: string;
 }
 
 interface ClientMessage extends BaseMessage {
@@ -19,17 +19,36 @@ interface ServerMessage extends BaseMessage {
     timestamp: string;
 }
 
+interface RoomData {
+    roomName: string;
+}
+
+// Event specifications for SocketIO
 interface ClientToServerEvents {
     message: (ClientMessage) => void;
+    requestCreate: (RoomData) => void;
+    requestJoin: (RoomData) => void;
 }
 
 interface ServerToClientEvents {
     messageIncoming: (ServerMessage) => void;
+    enteredRoom: (RoomData) => void;
+}
+
+
+// ERRORS
+
+interface ClientError {
+    error: true;
+    message: string;
 }
 
 
 export type {
+    BaseMessage,
     ClientMessage,
     ServerMessage,
+    ClientError,
+    RoomData,
     
 }
