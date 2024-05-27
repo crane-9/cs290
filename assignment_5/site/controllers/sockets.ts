@@ -76,7 +76,10 @@ function socketSetup(socket: Socket, io: Server): void {
         
         // Clean up if no one is left in the room.
         const users = await io.in(room).fetchSockets();
-        if (users.length == 0) rooms.delete(room);
+        if (users.length == 0) {
+            console.info(`Deleting room '${room}'.`)
+            rooms.delete(room);
+        }
     });
 }
 
