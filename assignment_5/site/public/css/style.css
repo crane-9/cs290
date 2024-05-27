@@ -135,21 +135,46 @@ input[type=text], textarea {
 }
 
 
-/* TOOLBAR */
+/* NAVS */
 
-#toolbar {
+nav {
     position: absolute;
 
+    align-items: start;
     display: flex;
-    flex-flow: column nowrap;
     gap: 1ex;
 
     box-sizing: border-box;
+}
+
+/* TOOLBAR */
+
+#toolbar {
+    flex-flow: column nowrap;    
+
     height: 100dvh;
     overflow-y: auto;
     padding: 3em 1ex;
 }
 
+
+/* WINDOW BAR */
+
+#window-bar {
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    
+    overflow-x: auto;
+    padding: 1ex 3em;
+    width: 100dvw;
+}
+
+button.show-window {
+    padding: 1.5ex 3ex!important;
+
+    /* Hide by default. */
+    display: none;  
+}
 
 /* COLOR BUTTONS */
 
@@ -301,6 +326,11 @@ button.bordered:hover {
     --icon-url: url('/static/img/arrow.svg');
 }
 
+.i-close::before {
+    --icon-url: url('/static/img/arrow.svg');
+    transform: rotateZ(180deg);
+}
+
 .i-gear::before {
     --icon-url: url('/static/img/gear.svg');
 }
@@ -446,6 +476,16 @@ button.bordered:hover {
     border-bottom: var(--menu-border);
     cursor: grab;
     padding: 1ex 1.5ex;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.menu-title .icon {
+    --icon-size: 1em;
+    box-sizing: border-box;
+    padding: 0 1ex;
 }
 
 .menu-contents {

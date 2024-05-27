@@ -10,16 +10,19 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <!-- Toolbar -- showing windows and opening other things. -->
+    <!-- Toolbar -- open buttons for the few other pages to view. -->
     <nav id="toolbar">
         <button class="icon i-question bordered" popovertarget="help-popover">
             <span class="sr-label">open help menu</span>
         </button>
+    </nav>
 
-        <!-- <button id="open-message-menu" class="bordered">send</button>
-        <button id="open-message-menu" class="bordered">draw</button>
-        <button id="open-message-menu" class="bordered">create</button>
-        <button id="open-message-menu" class="bordered">join</button> -->
+    <!-- buttons to open hidden windows. -->
+    <nav id="window-bar">
+        <button id="open-message-menu" class="bordered show-window">send message</button>
+        <button id="open-draw-menu" class="bordered show-window">draw</button>
+        <button id="open-create-menu" class="bordered show-window">create a room</button>
+        <button id="open-join-menu" class="bordered show-window">join a room</button>
     </nav>
 
     <!-- Help popover. -->
@@ -58,6 +61,9 @@
     <section id="message-menu" class="floating-menu">
         <div class="menu-title">
             <span>send message</span>
+            <button id="close-message-menu" class="icon i-close">
+                <span class="sr-label">close message menu</span>
+            </button>
         </div>
         <div class="menu-contents">
             <input type="text" name="username" id="username" maxlength="18" placeholder="username..." />
@@ -75,6 +81,9 @@
     <section id="art-menu" class="floating-menu">
         <div class="menu-title">
             <span>draw</span>
+            <button id="close-draw-menu" class="icon i-close">
+                <span class="sr-label">close drawing menu</span>
+            </button>
         </div>
         <div class="menu-contents">
             <div class="doodle-tools">
@@ -117,6 +126,9 @@
     <section id="join-menu" class="floating-menu">
         <div class="menu-title">
             <span>join a room</span>
+            <button id="close-join-room" class="icon i-close">
+                <span class="sr-label">close join room menu</span>
+            </button>
         </div>
         <div class="menu-contents simple-h">
             <input type="text" id="join-room-id" maxlength='24' placeholder="enter room ID" />
@@ -129,6 +141,9 @@
     <section id="create-menu" class="floating-menu">
         <div class="menu-title">
             <span>create a room</span>
+            <button id="close-create-room" class="icon i-close">
+                <span class="sr-label">close create room menu</span>
+            </button>
         </div>
         <div class="menu-contents simple-h">
             <input type="text" id="create-room-id" maxlength='24' placeholder="enter a unique room ID" />
