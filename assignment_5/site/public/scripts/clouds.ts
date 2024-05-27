@@ -6,8 +6,12 @@ import type { ServerMessage } from "@interfaces";
 
 import { createElement } from "./utils.js";
 
-
+// Template elements.
 const MESSAGE_CONTAINER = document.getElementById("message-container") as HTMLElement;
+
+
+// Config variables
+const CLOUD_MAX_OP = 0.95;
 
 /**
  * Randomizes the position of the given element within its parent element.
@@ -142,7 +146,7 @@ class Cloud {
         this.element.style.opacity = '' + this.opacity;
 
         // If less than max opacity, continue loop.
-        if (this.opacity < 0.95) requestAnimationFrame(this.fadeLoop.bind(this, direction));
+        if (this.opacity < CLOUD_MAX_OP) requestAnimationFrame(this.fadeLoop.bind(this, direction));
     }
 
     /**
