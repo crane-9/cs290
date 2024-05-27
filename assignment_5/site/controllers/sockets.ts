@@ -27,7 +27,12 @@ function joinRoom(create: boolean, roomName: string, socket: Socket, currentRoom
     if (currentRoom !== null) socket.leave(currentRoom);
     
     // Join room and send acknowledgement.
-    if (create) rooms.add(roomName);
+    if (create) {
+        console.info(`Room '${roomName}' created!`);
+        rooms.add(roomName);
+    }
+        
+
     socket.join(roomName);
     callback({error: false, message: `room ${create? 'created and' : ''} joined.`});
 
@@ -57,6 +62,8 @@ function socketSetup(socket: Socket, io: Server): void {
         // Broadcast to room.
         io.to(room).emit('messageIncoming', incoming);
 
+        console.info(`Message sent in room '${room}'.`);
+
         // Respond with validation.
         callback({error: false});
     });
@@ -80,6 +87,7 @@ function socketSetup(socket: Socket, io: Server): void {
  * @returns Returns the `socketSetup` function, bound to the given server.
  */
 function bindSetup(server: Server): (s: Socket) => void {
+    console.log("Binding socket setup to server...");
     return (s: Socket) => socketSetup(s, server);
 }
 

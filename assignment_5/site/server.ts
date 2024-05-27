@@ -12,9 +12,10 @@ import { bindSetup } from "./controllers/sockets.js";
 import apiRouter from "./routes/api.routes.js";
 
 
+// Logging output on startup.
+console.log("Creating servers...");
 
 // Setup
-
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
@@ -25,7 +26,7 @@ app.use('/static', express.static(config.PUBLIC_DIR));
 
 // Main application.
 app.get("/", (req: Request, res: Response) => {
-    console.info(`Request received.`);
+    console.info('Index requested.');
     res.sendFile(path.join(config.PUBLIC_DIR, 'index.html'));
 });
 
@@ -39,4 +40,4 @@ io.on('connection', bindSetup(io));
 
 // Run and log.
 server.listen(config.PORT);
-console.log(`Server running on http://localhost:${config.PORT} !`);
+console.log(`Running on http://localhost:${config.PORT} !`);
