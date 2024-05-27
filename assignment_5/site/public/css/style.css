@@ -58,6 +58,25 @@ body {
     height: 100dvh;
     margin: 0;
     overflow: hidden;
+    word-spacing: 2px;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li {
+    margin: 0.5ex 0;
+}
+
+
+code {
+    background-color: var(--skyblue-0);
+    color: black;
+    font: 12px 'monospace';
+
+    border-radius: var(--menu-radius);
+    padding: 2px 3px;
 }
 
 button, canvas, input, textarea {
@@ -246,15 +265,17 @@ button.icon:hover {
 
 button.bordered {
     background-color: var(--menu-body);
-    border-radius: calc(var(--menu-radius) * 1.5);
-
     opacity: 0.8;
 
+    padding: 1ex;
+}
+
+/* Reusing this decorative outline pattern. */
+button.bordered, [popover] {
+    border-radius: calc(var(--menu-radius) * 1.5);
     outline: var(--menu-border);
     outline-width: 2px;
     outline-offset: -4px;
-
-    padding: 1ex;
 }
 
 button.bordered:hover {
@@ -321,9 +342,6 @@ button.bordered:hover {
 
     opacity: 0.8;
 }
-
-/* .cloud-username {
-} */
 
 .cloud-timestamp {
     opacity: 0.5;
@@ -478,4 +496,40 @@ button.bordered:hover {
     display: grid;
     grid-auto-flow: column;
     gap: var(--menu-grid-gap);
+}
+
+
+/* POPOVER styling */
+
+[popover] {
+    background-color: var(--menu-input);
+    border: none;
+    color: var(--body-font);
+
+    margin: auto 4em;
+    padding: 0.5em 1em;
+}
+
+[popover]::backdrop {
+    background-color: color-mix(in srgb, var(--text-color), transparent);
+}
+
+section#help-popover > .popover-wrapper {
+    display: grid;
+    grid-auto-flow: row;
+}
+
+.popover-title {
+    border-bottom: var(--menu-border);
+}
+
+.popover-content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    padding: 1em;
+}
+
+.popover-content > * {
+    margin: 0;
 }

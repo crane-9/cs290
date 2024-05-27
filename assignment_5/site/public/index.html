@@ -6,20 +6,44 @@
     
     <link rel="shortcut icon" href="/static/img/favicon.png" type="image/png">
     <title>Cloudfair</title>
-
+    
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <!-- Toolbar -- showing windows and opening other things. -->
     <nav id="toolbar">
-        <button id="open-help" class="icon i-question bordered">
+        <button class="icon i-question bordered" popovertarget="help-popover">
             <span class="sr-label">open help menu</span>
         </button>
 
-        <button id="open-settings" class="icon i-gear bordered">
-            <span class="sr-label">open settings menu</span>
-        </button>
+        <!-- <button id="open-message-menu" class="bordered">send</button>
+        <button id="open-message-menu" class="bordered">draw</button>
+        <button id="open-message-menu" class="bordered">create</button>
+        <button id="open-message-menu" class="bordered">join</button> -->
     </nav>
+
+    <!-- Help popover. -->
+    <section popover id="help-popover">
+        <div class="popover-wrapper">
+            <div class="popover-title">
+                <h1>hint menu</h1>
+            </div>
+            <div class="popover-content">
+                <p>hello!</p>
+                <p>welcome to <b>cloudfair</b>, a super-simple chat application. here are a few tips to get you started:</p>
+
+                <ul>
+                    <li><b>create a room</b> with the 'create a room' window. you will automatically join this room if it is created successfully!</li>
+                    <li><b>join an existing room</b> with the 'join a room' window. if a room of the given name does not already exist, try to create a room instead.</li>
+                    <li><b>enter a username</b> and select a favorite color before sending your first message.</li>
+                    <li>try <b>drawing</b> in the canvas window. the next message you send will be accompanied by your art as a backdrop.</li>
+                    <li>to <b>send just your drawing</b>, enter a single <code>/</code> character into the message box. this tells the client to ignore your message input completely, and not validate the length!</li>
+                </ul>
+
+                <p>thank you for using cloudfair, please enjoy!</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Display current room name. -->
     <span id="current-room"></span>
@@ -33,7 +57,7 @@
     <!-- Prototype menu -->
     <section id="message-menu" class="floating-menu">
         <div class="menu-title">
-            <span>send message :)</span>
+            <span>send message</span>
         </div>
         <div class="menu-contents">
             <input type="text" name="username" id="username" maxlength="18" placeholder="username..." />
@@ -50,7 +74,7 @@
 
     <section id="art-menu" class="floating-menu">
         <div class="menu-title">
-            <span>draw a beautiful</span>
+            <span>draw</span>
         </div>
         <div class="menu-contents">
             <div class="doodle-tools">
