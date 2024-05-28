@@ -61,7 +61,6 @@ function socketSetup(socket: Socket, io: Server): void {
 
         // Broadcast to room.
         io.to(room).emit('messageIncoming', incoming);
-
         console.info(`Message sent in room '${room}'.`);
 
         // Respond with validation.
