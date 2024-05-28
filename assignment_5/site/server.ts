@@ -9,7 +9,6 @@ import { Server } from "socket.io";
 
 import * as config from "./config/config.js";
 import { bindSetup } from "./controllers/sockets.js";
-import apiRouter from "./routes/api.routes.js";
 
 
 // Logging output on startup.
@@ -29,9 +28,6 @@ app.get("/", (req: Request, res: Response) => {
     console.info('Index requested.');
     res.sendFile(path.join(config.PUBLIC_DIR, 'index.html'));
 });
-
-// Connect routers.
-app.use("/api", apiRouter);
 
 
 // Bind socket setup to connection event.

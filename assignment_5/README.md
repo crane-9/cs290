@@ -1,8 +1,21 @@
 # Assignment 5
 
+> To initialize, build, and run this project, please use:
+>   ```sh
+>   npm i
+>   npm run build5
+>   npm run run5
+>   ```
+
+
 - [Concept](#concept)
     - [Mockup drawing](#mockup)
+    - [Project structure](#project-structure)
     - [Data design](#data-design)
+- [Issues](#issues)
+    - [Client-side](#client-side)
+    - [Server-side](#server-side)
+- [Attributions](#attributions)
 
 
 ## Concept
@@ -45,6 +58,8 @@ After some basic research into common structures of NodeJS servers, I have decid
 site/
 ├── config/
 │   └── config.ts
+├── controllers/
+│   └── sockets.ts
 ├── models/
 │   └── interfaces.d.ts
 ├── public/
@@ -54,19 +69,36 @@ site/
 │   ├── scripts/
 │   ├── index.html
 │   └── tsconfig.json
-├── routes/
-├── utils/
 ├── server.ts
 └── tsconfig.json
 ```
 
-Currently, `routes/` is not really being utilized, and I wonder if I could do something to change that, I like this structure.
-    - * Similarly, `controllers/` is not listed here because it only exists as a directory on my pc. I would like to utilize that too.
+`config/config.ts` is home to basic server-side configuration. 
+
+`controllers/socket.ts` is home to server-side socket behavior (reactions on events, etc).
+
+`models/interfaces.d.ts` is home to Typescript interfaces for guidance throughout both sides of the application.
+
+`public/` is home to all static files available to the client. `public/scripts/app.ts` is the one script called by `index.html`, which imports all other necessary scripts. `public/tsconfig.json` configures behavior for the compilation of client-side code, given the differences in regard to code run by NodeJS as opposed to the browser (for instance, no access to a DOM, and access to Node modules).
 
 
 ### Data Design
 
-`public/scripts/` holds scripts for the client-side application. This is where most of the work is done in this project, as it contains the behavior of draggable windows and clouds, and user input validation.
+`public/scripts/` holds scripts for the client-side application. This is where most of the work is done in this project, as it contains the behavior of draggable windows and clouds, user input validation, and more.
+
+Overall, there is not too much complexity to the data design. The main data model I had to design was the messages themselves, given the role they play on both sidess of the application. After a few iterations, I settled on this:
+
+```ts
+interface Message {
+    message: string;  // Actual message content.
+    username: string;  // The user's display name.
+    color: string;  // The user's custom color.
+    imageData: string;  // Data URL for the user's drawing.
+}
+```
+> Note: In `interfaces.d.ts`, this model is labelled `BaseMessage`, and there are two interfaces that extend it without actually making additions: `ClientMessage` and `ServerMessage`. This is because during one iteration of this project, the server altered the datatype of a field. Though this is no longer true, I kept these classes to remind myself that the concept may have an appropriate use someday: it makes sense that the data broadcasted by the server elaborates on the data delivered by the client.
+
+On the client side, these values are gathered from `input` elements and sent through input validation before being sent to the server. In certain cases (if the user is not connected to a specific room), the server replies with an error message for the client to display as a toast-like popup.
 
 
 ## Issues
@@ -77,6 +109,14 @@ Currently, `routes/` is not really being utilized, and I wonder if I could do so
     - This is not prevented by clicking before drawing.
     - If the first stroke is less than the approximate half-second, the next stroke will cut off after the remainder of that approximate half-second of draw time.
     - Every stroke after works perfectly as expected, even after canvas reset.
+    - Update: I do not have this issue on my laptop.
+
+- Some clouds aren't perfectly sized and have minor clipping on the top and bottom due to inconsistent SVG sizes. I don't think it's worth fixing, but I wanted to make note.
+
+
+### Server-side
+
+- Not a distinct issue, but: using SocketIO was much easier than expected, resulting in incredibly simple server-side scripts. I wanted to show that I know more about server-side coding than this, but I ended up spending a lot of time working on the client-side part of this. I hope to make something more interesting and server-oriented for my final.
 
 
 ## Attributions
