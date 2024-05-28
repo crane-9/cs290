@@ -79,6 +79,10 @@ code {
     padding: 2px 3px;
 }
 
+button {
+    cursor: pointer;
+}
+
 button, canvas, input, textarea {
     background-color: transparent;
     border: var(--menu-border);

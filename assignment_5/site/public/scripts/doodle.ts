@@ -82,7 +82,6 @@ class Draw {
      * @param color The desired color as a string.
      */
     setColor(color: string): void {
-        console.log(color);
         this.ctx.strokeStyle = color;
     }
 
