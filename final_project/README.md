@@ -66,3 +66,7 @@ For the management of general site information (title, description, favicon), th
 
 
 
+
+## Attribution? 
+
+- [default favicon](https://favicon.io/emoji-favicons/artist-palette) 

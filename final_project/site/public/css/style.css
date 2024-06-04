@@ -1,0 +1,111 @@
+/* 
+    Main styling for this site!
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --greys-0: #1D1D1D;
+    --greys-1: #404040;
+    --greys-2: #717171;
+    --greys-3: #ADADAD;
+    --greys-4: #DADADA;
+
+    --white: #ffffff;
+    --black: #000000;
+
+    --reds-0: #841D21;
+    --reds-1: #AC3D42;
+    --reds-2: #CB5C65;
+
+    --body-font: 300 "Inconsolata", monospace;
+    --heading-font: 300 1em "Lato", sans-serif;
+    --heading-font-spacing: 
+}
+
+body {
+    background: radial-gradient(circle farthest-corner at bottom, var(--greys-0), var(--black) 200%);
+    color: var(--greys-4);
+    font: var(--body-font);
+    
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100dvh;
+}
+
+header, h1, h2, h3, footer, .heading-font {
+    font: var(--heading-font);
+    font-size: initial;
+    letter-spacing: 0.2ex;
+
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+a {
+    color: var(--reds-1);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--reds-2);
+}
+
+
+/* LAYOUT stylings */
+
+header#main {
+    padding: 1em 2em;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+#main nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap: 1em;
+
+    --link-color: var(--greys-4);
+    --link-hover: var(--greys-3);
+}
+
+nav a {
+    color: var(--link-color);
+}
+
+nav a:hover {
+    color: var(--link-hover);
+}
+
+#main nav :last-child {
+    color: var(--reds-1)
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer#main {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em 2em;
+    padding: 1em 3em;
+    justify-content: center;
+}
+
+/* MOBILE LAYOUT */
+
+@media (max-width: 850px) {
+    header#main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
