@@ -5,8 +5,29 @@ html
     body
         include includes/header.pug
 
-        main
-            p about content here
+        main#info
+            h1 About Me
+
+            //- Space for body text, CSS styles into two columns!
+            .body-text 
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.
+
+            hr
+
+            //- These social media icons are a bit outdated, but still get the point across.
+            h2 Find me online
+
+            .social-medias 
+                a(href="#twitter-link") 
+                    i.gg-twitter
+                
+                a(href="#facebook-link") 
+                    i.gg-facebook
+                    
+                a(href="#patreon-link") 
+                    i.gg-patreon
 
         include includes/footer.pug
         

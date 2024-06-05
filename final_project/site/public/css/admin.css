@@ -1,3 +1,4 @@
+
 header#admin {
     background: var(--reds-0);
     text-align: center;
@@ -31,14 +32,11 @@ a#return {
     margin-top: auto;
 }
 
-main {
-    padding: 1em 2em;
-}
 
+/* MOBILE STYLING */
 
 @media (max-width: 850px) {
     .layout {
         grid-template-columns: 1fr 2fr;
     }
 }
-

@@ -1,5 +1,6 @@
 
 
+
 /* LAYOUT stylings */
 
 header#main {
@@ -15,7 +16,7 @@ header#main {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    gap: 1em;
+    gap: 1.5em;
 
     --link-color: var(--greys-4);
     --link-hover: var(--greys-3);
@@ -36,6 +37,30 @@ footer#main {
     padding: 1em 3em;
     justify-content: center;
 }
+
+
+/* SUB-PAGE LAYOUTS */
+
+main#info {
+    text-align: center;
+
+    /* Thin and centered. */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#info .body-text {
+    column-count: 2;
+}
+
+#info p {
+    margin: 0;
+}
+
+#info p:not(:last-child) {
+    margin-bottom: 1em;
+}
+
 
 /* MOBILE LAYOUT */
 

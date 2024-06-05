@@ -1,8 +1,10 @@
 /* 
-    Main styling for this site!
+    Universal styling for this site.
+    These fonts, variables, and styles are available across all pages.
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 
 :root {
     --greys-0: #1D1D1D;
@@ -18,9 +20,15 @@
     --reds-1: #AC3D42;
     --reds-2: #CB5C65;
 
-    --body-font: 200 "Inconsolata", monospace;
+    --body-font: 300 16px "Inconsolata", monospace;
     --heading-font: 300 1em "Lato", sans-serif;
 }
+
+
+::selection {
+    background-color: color-mix(in srgb, var(--reds-2), transparent);
+}
+
 
 body {
     background: radial-gradient(circle farthest-corner at bottom, var(--greys-0), var(--black) 200%);
@@ -33,6 +41,19 @@ body {
     min-height: 100dvh;
 }
 
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #404040;
+
+    width: 50%;
+    margin: 3em auto;
+}
+
+
+/* HEADINGS */
+
 header, h1, h2, h3, footer, nav, .heading-font {
     font: var(--heading-font);
     font-size: initial;
@@ -41,9 +62,24 @@ header, h1, h2, h3, footer, nav, .heading-font {
     text-transform: uppercase;
 }
 
-h1 {
-    font-size: 1.5em;
+h1, h2, h3 {
+    margin-bottom: 1.5em;
 }
+
+header h1 {
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+
+/* LINKS and NAV LINKS styling. */
 
 a {
     color: var(--reds-1);
@@ -63,14 +99,24 @@ nav a:hover {
     color: var(--link-hover);
 }
 
-.highlight {
-    --img-size: 3em;
+
+/*  */
+
+main {
+    padding: 1em 2em;
 }
 
-.highlight .horizontal {
-    height: var(--img-size);
+
+.social-medias {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7em;
+
+    margin: 3em 0;
 }
 
-.highlight .vertical {
-    width: var(--img-size);
+.social-medias i {
+    --ggs: 3;
 }
