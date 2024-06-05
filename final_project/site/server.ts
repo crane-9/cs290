@@ -7,6 +7,7 @@ import express, { NextFunction, Request, Response } from "express";
 import baseRouter from "./routes/base.routes.js";
 
 import * as config from "./config/config.js";
+import adminRouter from "./routes/admin.routes.js";
 
 
 // Logging output on startup.
@@ -25,6 +26,7 @@ app.use('/static', express.static(config.PUBLIC_DIR));
 
 // Connect routers.
 app.use('/', baseRouter);
+app.use('/admin', adminRouter);
 
 // Error handling
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

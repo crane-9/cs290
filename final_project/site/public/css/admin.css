@@ -1,0 +1,44 @@
+header#admin {
+    background: var(--reds-0);
+    text-align: center;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    flex: 1 0 auto;
+}
+
+nav#admin {
+    background: var(--reds-2);
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+
+    padding: 1em;
+
+    --link-color: var(--white);
+    --link-hover: var(--reds-0);
+}
+
+nav .sub {
+    margin-left: 2em;
+}
+
+a#return {
+    margin-top: auto;
+}
+
+main {
+    padding: 1em 2em;
+}
+
+
+@media (max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+

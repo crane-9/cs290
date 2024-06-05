@@ -1,8 +1,13 @@
 doctype html
 html
     head
-        include includes/head.pug
-        link(rel='stylesheet' href='/style/css/admin.css')
+        include includes/base_head.pug
+        link(rel='stylesheet' href='/static/css/admin.css')
     body
-        p "helloworld"
-        
+        include includes/admin/header.pug
+
+        .layout 
+            include includes/admin/nav.pug
+
+            main
+                p hello content
