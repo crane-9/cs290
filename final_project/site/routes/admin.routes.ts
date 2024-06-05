@@ -4,13 +4,24 @@
 
 import express, { Request, Response} from "express";
 
-import { meta } from "../config/config.js";
 
 const adminRouter = express.Router();
 
 // for now just look at the admin page.
 adminRouter.get("/", (req: Request, res: Response) => {
-    res.render('admin', {meta, page: {title: "admin"}});
+    res.render('admin', {meta: res.locals['meta'], page: {title: "admin"}});
+});
+
+adminRouter.get("/config", (req: Request, res: Response) => {
+
+});
+
+adminRouter.get("/database", (req: Request, res: Response) => {
+
+});
+
+adminRouter.get("/database/:table", (req: Request, res: Response) => {
+
 });
 
 export default adminRouter;

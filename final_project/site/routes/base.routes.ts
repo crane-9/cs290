@@ -4,8 +4,6 @@
 
 import express, { Request, Response } from "express";
 
-import { meta } from "../config/config";
-
 const baseRouter = express.Router();
 
 // Use middleware to gather site meta.
@@ -17,21 +15,21 @@ const baseRouter = express.Router();
  * Index page.
  */
 baseRouter.get("/", (req: Request, res: Response) => {
-    res.render('index', {meta: meta, page: {title: "home"}});
+    res.render('index', {meta: res.locals['meta']});
 });
 
 /**
  * About page.
  */
 baseRouter.get("/about", (req: Request, res: Response) => {
-    res.render('about', {meta: meta, page: {title: "about"}});
+    res.render('about', {meta: res.locals['meta']});
 });
 
 /**
  * Contact page.
  */
 baseRouter.get("/contact", (req: Request, res: Response) => {
-    res.render('contact', {meta: meta, page: {title: "contact"}});
+    res.render('contact', {meta: res.locals['meta']});
 });
 
 
@@ -39,7 +37,7 @@ baseRouter.get("/contact", (req: Request, res: Response) => {
  * Sitemap.
  */
 baseRouter.get("/sitemap", (req: Request, res: Response) => {
-    res.render('sitemap', {meta: meta, page: {title: "sitemap"}});
+    res.render('sitemap', {meta: res.locals['meta']});
 });
 
 

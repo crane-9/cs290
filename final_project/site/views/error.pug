@@ -6,7 +6,9 @@ html
         include includes/header.pug
 
         main
-            h1 #{error.status}: #{error.message}
+            h1 #{error.status}
+            
+            pre #{error.message}
 
         include includes/footer.pug
         

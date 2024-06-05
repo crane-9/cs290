@@ -1,12 +1,19 @@
 doctype html
 html
     head
+        - var page = {title: "sitemap"}
         include includes/head.pug
     body
         include includes/header.pug
 
-        main
-            p sitemap content here
+        main#site-map.heading-font 
+            a(href="/") Index
+            a(href="/about") About me
+            a(href="/contact") Contact
+            a(href="/sitemap") Sitemap
+
+            //- Not a great idea to keep in production, but here for the sake of development.
+            a(href="/admin") Admin portal 
 
         include includes/footer.pug
         

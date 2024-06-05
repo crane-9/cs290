@@ -1,12 +1,18 @@
 doctype html
 html
     head
+        - var page = {title: "contact"};
         include includes/head.pug
     body
         include includes/header.pug
 
         main#info
-            p sitemap content here
+            h1 Contact me
+
+            form#contact(action="/api/contact", method="post")
+                textarea#message-content(name="message-content")
+
+                input(type="submit", value="Submit Message")
 
         include includes/footer.pug
         
