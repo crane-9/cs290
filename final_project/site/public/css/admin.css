@@ -32,6 +32,29 @@ a#return {
     margin-top: auto;
 }
 
+a.back-link {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+/* FORMS */
+
+form#login {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+
+    max-width: 700px;
+    margin: 5em auto 2em;
+}
+
+#login label {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
 
 /* MOBILE STYLING */
 

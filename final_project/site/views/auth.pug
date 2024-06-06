@@ -1,0 +1,22 @@
+doctype html
+html
+    head
+        - var page = {Title: "Admin Home"}
+        include includes/admin/head.pug
+    body
+        header#admin
+            h1 Authenticate
+
+        main
+            a.back-link(href="/")
+                i.gg-arrow-long-left
+                span Go back
+
+            form#login
+                label(for="username") Username
+                    input#username(type="text", name="username")
+
+                label(for="password") Password
+                    input#password(type="password", name="password")
+
+                input(type="submit", value="Login")

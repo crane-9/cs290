@@ -4,13 +4,13 @@
 import { createServer } from "http";
 import express, { NextFunction, Request, Response } from "express";
 
-import baseRouter from "./routes/base.routes.js";
-
 import * as config from "./config/config.js";
+
+import baseRouter from "./routes/base.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import apiRouter from "./routes/api.routes.js";
 
 import logMiddleware from "./middleware/logger.middleware.js";
-import metaMiddleware from "./middleware/meta.middleware.js";
 
 
 // Logging output on startup.
@@ -31,11 +31,14 @@ app.use(logMiddleware);
 // Map static assets.
 app.use('/static', express.static(config.PUBLIC_DIR));
 
+
 // Connect routers.
 app.use('/', baseRouter);
 app.use('/admin', adminRouter);
+app.use('/api', apiRouter);
 
-// Error handling
+
+// Responses on errors.
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
     res.status(500);

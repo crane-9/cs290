@@ -18,7 +18,6 @@ baseRouter.get("/", (req: Request, res: Response) => {
     res.render('index', res.locals);
 });
 
-
 /**
  * About page.
  */

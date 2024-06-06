@@ -20,7 +20,8 @@ class DB {
     __get(sqlString: string, params: any[] = []): Promise<any> {
         return new Promise((resolve: Function, reject: Function) => {
             this.db.get(sqlString, params, (error: any, result: any) => {
-                console.log(result);
+                
+                // Handle errors
                 if (error) {
                     console.error("SQL ERROR:", error);
                     return reject(error);
@@ -42,6 +43,10 @@ class DB {
         return this.__get("SELECT Title FROM PageInfo WHERE Path = ?;", [path]);
     }
 
+    /**
+     * Retrieves general site info from database.
+     * @returns WebsiteInfo object.
+     */
     async getSiteInfo(): Promise<interfaces.WebsiteInfo> {
         return this.__get("SELECT Title, Description, Author FROM WebsiteInfo WHERE Id = 1;");
     }

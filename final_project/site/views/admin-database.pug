@@ -1,8 +1,9 @@
 doctype html
 html
     head
-        - var page = {Title: "Admin Home"}
-        include includes/admin/head.pug
+        - var page = {Title: "Database Management"}
+        include includes/base_head.pug
+        link(rel='stylesheet' href='/static/css/admin.css')
     body
         include includes/admin/header.pug
 

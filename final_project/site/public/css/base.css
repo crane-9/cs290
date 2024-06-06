@@ -104,4 +104,8 @@ form#contact {
         flex-direction: column;
         align-items: center;
     }
+
+    nav {
+        margin-top: 1em;
+    }
 }

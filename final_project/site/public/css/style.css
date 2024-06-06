@@ -72,9 +72,12 @@ input[type=button]:hover, input[type=submit]:hover, button:hover {
     background-color: var(--reds-0);
 } 
 
-textarea {
+textarea, input[type=text], input[type=password] {
     border: 1px solid var(--greys-3);
     background-color: color-mix(in srgb, var(--black), var(--greys-0));
+}
+
+textarea {
     min-height: 1em;
     max-height: 20em;
     resize: vertical;
