@@ -12,14 +12,15 @@ html
                 i.gg-arrow-long-left
                 span Go back
 
-            form#login(method="post")
+            form.simple-vertical#login(method="post")
+                //- Login form with hints for placeholders. 
+            
                 label(for="username") Username
-                    input#username(type="text", name="username")
+                    input#username(type="text", name="username", placeholder="admin")
 
                 label(for="password") Password
-                    input#password(type="password", name="password")
+                    input#password(type="password", name="password", placeholder="admin")
 
                 input(type="submit", value="Login")
 
-            if errorMessage
-                p#error-message #{errorMessage}
+            include includes/admin/feedback.pug

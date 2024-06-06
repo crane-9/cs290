@@ -11,4 +11,40 @@ html
             include includes/admin/nav.pug
 
             main
-                p hello content
+                h2 Meta Information 
+                    
+                form.simple-vertical#site-info(method="post",
+                    action="/admin/api/update/site-info",
+                    enctype="multipart/form-data"
+                )
+                    label(for="site-title") Site Title 
+                        input#site-title(
+                            type="text",
+                            name="site-title",
+                            placeholder=meta.Title
+                        )
+
+                    label(for="site-description") Site Description 
+                        input#site-description(
+                            type="text",
+                            name="site-description",
+                            placeholder=meta.Description
+                        )
+
+                    label(for="site-author") Site Author 
+                        input#site-author(
+                            type="text",
+                            name="site-author",
+                            placeholder=meta.Author
+                        )
+
+                    label(for="site-favicon") Site Favicon
+                        input#site-favicon(
+                            type="file", 
+                            accept="image/*",
+                            name="site-favicon"
+                            )
+                    
+                    input(type="submit", value="Apply Changes")
+
+                include includes/admin/feedback.pug

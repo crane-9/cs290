@@ -11,7 +11,7 @@ import { Request, Response } from "express";
 function authMiddleware(req: Request, res: Response, next: Function): void {
     // Get our two booleans to check adn compare.
     const loggedIn = (req.session as any).loggedIn;
-    const accessAuth = req.url === "/auth";
+    const accessAuth = req.path === "/auth";
 
     // Different conditions control access to the `/auth` page.
     if (accessAuth) {

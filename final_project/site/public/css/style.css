@@ -20,6 +20,8 @@
     --reds-1: #AC3D42;
     --reds-2: #CB5C65;
 
+    --success: #a3ffa3;
+
     --body-font: 300 16px "Inconsolata", monospace;
     --heading-font: 300 1em "Lato", sans-serif;
 }
@@ -54,7 +56,7 @@ hr {
 
 /* INPUTS */
 
-input, textarea, button {
+input, textarea, button, ::file-selector-button {
     background-color: inherit;
     border: none;
     color: inherit;
@@ -63,12 +65,12 @@ input, textarea, button {
     padding: 1ex 1em;
 }
 
-input[type=button], input[type=submit], button {
+input[type=button], input[type=submit], button, ::file-selector-button {
     background-color: var(--reds-1);
     padding: 1ex 2em;
 }
 
-input[type=button]:hover, input[type=submit]:hover, button:hover {
+input[type=button]:hover, input[type=submit]:hover, button:hover, ::file-selector-button:hover {
     background-color: var(--reds-0);
 } 
 
@@ -82,6 +84,8 @@ textarea {
     max-height: 20em;
     resize: vertical;
 }
+
+
 
 
 /* HEADINGS */

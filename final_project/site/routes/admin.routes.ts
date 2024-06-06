@@ -5,23 +5,33 @@
 import cookieParser from "cookie-parser";
 import express, { Request, Response} from "express";
 import session from "express-session";
-import authMiddleware from "../middleware/auth.middleware.js";
+
 import { passKey } from "../config/config.js";
+import authMiddleware from "../middleware/auth.middleware.js";
+import apiRouter from "./api.routes.js";
 
 
 const adminRouter = express.Router();
 
+// Sub-routing.
+adminRouter.use("/api", apiRouter);
+
+// Middleware.
 adminRouter.use(session({
     secret: passKey,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 30000
+        maxAge: 60000
     }
 }));
 
 adminRouter.use(cookieParser());
 adminRouter.use(authMiddleware);
+
+/**
+ * NOTE: by using the above middleware with the API, I believe I may be preventing access of using the API outside of the website. 
+ */
 
 // Base pages.
 adminRouter.get("/", (req: Request, res: Response) => {
@@ -51,6 +61,7 @@ adminRouter.get("/database/:table", (req: Request, res: Response) => {
 adminRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request, res: Response) => {
     const { username, password } = req.body;
 
+    // If valid
     if (username === "admin" && password === "admin") {
         console.info("Admin logged in.");
 
@@ -60,7 +71,9 @@ adminRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request,
 
         res.redirect("/admin");
     } else {
-        res.render('auth', {meta: res.locals['meta'], errorMessage: "Invalid Credentials"});
+        // If invalid,
+        console.log("Redirecting...")
+        res.redirect("/admin/auth?message=Invalid%20credentials.&status=error");
     }
 });
 

@@ -1,0 +1,10 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "moduleResolution": "Bundler",
+        "paths": {
+            "@interfaces": ["../models/interfaces.d.ts"]
+        }
+    },
+    "exclude": []
+}

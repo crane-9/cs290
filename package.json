@@ -1,10 +1,13 @@
 {
     "scripts": {
         "build4": "npx tsc -p assignment_4",
+        
         "build5": "npx tsc -p assignment_5/site && npx tsc -p assignment_5/site/public",
         "run5": "nodejs assignment_5/site/server.js",
+
         "final:setup": "npm install && npm upgrade && npm run final:init-db && npm run final:build",
-        "final:build": "npx tsc -p final_project/site",
+        "final:build": "npx tsc -p final_project/site && npx tsc -p final_project/site/public",
+        "final:build-client": "npx tsc -p final_project/site/public",
         "final:run": "cd final_project/site && nodejs server.js",
         "final:init-db": "cat final_project/site/schema.sql | sqlite3 final_project/site/dev.db"
     },

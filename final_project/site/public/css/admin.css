@@ -28,7 +28,7 @@ nav .sub {
     margin-left: 2em;
 }
 
-a#return {
+a#exit {
     margin-top: auto;
 }
 
@@ -36,34 +36,68 @@ a.back-link {
     display: flex;
     gap: 1em;
     align-items: center;
+    margin-bottom: 2em;
 }
 
 /* FORMS */
 
-form#login {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1em;
-
+form#input {
     max-width: 700px;
     margin: 5em auto 2em;
 }
 
-#login label {
+form#site-info {
+    margin-left: 3em;
+}
+
+form.simple-vertical {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+}
+
+
+form.simple-vertical label {
     display: grid;
     gap: 2em;
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
 
-#error-message {
-    text-align: center;
+.info-popup {
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+    margin: 1em;
+    border-radius: 3px;
+    padding: 1ex 1em;
+
+    /* Fashion */
+    background-color: var(--greys-0);
+    filter: drop-shadow(0 0 10px var(--greys-0));
+    outline: 1px solid var(--highlight);
 }
+
+.info-popup:has(.error-message) {
+    --highlight: var(--reds-1);
+}
+
+.info-popup:has(.success-message) {
+    --highlight: var(--success);
+}
+
+.info-popup:has(.empty) {
+    display: none;
+}
+
+
 
 /* MOBILE STYLING */
 
 @media (max-width: 850px) {
     .layout {
-        grid-template-columns: 1fr 2fr;
+        display: flex;
+        flex-flow: column nowrap;
     }
 }
