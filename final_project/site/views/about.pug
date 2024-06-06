@@ -1,13 +1,12 @@
 doctype html
 html
     head
-        - var page = {title: "about"}
         include includes/head.pug
     body
         include includes/header.pug
 
         main#info
-            h1 About Me
+            h1 #{page.Title}
 
             //- Space for body text, CSS styles into two columns!
             .body-text 

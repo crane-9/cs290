@@ -3,3 +3,6 @@ package-lock.json
 .vscode/
 
 *.js
+*.db
+
+.env

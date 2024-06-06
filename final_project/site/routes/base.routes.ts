@@ -3,33 +3,35 @@
  */
 
 import express, { Request, Response } from "express";
+import metaMiddleware from "../middleware/meta.middleware";
 
 const baseRouter = express.Router();
 
-// Use middleware to gather site meta.
-// baseRouter.use();
-
+// Configure middleware.
+baseRouter.use(metaMiddleware)
 
 
 /**
  * Index page.
  */
 baseRouter.get("/", (req: Request, res: Response) => {
-    res.render('index', {meta: res.locals['meta']});
+    res.render('index', res.locals);
 });
+
 
 /**
  * About page.
  */
 baseRouter.get("/about", (req: Request, res: Response) => {
-    res.render('about', {meta: res.locals['meta']});
+    res.render('about', res.locals);
 });
+
 
 /**
  * Contact page.
  */
 baseRouter.get("/contact", (req: Request, res: Response) => {
-    res.render('contact', {meta: res.locals['meta']});
+    res.render('contact', res.locals);
 });
 
 
@@ -37,7 +39,7 @@ baseRouter.get("/contact", (req: Request, res: Response) => {
  * Sitemap.
  */
 baseRouter.get("/sitemap", (req: Request, res: Response) => {
-    res.render('sitemap', {meta: res.locals['meta']});
+    res.render('sitemap', res.locals);
 });
 
 

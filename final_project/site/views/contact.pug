@@ -1,13 +1,12 @@
 doctype html
 html
     head
-        - var page = {title: "contact"};
         include includes/head.pug
     body
         include includes/header.pug
 
         main#info
-            h1 Contact me
+            h1 #{page.Title}
 
             form#contact(action="/api/contact", method="post")
                 textarea#message-content(name="message-content")

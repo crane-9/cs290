@@ -25,7 +25,6 @@ app.set('view engine', 'pug');
 
 // Set up middlewares.
 app.use(logMiddleware);
-app.use(metaMiddleware);
 
 
 // Routing.

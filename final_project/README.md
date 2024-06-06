@@ -61,6 +61,7 @@ For the management of general site information (title, description, favicon), th
     - Description
     - Author
 - Page information: A table with a row for each page's information. This will not hold much in this iteration of the website:
+    - Path 
     - Page title
 
 

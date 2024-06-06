@@ -3,14 +3,16 @@
         "build4": "npx tsc -p assignment_4",
         "build5": "npx tsc -p assignment_5/site && npx tsc -p assignment_5/site/public",
         "run5": "nodejs assignment_5/site/server.js",
-        "buildfinal": "npx tsc -p final_project/site",
-        "runfinal": "cd final_project/site && nodejs server.js"
+        "final:build": "npx tsc -p final_project/site",
+        "final:run": "cd final_project/site && nodejs server.js",
+        "final:init-db": "cat final_project/site/schema.sql | sqlite3 final_project/site/dev.db"
     },
     "dependencies": {
         "express": "^4.19.2",
         "pug": "^3.0.3",
         "socket.io": "^4.7.5",
-        "socket.io-client": "^4.7.5"
+        "socket.io-client": "^4.7.5",
+        "sqlite3": "^5.1.7"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
