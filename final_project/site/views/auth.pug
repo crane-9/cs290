@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        - var page = {Title: "Admin Home"}
+        - var page = {Title: "Admin Login"}
         include includes/admin/head.pug
     body
         header#admin
@@ -12,7 +12,7 @@ html
                 i.gg-arrow-long-left
                 span Go back
 
-            form#login
+            form#login(method="post")
                 label(for="username") Username
                     input#username(type="text", name="username")
 
@@ -20,3 +20,6 @@ html
                     input#password(type="password", name="password")
 
                 input(type="submit", value="Login")
+
+            if errorMessage
+                p#error-message #{errorMessage}

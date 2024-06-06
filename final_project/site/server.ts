@@ -1,8 +1,8 @@
 /**
  * This is my main server. It contains the HTTP server, Express server, and Pug rendering.
  */
-import { createServer } from "http";
 import express, { NextFunction, Request, Response } from "express";
+import { createServer } from "http";
 
 import * as config from "./config/config.js";
 
@@ -53,7 +53,8 @@ app.all('*', (req: Request, res: Response) => {
     const error = {status: 404, message: "page not found."};
     res.status(404).render('error', {
         meta: res.locals['meta'],
-        page: {title: error.message}
+        page: {title: error.message},
+        error
     });
 });
 

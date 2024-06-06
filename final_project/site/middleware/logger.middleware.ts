@@ -12,8 +12,7 @@ import { Request, Response } from "express";
  * @param next Passes the request handling onto the next level.
  */
 function logMiddleware(req: Request, res: Response, next: Function): void {
-    const date = new Date();
-    console.log(`[${date.toLocaleTimeString()}] ${req.method} ${req.path}`);
+    console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.path}`);
 
     // Carry on!
     next();

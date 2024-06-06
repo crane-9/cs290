@@ -81,6 +81,13 @@ main#info {
     height: 100%;
 }
 
+main#error {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
 /* FORMS */
 
 form#contact {

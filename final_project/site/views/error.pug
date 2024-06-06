@@ -5,10 +5,10 @@ html
     body
         include includes/header.pug
 
-        main
-            h1 #{error.status}
+        main#error
+            h1 #{error.status || "500"}
             
-            pre #{error.message}
+            pre #{error.message || "something went wrong"}
 
         include includes/footer.pug
         

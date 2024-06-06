@@ -56,6 +56,10 @@ form#login {
     align-items: center;
 }
 
+#error-message {
+    text-align: center;
+}
+
 /* MOBILE STYLING */
 
 @media (max-width: 850px) {

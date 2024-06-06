@@ -58,7 +58,7 @@ input, textarea, button {
     background-color: inherit;
     border: none;
     color: inherit;
-    font: inherit;
+    font: var(--body-font);
     border-radius: 3px;
     padding: 1ex 1em;
 }
@@ -86,7 +86,7 @@ textarea {
 
 /* HEADINGS */
 
-header, h1, h2, h3, footer, nav, input[type=button], input[type=submit], button, .heading-font {
+header, h1, h2, h3, footer, nav, input[type=button], input[type=submit], button, label, .heading-font {
     font: var(--heading-font);
     font-size: initial;
     letter-spacing: 0.2ex;
@@ -124,7 +124,7 @@ nav a:hover {
 }
 
 
-/*  */
+/* COMMON LAYOUTS */
 
 main {
     padding: 1em 2em;
