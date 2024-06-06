@@ -5,11 +5,14 @@ html
     body
         include includes/header.pug
 
+        //- This is a dummy page, as there is nowhere to send these messages to.
+        //- TODO: consider making a message database table and allow a rate-limited (by user) endpoint that allows you to send messages.
+        //- Awesome.
         main#info
             h1 #{page.Title}
 
-            form#contact(action="/api/contact", method="post")
-                textarea#message-content(name="message-content")
+            form#contact
+                textarea#message-content(name="message-content", placeholder="Say something nice.")
 
                 input(type="submit", value="Submit Message")
 
