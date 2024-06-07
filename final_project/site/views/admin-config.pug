@@ -15,26 +15,25 @@ html
                     
                 form.simple-vertical#site-info(method="post",
                     action="/admin/api/update/site-info",
-                    enctype="multipart/form-data"
                 )
                     label(for="site-title") Site Title 
                         input#site-title(
                             type="text",
-                            name="site-title",
+                            name="title",
                             placeholder=meta.Title
                         )
 
                     label(for="site-description") Site Description 
                         input#site-description(
                             type="text",
-                            name="site-description",
+                            name="description",
                             placeholder=meta.Description
                         )
 
                     label(for="site-author") Site Author 
                         input#site-author(
                             type="text",
-                            name="site-author",
+                            name="author",
                             placeholder=meta.Author
                         )
 
@@ -42,8 +41,8 @@ html
                         input#site-favicon(
                             type="file", 
                             accept="image/*",
-                            name="site-favicon"
-                            )
+                            name="favicon"
+                        )
                     
                     input(type="submit", value="Apply Changes")
 

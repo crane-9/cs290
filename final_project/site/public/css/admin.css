@@ -91,11 +91,28 @@ form.simple-vertical label {
     display: none;
 }
 
+label {
+    position: relative;
+}
+
+label:has([required])::after {
+    content: "*";
+    position: absolute;
+    left: -1em;
+
+    font-weight: 900;
+
+    filter: drop-shadow(1px 1px 20px var(--reds-0));
+}
+
 
 /* TABLE styling */
 
 table {
     border-collapse: collapse;
+
+    width: 100%;
+    margin: auto;
 }
 
 th, td {
@@ -121,6 +138,22 @@ tbody td:first-child {
 
 .controls button#new {
     margin-right: auto;
+}
+
+#selection-counter {
+    text-align: center;
+}
+
+#selection-counter:empty::before {
+    content: "0";
+}
+
+#selection-counter::after {
+    content: " selected";
+}
+
+#total-counter {
+    text-align: right;
 }
 
 

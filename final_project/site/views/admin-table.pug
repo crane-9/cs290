@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        - var page = {Title: "Database Table"}
+        - var page = {Title: "Artwork Table"}
         include includes/base_head.pug
         link(rel='stylesheet' href='/static/css/admin.css')
     body
@@ -11,6 +11,8 @@ html
             include includes/admin/nav.pug
 
             main
+                h2 Artwork Entries
+
                 table.database-table
                     thead 
                         tr
@@ -20,10 +22,10 @@ html
                         tr
                             th Select
                             th Name
-                            th FileName 
+                            th File
                             th Date
                             th Description 
-                            th CollectionName 
+                            th Collection
                             th Medium
                             th Credits
 
@@ -31,7 +33,8 @@ html
                             td 
                                 input#select-1(type="checkbox", name="select-1")
                             td piece 1
-                            td 1.png
+                            td 
+                                a(href="/static/img/1.png" target="blank") 1.png
                             td today 
                             td my most awesome piece 
                             td -
@@ -41,7 +44,8 @@ html
                             td 
                                 input#select-2(type="checkbox", name="select-2")
                             td piece 2
-                            td 2.png
+                            td 
+                                a(href="/static/img/2.png" target="blank") 2.png
                             td yesterday
                             td my second awesome piece 
                             td -
@@ -50,7 +54,8 @@ html
 
                     tfoot 
                         tr
-                            td(colspan=8) 2 artworks total
+                            td#selection-counter(colspan=2)
+                            td#total-counter(colspan=6) 2 artworks total
 
                 .controls 
                     button#new(type="button") New Entry

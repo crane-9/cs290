@@ -1,0 +1,73 @@
+doctype html
+html
+    head
+        - var page = {Title: "Database Management"}
+        include includes/base_head.pug
+        link(rel='stylesheet' href='/static/css/admin.css')
+    body
+        include includes/admin/header.pug
+
+        .layout 
+            include includes/admin/nav.pug
+
+            main
+                
+                form.simple-vertical(
+                    method="post",
+                    action="/admin/api/create/artwork"                   
+                )
+
+                    label(for="name") Artwork Name
+                        input#name(
+                            type="text",
+                            name="name",
+                            placeholder="Artwork Name"
+                            required
+                        )
+
+                    label(for="file") Artwork Image
+                        input#file(
+                            type="file", 
+                            accept="image/*",
+                            name="file"
+                            required
+                        )
+
+                    label(for="date") Date Created
+                        input#date(
+                            type="date",
+                            name="date",
+                            placeholder="today"
+                        )
+
+                    label(for="description") Piece Description
+                        input#description(
+                            type="text",
+                            name="description",
+                            placeholder="Artwork Description"
+                        )
+
+                    label(for="collection") Collection
+                        input#collection(
+                            type="text",
+                            name="collection",
+                            placeholder="Collection"
+                        )
+
+                    label(for="medium") Medium
+                        input#medium(
+                            type="text",
+                            name="medium",
+                            placeholder="e.g. acrylic, charcoal...."
+                            required
+                        )
+
+                    label(for="credits") Additional Credits
+                        input#credits(
+                            type="text",
+                            name="credits",
+                            placeholder="Additional credits"
+                        )
+
+                    //- Value will be supplied by the backend.
+                    input(type="submit", value="Create / Update")

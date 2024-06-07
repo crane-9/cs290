@@ -23,6 +23,13 @@ namespace interfaces {
         // Id: 1;
     }
 
+    // Same as WebsiteInfo, with alternate capitalization.
+    interface WebsiteInfoIncoming {
+        title: string;
+        description: string;
+        author: string;
+    }
+
     // Metadata specific to a single page.
     interface PageInfo {
         Title: string;

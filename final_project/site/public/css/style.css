@@ -78,7 +78,7 @@ input[type=button]:hover, input[type=submit]:hover, button:hover, ::file-selecto
     background-color: var(--reds-0);
 } 
 
-textarea, input[type=text], input[type=password] {
+textarea, input[type=text], input[type=password], input[type=date] {
     border: 1px solid var(--greys-3);
     background-color: color-mix(in srgb, var(--black), var(--greys-0));
 }

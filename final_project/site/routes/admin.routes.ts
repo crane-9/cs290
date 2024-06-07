@@ -53,6 +53,12 @@ adminRouter.get("/database/:table", (req: Request, res: Response) => {
     res.render('admin-table', {meta: res.locals['meta']});
 });
 
+adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
+    // Get data on specific table! i think. yeah.
+
+    res.render('admin-table-entry', res.locals);
+});
+
 
 // Login page.
 adminRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request, res: Response) => {
