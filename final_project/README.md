@@ -65,7 +65,7 @@ For the management of general site information (title, description, favicon), th
     - Page title
 
 
-
+[session + auth help](https://www.geeksforgeeks.org/how-to-manage-sessions-and-cookies-in-express-js/) awesome
 
 
 ## Attribution? 

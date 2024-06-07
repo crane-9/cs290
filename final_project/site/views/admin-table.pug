@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        //- - var page = {Title: ""}
+        - var page = {Title: "Database Table"}
         include includes/base_head.pug
         link(rel='stylesheet' href='/static/css/admin.css')
     body
@@ -11,4 +11,50 @@ html
             include includes/admin/nav.pug
 
             main
-                p hello content
+                table.database-table
+                    thead 
+                        tr
+                            th(colspan=8) Artwork Data
+                    
+                    tbody
+                        tr
+                            th Select
+                            th Name
+                            th FileName 
+                            th Date
+                            th Description 
+                            th CollectionName 
+                            th Medium
+                            th Credits
+
+                        tr
+                            td 
+                                input#select-1(type="checkbox", name="select-1")
+                            td piece 1
+                            td 1.png
+                            td today 
+                            td my most awesome piece 
+                            td -
+                            td paint 
+                            td -
+                        tr
+                            td 
+                                input#select-2(type="checkbox", name="select-2")
+                            td piece 2
+                            td 2.png
+                            td yesterday
+                            td my second awesome piece 
+                            td -
+                            td paint 
+                            td -
+
+                    tfoot 
+                        tr
+                            td(colspan=8) 2 artworks total
+
+                .controls 
+                    button#new(type="button") New Entry
+
+                    button#edit(type="button") Edit Entries 
+                    button#delete(type="button") Delete Entries
+                        

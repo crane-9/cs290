@@ -92,10 +92,41 @@ form.simple-vertical label {
 }
 
 
+/* TABLE styling */
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid var(--greys-2);
+    padding: 1ex 1em;
+}
+
+tbody td:first-child {
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+    
+    padding: 1em 1ex;
+}
+
+.controls button {
+    font-size: 12px;
+}
+
+.controls button#new {
+    margin-right: auto;
+}
+
 
 /* MOBILE STYLING */
 
-@media (max-width: 850px) {
+@media (max-width: 950px) {
     .layout {
         display: flex;
         flex-flow: column nowrap;

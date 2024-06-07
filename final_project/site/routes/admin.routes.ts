@@ -20,10 +20,7 @@ adminRouter.use("/api", apiRouter);
 adminRouter.use(session({
     secret: passKey,
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 60000
-    }
+    saveUninitialized: false
 }));
 
 adminRouter.use(cookieParser());

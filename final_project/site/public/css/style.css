@@ -65,6 +65,10 @@ input, textarea, button, ::file-selector-button {
     padding: 1ex 1em;
 }
 
+input {
+    accent-color: var(--reds-0);
+}
+
 input[type=button], input[type=submit], button, ::file-selector-button {
     background-color: var(--reds-1);
     padding: 1ex 2em;
