@@ -41,7 +41,7 @@ a.back-link {
 
 /* FORMS */
 
-form#input {
+form#input, form#login {
     max-width: 700px;
     margin: 5em auto 2em;
 }
@@ -120,7 +120,12 @@ th, td {
     padding: 1ex 1em;
 }
 
-tbody td:first-child {
+tbody td:empty::before {
+    content: "——";
+    color: var(--greys-2)
+}
+
+tbody td {
     text-align: center;
 }
 

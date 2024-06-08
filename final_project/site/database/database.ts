@@ -2,7 +2,52 @@
  * This is the database interface for SQLite3.
  */
 import { Database } from "sqlite3";
-import { DB_PATH } from "../config/config.js"
+import { DB_PATH } from "../config/config.js";
+
+
+// Basically an enum for tables that can be accessed for their entries.
+const AccessibleTables = {
+    artwork: "Artwork"
+};
+
+
+// Hard-coded :/
+const TableProperties: Record<string, string[]> = {
+    Artwork: [
+        "Id",
+        "Name",
+        "FileName",
+        "Date",
+        "Description",
+        "CollectionName",
+        "Medium",
+        "Credit",
+    ]
+};
+
+
+/**
+ * 
+ * @param func Method to call -- be sure to bind it to the SQLite3 database object.
+ * @param sql The SQL string.
+ * @param params Parameters to fill in.
+ * @returns Returns results.
+ */
+function promiseWrapper(func: Function, sql: string, params: any[] = []): Promise<any> {
+    // https://stackabuse.com/a-sqlite-tutorial-with-node-js/
+    return new Promise((resolve: Function, reject: Function) => {
+        func(sql, params, (error: any, result: any) => {
+                // Handle errors
+                if (error) {
+                    console.error("SQL ERROR:", error);
+                    return reject(error);
+                } 
+                
+                // Resolve and return results.
+                resolve(result);
+        });
+    });
+}
 
 
 class DB {  
@@ -16,23 +61,30 @@ class DB {
         });
     }
 
-    // https://stackabuse.com/a-sqlite-tutorial-with-node-js/
+    // Returns one single object as response.
     __get(sqlString: string, params: any[] | any = []): Promise<any> {
-        return new Promise((resolve: Function, reject: Function) => {
-            this.db.get(sqlString, params, (error: any, result: any) => {
-                // Handle errors
-                if (error) {
-                    console.error("SQL ERROR:", error);
-                    return reject(error);
-                } 
-                
-                // Resolve and return results.
-                resolve(result);
-            })
-        })
+        return promiseWrapper(this.db.get.bind(this.db), sqlString, params);        
+    }
+
+    // Returns an array of objects as response.
+    __getAll(sqlString: string, params: any[] | any = []): Promise<any[]> {
+        return promiseWrapper(this.db.all.bind(this.db), sqlString, params)
     }
 
     // READ
+
+    /**
+     * 
+     * @param table Name of the table to access.
+     */
+    async getAllEntries(table: string): Promise<interfaces.Artwork[]> {
+        // Protection.
+        if (!Object.values(AccessibleTables).includes(table)) {
+            throw {name: "Invalid Table Access", message: "Inaccessible table."}
+        }
+
+        return this.__getAll(`SELECT * FROM ${table};`);
+    }
 
     /**
      * Retrieves page info from database for the given path.
@@ -79,3 +131,5 @@ class DB {
 }
 
 export default DB;
+
+export { TableProperties };

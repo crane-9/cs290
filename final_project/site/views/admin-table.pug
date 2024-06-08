@@ -11,51 +11,45 @@ html
             include includes/admin/nav.pug
 
             main
-                h2 Artwork Entries
+                h2 #{table.name} Data
 
                 table.database-table
                     thead 
                         tr
-                            th(colspan=8) Artwork Data
+                            th(colspan=8) #{table.name} Entries
                     
                     tbody
                         tr
                             th Select
-                            th Name
-                            th File
-                            th Date
-                            th Description 
-                            th Collection
-                            th Medium
-                            th Credits
 
-                        tr
-                            td 
-                                input#select-1(type="checkbox", name="select-1")
-                            td piece 1
-                            td 
-                                a(href="/static/img/1.png" target="blank") 1.png
-                            td today 
-                            td my most awesome piece 
-                            td -
-                            td paint 
-                            td -
-                        tr
-                            td 
-                                input#select-2(type="checkbox", name="select-2")
-                            td piece 2
-                            td 
-                                a(href="/static/img/2.png" target="blank") 2.png
-                            td yesterday
-                            td my second awesome piece 
-                            td -
-                            td paint 
-                            td -
+                            //- List all properties, except for Id.
+                            each property in table.properties
+                                if property != "Id"
+                                    th #{property}
+
+                        //- A whole bunch of nesting for logic.
+                        each entry in entries
+                            tr
+                                //- Check/selection box
+                                td 
+                                    input(type="checkbox", name="select-" + entry.Id, id="select-" + entry.Id)
+                                
+                                //- The important information.
+                                each property in table.properties
+                                    if property == "Id"
+                                        //- Nothing -- skip this property.
+
+                                    else if property == "FileName"
+                                        td 
+                                            a(target="blank" href="/static/img/" + entry[property]) #{entry[property]}
+
+                                    else
+                                        td #{entry[property]}
 
                     tfoot 
                         tr
                             td#selection-counter(colspan=2)
-                            td#total-counter(colspan=6) 2 artworks total
+                            td#total-counter(colspan=6) #{table.size} artworks total
 
                 .controls 
                     button#new(type="button") New Entry

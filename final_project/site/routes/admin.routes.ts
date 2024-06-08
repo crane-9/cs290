@@ -9,6 +9,9 @@ import session from "express-session";
 import { passKey } from "../config/config.js";
 import authMiddleware from "../middleware/auth.middleware.js";
 import apiRouter from "./api.routes.js";
+import DB, { TableProperties } from "../database/database.js";
+
+import * as utils from "../utils/basics.js";
 
 
 const adminRouter = express.Router();
@@ -47,10 +50,13 @@ adminRouter.get("/database", (req: Request, res: Response) => {
     res.render('admin-database', {meta: res.locals['meta']});
 });
 
-adminRouter.get("/database/:table", (req: Request, res: Response) => {
+adminRouter.get("/database/:table", async (req: Request, res: Response) => {
+    const tableName = utils.capitalize(req.params.table);
     // Get data on the specific table.
+    const db = new DB();
+    const results = await db.getAllEntries(tableName);
     
-    res.render('admin-table', {meta: res.locals['meta']});
+    res.render('admin-table', {meta: res.locals['meta'], table: {name: tableName, size: results.length, properties: TableProperties[tableName]}, entries: results});
 });
 
 adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
