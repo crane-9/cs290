@@ -1,11 +1,9 @@
 {
     "scripts": {
         "build4": "npx tsc -p assignment_4",
-        
         "build5": "npx tsc -p assignment_5/site && npx tsc -p assignment_5/site/public",
         "run5": "nodejs assignment_5/site/server.js",
-
-        "final:setup": "npm install && npm upgrade && npm run final:init-db && npm run final:build",
+        "final:setup": "npm install && npm upgrade && npm run final:init-db",
         "final:build": "npx tsc -p final_project/site && npx tsc -p final_project/site/public",
         "final:build-client": "npx tsc -p final_project/site/public",
         "final:run": "cd final_project/site && nodejs server.js",
@@ -15,6 +13,7 @@
         "cookie-parser": "^1.4.6",
         "express": "^4.19.2",
         "express-session": "^1.18.0",
+        "marked": "^12.0.2",
         "pug": "^3.0.3",
         "socket.io": "^4.7.5",
         "socket.io-client": "^4.7.5",
