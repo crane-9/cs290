@@ -17,6 +17,7 @@ const TableProperties: Record<string, string[]> = {
         "Id",
         "Name",
         "FileName",
+        "AltText",
         "Date",
         "Description",
         "CollectionName",
@@ -27,14 +28,14 @@ const TableProperties: Record<string, string[]> = {
 
 
 /**
- * 
+ * A function that creates async-await compatible access to the SQLite database.
+ * @link Taken from: https://stackabuse.com/a-sqlite-tutorial-with-node-js/
  * @param func Method to call -- be sure to bind it to the SQLite3 database object.
  * @param sql The SQL string.
  * @param params Parameters to fill in.
  * @returns Returns results.
  */
 function promiseWrapper(func: Function, sql: string, params: any[] = []): Promise<any> {
-    // https://stackabuse.com/a-sqlite-tutorial-with-node-js/
     return new Promise((resolve: Function, reject: Function) => {
         func(sql, params, (error: any, result: any) => {
                 // Handle errors
@@ -50,7 +51,11 @@ function promiseWrapper(func: Function, sql: string, params: any[] = []): Promis
 }
 
 
-class DB {  
+class DB {
+    /**
+     * Class instance initializes a connection to the database.
+     * Methods are specific to certain uses and intentions (ie: accessible pages for sitemap display vs admin management.)
+     */
     db: Database;
 
     // Initializes a connection with the database.
@@ -74,16 +79,33 @@ class DB {
     // READ
 
     /**
-     * 
+     * Retrieves all rows from an accessible table. 
+     * @note Not all tables are accessible via this method, as not all tables are structured the same. Some tables have specific rows that need to be protected or treated differently in regards to admin management.
      * @param table Name of the table to access.
+     * @return A promise that resolves to an array of rows from the table.
      */
-    async getAllEntries(table: string): Promise<interfaces.Artwork[]> {
+    async getAllEntries(table: string): Promise<any[]> {
         // Protection.
         if (!Object.values(AccessibleTables).includes(table)) {
             throw {name: "Invalid Table Access", message: "Inaccessible table."}
         }
 
         return this.__getAll(`SELECT * FROM ${table};`);
+    }
+
+    /**
+     * Gets all PageInfo from table, orders canonical pages first and then secondarily by path.
+     */
+    async getAllPages(): Promise<interfaces.PageInfo[]> {
+        return this.__getAll("SELECT * FROM PageInfo ORDER BY Canonical DESC, Path ASC;");
+    }
+
+    /**
+     * Gets all non-hidden pages to display on the sitemap.
+     * @returns Array of page info.
+     */
+    async getSitemapPages(): Promise<interfaces.PageInfo[]> {
+        return this.__getAll("SELECT Path FROM PageInfo WHERE Hidden = False ORDER BY Canonical Asc;")
     }
 
     /**
