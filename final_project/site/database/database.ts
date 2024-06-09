@@ -105,7 +105,7 @@ class DB {
      * @returns Array of page info.
      */
     async getSitemapPages(): Promise<interfaces.PageInfo[]> {
-        return this.__getAll("SELECT Path FROM PageInfo WHERE Hidden = False ORDER BY Canonical Asc;")
+        return this.__getAll("SELECT Path, Title FROM PageInfo WHERE Hidden = False ORDER BY Canonical Asc;")
     }
 
     /**

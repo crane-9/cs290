@@ -37,15 +37,17 @@ html
                                         //- Nothing -- skip this property.
 
                                     else if property == "Path"
-                                        td 
-                                            a(target="blank" href="/" + entry[property]) #{entry[property]}
+                                        td: a(target="blank" href="/" + entry[property]) #{entry[property]}
+
+                                    else if property == "Hidden"
+                                        td #{entry[property]? 'Yes' : 'No'}
 
                                     else
                                         td #{entry[property]}
 
                     tfoot: tr
                         td#selection-counter(colspan=2)
-                        td#total-counter(colspan=6) #{table.size} artworks total
+                        td#total-counter(colspan=6) #{table.size} Total Pages
 
                 .controls 
                     button#new(type="button") New Entry

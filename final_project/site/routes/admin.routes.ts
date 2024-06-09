@@ -55,7 +55,7 @@ adminRouter.get("/database", (req: Request, res: Response) => {
 adminRouter.get("/database/:table", async (req: Request, res: Response) => {
     const tableName = utils.capitalize(req.params.table);
     // Get data on the specific table.
-    const db = new DB();
+    const db = res.locals['db'] as DB;
     const results = await db.getAllEntries(tableName);
     
     res.render('admin-table', {meta: res.locals['meta'], table: {name: tableName, size: results.length, properties: TableProperties[tableName]}, entries: results});
@@ -64,8 +64,29 @@ adminRouter.get("/database/:table", async (req: Request, res: Response) => {
 adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
     // Get data on specific table! i think. yeah.
 
+    // Validate table is valid.
+
+    // If not raise error, ummm and it doesn't have to display on the admin template bc they shouldn't be pokin about!
+
     res.render('admin-table-entry', res.locals);
 });
+
+adminRouter.get("/pages", async (req: Request, res: Response) => {
+    const db = res.locals['db'] as DB;
+    const entries = await db.getAllPages();
+
+    const table = {
+        properties: [
+            "Path",
+            "Title",
+            "BodyText",
+            "Hidden"
+        ],
+        size: entries.length
+    };
+
+    res.render('admin-pages', {...res.locals, table, entries});
+})
 
 
 // Login page.

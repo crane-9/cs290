@@ -4,13 +4,16 @@
 
         "build5": "npx tsc -p assignment_5/site && npx tsc -p assignment_5/site/public",
         "run5": "nodejs assignment_5/site/server.js",
-        
+
         "final:setup": "npm install && npm upgrade && npm run final:init-db",
+        "final:init-db": "cat final_project/site/schema.sql | sqlite3 final_project/site/dev.db",
+        "final:reset-db": "rm final_project/site/dev.db && npm run final:init-db",
+        "final:start": "npm run final:build && npm run final:run",
+        "final:start-dev": "npm run final:build && npm run final:dev",
         "final:build": "npx tsc -p final_project/site && npx tsc -p final_project/site/public",
         "final:build-client": "npx tsc -p final_project/site/public",
-        "final:run": "cd final_project/site && nodejs server.js",
-        "final:init-db": "cat final_project/site/schema.sql | sqlite3 final_project/site/dev.db",
-        "final:reset-db": "rm final_project/site/dev.db && npm run final:init-db"
+        "final:dev": "cd final_project/site && node --watch server.js",
+        "final:run": "cd final_project/site && node server.js"
     },
     "dependencies": {
         "cookie-parser": "^1.4.6",

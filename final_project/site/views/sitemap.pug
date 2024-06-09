@@ -7,10 +7,13 @@ html
 
         main#site-map
             .site-map.heading-font
-                a(href="/") Index
-                a(href="/about") About me
-                a(href="/contact") Contact
-                a(href="/sitemap") Sitemap
+                each entry of pages
+                    a(href="/" + entry.Path) #{entry.Title} 
+
+                //- a(href="/") Index
+                //- a(href="/about") About me
+                //- a(href="/contact") Contact
+                //- a(href="/sitemap") Sitemap
 
                 //- Not a great idea to keep in production, but here for the sake of development.
                 a(href="/admin/auth") Admin portal 

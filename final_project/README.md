@@ -66,6 +66,7 @@ These fields will be used to display a complete page of information on a single 
 
 For the management of general site information (title, description, favicon), there will be two additional tables:
 
+
 #### Meta information
 A table that has one row with id `1`. Holds the following self-explanatory properties:
 - Title
@@ -73,6 +74,7 @@ A table that has one row with id `1`. Holds the following self-explanatory prope
 - Author
 
 These values are used to populate `<meta>` tags in the `<head>` of each page.
+
 
 #### Page information
  A table with a row for each page's information. This table will hold information for both "canonical" and non-canonical pages. 
@@ -116,7 +118,7 @@ Just as hinted in the input placeholders. These values are not configurable, tho
 
 > Important notes:
 >   - Ensure that SQLite is installed! I should test this all on windows aughaughg
->   - uhhhhhhhhhhhhh
+>   - Ensure that you are using the latest version of NodeJS (v22.2.0)
 
 
 ### Setup
@@ -172,11 +174,15 @@ This command simply runs the compiled `server.js` with Node.
 By default, the server will run on port 8080. This may be changed in [`config.ts`](./site/config/config.ts).
 
 
+## Issues
+
+- Running `server.js` from any directory other than `site/`, pages cannot be rendered.
+- Issue in one of the JS libraries (MarkedJS) on Node v20.12.1 -- ensure latest version of Node to avoid.
+
+
 ## Attributions
 
 - [Favicon](https://favicon.io/emoji-favicons/artist-palette) 
-
-
 
 
 todo:

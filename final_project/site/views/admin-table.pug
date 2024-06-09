@@ -16,7 +16,7 @@ html
                 table.database-table
                     thead 
                         tr
-                            th(colspan=8) #{table.name} Entries
+                            th(colspan=table.properties.length) #{table.name} Entries
                     
                     tbody
                         tr
@@ -46,10 +46,13 @@ html
                                     else
                                         td #{entry[property]}
 
+                        else
+                            tr: td(colspan=table.properties.length) No Entries.
+
                     tfoot 
                         tr
                             td#selection-counter(colspan=2)
-                            td#total-counter(colspan=6) #{table.size} artworks total
+                            td#total-counter(colspan=table.properties.length - 2) #{table.size} artworks total
 
                 .controls 
                     button#new(type="button") New Entry

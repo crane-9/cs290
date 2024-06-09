@@ -4,7 +4,7 @@
  */
 
 import express, { Request, Response} from "express";
-import DB from "../database/database";
+import DB from "../database/database.js";
 
 
 const apiRouter = express.Router();

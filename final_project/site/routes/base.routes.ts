@@ -3,8 +3,9 @@
  */
 
 import express, { Request, Response } from "express";
-import dataMiddleware from "../middleware/data.middleware";
-import pageMiddleware from "../middleware/pages.middleware";
+import dataMiddleware from "../middleware/data.middleware.js";
+import pageMiddleware from "../middleware/pages.middleware.js";
+import DB from "../database/database.js";
 
 const baseRouter = express.Router();
 
@@ -39,8 +40,11 @@ baseRouter.get("/contact", (req: Request, res: Response) => {
 /**
  * Sitemap.
  */
-baseRouter.get("/sitemap", (req: Request, res: Response) => {
-    res.render('sitemap', res.locals);
+baseRouter.get("/sitemap", async (req: Request, res: Response) => {
+    const db = res.locals['db'] as DB;
+    const pages = await db.getSitemapPages();
+
+    res.render('sitemap', {...res.locals, pages});
 });
 
 
