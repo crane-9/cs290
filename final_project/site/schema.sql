@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS WebsiteInfo (
 CREATE TABLE IF NOT EXISTS PageInfo (
     Path TEXT PRIMARY KEY,
     Title TEXT,
-    BodyText TEXT
+    BodyText TEXT,
+    Canonical BOOLEAN,
+    Hidden BOOLEAN
 );
 
 
@@ -37,8 +39,8 @@ INSERT INTO PageInfo VALUES
     
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.
     
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.'),
-    ('contact', 'Contact Me', 'Remember to leave your contact information. [Cheers!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)'),
-    ('index', 'Home', 'Welcome to my webpage. Please check the nifty links above to navigate!'),
-    ('sitemap', 'Sitemap', '')
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque odio voluptatibus iste odit ad id atque accusamus non ducimus sunt accusantium fuga saepe ipsam, maiores quidem autem? Dolorum, est ut.', TRUE, FALSE),
+    ('contact', 'Contact Me', 'Remember to leave your contact information. [Cheers!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)', TRUE, FALSE),
+    ('index', 'Home', 'Welcome to my webpage. Please check the nifty links above to navigate!', TRUE, FALSE),
+    ('sitemap', 'Sitemap', '', TRUE, TRUE)
 ;

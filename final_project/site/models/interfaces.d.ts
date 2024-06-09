@@ -20,7 +20,7 @@ namespace interfaces {
         Title: string;
         Description: string;
         Author: string;
-        // Id: 1;
+        // Id: 1;   // Exists but should not be used outside of querying .db.
     }
 
     // Same as WebsiteInfo, with alternate capitalization.
@@ -32,8 +32,11 @@ namespace interfaces {
 
     // Metadata specific to a single page.
     interface PageInfo {
+        Path: string;
         Title: string;
         BodyText: string;
+        Canonical: boolean;
+        Hidden: boolean;
     }
 
 }

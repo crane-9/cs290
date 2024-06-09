@@ -90,7 +90,7 @@ An example `PageInfo` table:
 | `'contact'`     | `TRUE`         | `'Contact Me'`             | `'Please reach out with any comments or questions. Business inquiries welcome!'` | `FALSE` |
 | `'sitemap'`     | `TRUE`         | `'Sitemap Me'`             | `'Here is a list of all pages on my site! Except for this page, because it is hidden! It would be silly to list the sitemap on the sitemap!'` | `TRUE` |
 | `'favorite-links'`     | `FALSE`         | `'My Favorite Sites'`             | `'This is a nice little page that lists all my favorite sites: - github.com - youtube.com - website.com'` | `FALSE` |
-| `'pet-pics'`     | `FALSE`         | `'My Pets'`             | `'Enjoy my awesome pets~ ![My dog](/static/pets/dog.jpg) ![My turtle](/static/pets/turtle.jpg)'` | `FALSE` |
+| `'pet-pics'`     | `FALSE`         | `'My Pets'`             | `'Enjoy my awesome pets! ![My dog](/static/pets/dog.jpg) ![My turtle](/static/pets/turtle.jpg)'` | `FALSE` |
 
 In which:
 
@@ -175,3 +175,14 @@ By default, the server will run on port 8080. This may be changed in [`config.ts
 ## Attributions
 
 - [Favicon](https://favicon.io/emoji-favicons/artist-palette) 
+
+
+
+
+todo:
+
+- mwin lwyout with brick.................. no. do the carousel.
+- create entry page using the same sorta awesome stuff we learned from making the table page
+- making the make the page page
+- update schema. ok i did that what now.
+- 
