@@ -115,6 +115,8 @@ class DB {
 
         // Cut down on repetition.
         function prepareSets(propertyName: string, value: string, idx: number) {
+            // Trim
+            value = value.trim();
             if (value.length > 0) {
                 sets.push(`${propertyName} = ?${idx}`);
                 params[idx] = value;
@@ -127,7 +129,7 @@ class DB {
 
         const setString = sets.join(", ");
 
-        const result = await this.__get(`UPDATE WebsiteInfo SET ${setString} WHERE Id = 1;`, params);
+        await this.__get(`UPDATE WebsiteInfo SET ${setString} WHERE Id = 1;`, params);
     }
 }
 
