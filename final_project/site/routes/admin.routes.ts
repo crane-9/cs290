@@ -6,11 +6,12 @@ import cookieParser from "cookie-parser";
 import express, { Request, Response} from "express";
 import session from "express-session";
 
-import { passKey } from "../config/config.js";
 import authMiddleware from "../middleware/auth.middleware.js";
 import apiRouter from "./api.routes.js";
-import DB, { TableProperties } from "../database/database.js";
+import dataMiddleware from "../middleware/data.middleware.js";
 
+import { passKey } from "../config/config.js";
+import DB, { TableProperties } from "../database/database.js";
 import * as utils from "../utils/basics.js";
 
 
@@ -28,6 +29,7 @@ adminRouter.use(session({
 
 adminRouter.use(cookieParser());
 adminRouter.use(authMiddleware);
+adminRouter.use(dataMiddleware);
 
 /**
  * NOTE: by using the above middleware with the API, I believe I may be preventing access of using the API outside of the website. 

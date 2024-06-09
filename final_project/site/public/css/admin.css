@@ -162,6 +162,13 @@ tbody td {
 }
 
 
+/* INFO DISPLAY */
+
+.grid-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 /* MOBILE STYLING */
 
 @media (max-width: 950px) {

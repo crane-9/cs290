@@ -8,7 +8,6 @@ import * as config from "./config/config.js";
 
 import baseRouter from "./routes/base.routes.js";
 import adminRouter from "./routes/admin.routes.js";
-import apiRouter from "./routes/api.routes.js";
 
 import logMiddleware from "./middleware/logger.middleware.js";
 
@@ -24,7 +23,7 @@ const server = createServer(app);
 app.set('view engine', 'pug');
 
 // Set up middlewares.
-app.use(logMiddleware);
+app.use(logMiddleware);  // Log any and all access.
 
 
 // Routing.
@@ -33,9 +32,8 @@ app.use('/static', express.static(config.PUBLIC_DIR));
 
 
 // Connect routers.
-app.use('/', baseRouter);
 app.use('/admin', adminRouter);
-app.use('/api', apiRouter);
+app.use('/', baseRouter);
 
 
 // Responses on errors.

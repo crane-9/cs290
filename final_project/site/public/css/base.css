@@ -37,6 +37,8 @@ h1, h2, h3 {
 
 main {
     flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 footer#main {
@@ -47,6 +49,25 @@ footer#main {
     justify-content: center;
 }
 
+/* ART LAYOUT */
+
+.art-highlight {
+    display: grid;
+    gap: 2em;
+    justify-content: center;
+    justify-items: center;
+
+
+}
+
+.art-highlight img {
+    --size: 30em;
+    
+    max-height: var(--size);
+    max-width: var(--size);
+
+    display: block;
+}
 
 /* SUB-PAGE LAYOUTS */
 
@@ -58,7 +79,18 @@ main#info {
     margin: 0 auto;
 }
 
-#info .body-text {
+.body-text {
+    margin: 1em auto;
+    font: var(--body-font);
+}
+
+#home .body-text {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+.two-column {
     column-count: 2;
 }
 
@@ -70,15 +102,24 @@ main#info {
     margin-bottom: 1em;
 }
 
-
 #site-map {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.site-map {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     gap: 1.5em;
     font-size: 1.5em;
-    height: 100%;
+    margin: auto;
+
+}
+
+#site-map .body-text {
+    text-align: center;
 }
 
 main#error {

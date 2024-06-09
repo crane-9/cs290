@@ -5,8 +5,17 @@ html
     body
         include includes/header.pug
 
-        main
-            p main content here
+        main#home
+            //- the idea here is to make it a higlight slides thing. either like i did for worm boy iii or more accurately, a horizontal overflow that scrolls . no idea. hmm.  
+            .art-highlight
+                .art-slide
+                    img(src="/static/img/1.png", alt="Drawing one")
+                
+                .art-slide
+                    img(src="/static/img/2.png", alt="Drawing one")
+
+            .body-text!= page.BodyText
+
 
         include includes/footer.pug
         

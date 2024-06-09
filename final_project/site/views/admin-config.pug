@@ -13,7 +13,8 @@ html
             main
                 h2 Meta Information 
                     
-                form.simple-vertical#site-info(method="post",
+                form.simple-vertical#site-info(
+                    method="post",
                     action="/admin/api/update/site-info",
                 )
                     label(for="site-title") Site Title 
@@ -23,18 +24,17 @@ html
                             placeholder=meta.Title
                         )
 
-                    label(for="site-description") Site Description 
-                        input#site-description(
-                            type="text",
-                            name="description",
-                            placeholder=meta.Description
-                        )
-
                     label(for="site-author") Site Author 
                         input#site-author(
                             type="text",
                             name="author",
                             placeholder=meta.Author
+                        )
+                    
+                    label(for="site-description") Site Description 
+                        textarea#site-description(
+                            name="description",
+                            placeholder=meta.Description
                         )
 
                     label(for="site-favicon") Site Favicon

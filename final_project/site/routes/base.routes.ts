@@ -3,12 +3,14 @@
  */
 
 import express, { Request, Response } from "express";
-import metaMiddleware from "../middleware/meta.middleware";
+import dataMiddleware from "../middleware/data.middleware";
+import pageMiddleware from "../middleware/pages.middleware";
 
 const baseRouter = express.Router();
 
 // Configure middleware.
-baseRouter.use(metaMiddleware)
+baseRouter.use(dataMiddleware);
+baseRouter.use(pageMiddleware);
 
 
 /**
@@ -40,6 +42,13 @@ baseRouter.get("/contact", (req: Request, res: Response) => {
 baseRouter.get("/sitemap", (req: Request, res: Response) => {
     res.render('sitemap', res.locals);
 });
+
+
+// All other custom pages.
+baseRouter.get("/:custom", (req: Request, res: Response) => {
+    // res.render
+    // Render customized page with customized values!
+})
 
 
 export default baseRouter;

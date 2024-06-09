@@ -5,14 +5,19 @@ html
     body
         include includes/header.pug
 
-        main#site-map.heading-font 
-            a(href="/") Index
-            a(href="/about") About me
-            a(href="/contact") Contact
-            a(href="/sitemap") Sitemap
+        main#site-map
+            .site-map.heading-font
+                a(href="/") Index
+                a(href="/about") About me
+                a(href="/contact") Contact
+                a(href="/sitemap") Sitemap
 
-            //- Not a great idea to keep in production, but here for the sake of development.
-            a(href="/admin/auth") Admin portal 
+                //- Not a great idea to keep in production, but here for the sake of development.
+                a(href="/admin/auth") Admin portal 
+            
+            //- Optional body text, if set.
+            if page.BodyText
+                .body-text!= page.BodyText
 
         include includes/footer.pug
         

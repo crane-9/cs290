@@ -20,7 +20,7 @@ apiRouter.post("/update/site-info",  express.urlencoded({ extended: true }), asy
     // Unpack title, description, and author.
     await db.updateSiteInfo(req.body);
 
-    res.redirect("/admin/config?status=success&message=Data%20successfully%20updated.")
+    res.redirect("/admin?status=success&message=Data%20successfully%20updated.")
 });
 
 

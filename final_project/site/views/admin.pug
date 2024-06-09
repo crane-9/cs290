@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        - var page = {Title: "Admin Home"}
+        - var page = {Title: "Site Summary"}
         include includes/admin/head.pug
     body
         include includes/admin/header.pug
@@ -10,6 +10,22 @@ html
             include includes/admin/nav.pug
 
             main
-                p hello content
+                h2 Meta Information
+
+                .grid-display
+                    span Site Title
+                    span #{meta.Title}
+
+                    span Site Author
+                    span #{meta.Author}
+
+                    span Site Description
+                    span #{meta.Description}
+
+                h2 Pages
+                //- Maybe I could ghhhhhhhhhhhhhhh do something here. yeah.
+
+                h2 Database Summary
+                //- List how many tables and how many items per table
 
                 include includes/admin/feedback.pug

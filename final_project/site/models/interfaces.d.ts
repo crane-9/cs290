@@ -33,6 +33,7 @@ namespace interfaces {
     // Metadata specific to a single page.
     interface PageInfo {
         Title: string;
+        BodyText: string;
     }
 
 }

@@ -92,9 +92,10 @@ class DB {
      * @returns PageInfo object.
      */
     async getPageInfo(pathRaw: string): Promise<interfaces.PageInfo> {
+        console.info("retrieving page data for", pathRaw);
         const path = pathRaw.split("/", 2)[1] || "index";
 
-        return this.__get("SELECT Title FROM PageInfo WHERE Path = ?;", [path]);
+        return this.__get("SELECT * FROM PageInfo WHERE Path = ?;", [path]);
     }
 
     /**

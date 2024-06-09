@@ -11,6 +11,8 @@ html
         main#info
             h1 #{page.Title}
 
+            .body-text!= page.BodyText
+
             form#contact
                 textarea#message-content(name="message-content", placeholder="Say something nice.")
 
