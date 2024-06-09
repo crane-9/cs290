@@ -1,10 +1,18 @@
-# Project Final
+# CS290 Final Project
 
-Project final i am probably going to do the first project but this time with some api for product info and blog posts.
+- [Design](#design)
+    - [Base Concept](#base-concept)
+    - [Mockup](#mockup-drawing)
+    - [Data Design](#data-design)
+        - [Meta Information](#meta-information)
+        - [Page information](#page-information)
+    - [Administration](#administration)
+- [Scripts](#project-scripts-and-running-the-server)
+    - [Setup](#setup)
+    - [Build](#build)
+    - [Running](#running)
+- [Attributions](#attributions)
 
-also api for updating this information and the front-end interface
-
-figure out what the database will be -- i looked at prism! which is quite cool!!! but hm!
 
 ## Design
 
@@ -32,12 +40,14 @@ As usual, some notes:
     - "Meta Information" is information that would show up in link previews, or the page's `<title>` elements.
     - "On-Page Information" is information that shows up on pages. The only listed properties are "Home Title" and "Contact Title". 
         > Normally, I think it would be much better to organize each page and its information into its own category. However, before I create a website that can render completely customized pages, I would like to write a page that can render template pages with customized information.
+        > 
+        > Nevermind, I will be going with more ideal option. See [page information](#page-information).
     - "Aesthetic" is a category I may not implement: I worry about the accessibility of a customizable color accent. This is an easy distraction pitfall for me, however visual customization is something I want to keep in mind for this type of site.
 
 
 ### Data Design
 
-> At the moment, I am uncertain of what database I will be using. My initial data design is made with relational databases in mind, and the intention to keep it simple and use only basic data types.
+> I use a local SQLite database, located at `final_project/site/dev.db`. `package.json` will provide appropriate commands to create & reset this database.
 
 The main focus of the site is displaying art pieces. The database table storing their data will be as follows:
 
@@ -56,18 +66,112 @@ These fields will be used to display a complete page of information on a single 
 
 For the management of general site information (title, description, favicon), there will be two additional tables:
 
-- Meta information: A table that has one row with id `1`. Holds the following properties:
-    - Title
-    - Description
-    - Author
-- Page information: A table with a row for each page's information. This will not hold much in this iteration of the website:
-    - Path 
-    - Page title
+#### Meta information
+A table that has one row with id `1`. Holds the following self-explanatory properties:
+- Title
+- Description
+- Author
+
+These values are used to populate `<meta>` tags in the `<head>` of each page.
+
+#### Page information
+ A table with a row for each page's information. This table will hold information for both "canonical" and non-canonical pages. 
+
+- A "canonical" page is a built-in page that is included in the header and footer of the website. It cannot be removed, *and* it has a specific template.
+- A "non-canonical" page is a page with custom content. Non-canonical pages are those that the admin creates on the site.
 
 
-[session + auth help](https://www.geeksforgeeks.org/how-to-manage-sessions-and-cookies-in-express-js/) awesome
+An example `PageInfo` table:
+
+| Path            | IsCanonical    | Title                 | BodyText                                   | Hidden       |
+|-----------------|:--------------:|----------------------------|--------------------------------------------|:------------:|
+| `'index'`       | `TRUE`         | `'Home'`                   | `'Welcome to my webpage! This is my homepage. [Here](/about) is a link to my about page.'` | `FALSE` |
+| `'about'`       | `TRUE`         | `'About'`                  | `'Here are a few paragraphs about myself, my life, and my interests. Because this is an example table, I won't be using any newline characters, but we can make believe!'` | `FALSE` |
+| `'contact'`     | `TRUE`         | `'Contact Me'`             | `'Please reach out with any comments or questions. Business inquiries welcome!'` | `FALSE` |
+| `'sitemap'`     | `TRUE`         | `'Sitemap Me'`             | `'Here is a list of all pages on my site! Except for this page, because it is hidden! It would be silly to list the sitemap on the sitemap!'` | `TRUE` |
+| `'favorite-links'`     | `FALSE`         | `'My Favorite Sites'`             | `'This is a nice little page that lists all my favorite sites: - github.com - youtube.com - website.com'` | `FALSE` |
+| `'pet-pics'`     | `FALSE`         | `'My Pets'`             | `'Enjoy my awesome pets~ ![My dog](/static/pets/dog.jpg) ![My turtle](/static/pets/turtle.jpg)'` | `FALSE` |
+
+In which:
+
+- The `Path` column (with exception of `'index'`, which indicates the path `'/'`) specifies the page's URL path. This, obviously, has to be unique.
+- `IsCanonical` indicates if it is builtin or not. This property cannot be touched by the admin, and instead is for internal reference of which pages may be removed.
+- `Title` and `BodyText` are fairly self-explanatory and used for page content. `BodyText`, however, supports markdown.
+- `Hidden` indicates if it should be hidden from appearing on the sitemap.
 
 
-## Attribution? 
+### Administration
 
-- [default favicon](https://favicon.io/emoji-favicons/artist-palette) 
+For administration, I have created an incredibly simple (and insecure) system, mostly using ExpressJS's `express-session` library. [This article](https://www.geeksforgeeks.org/how-to-manage-sessions-and-cookies-in-express-js/) walked me through how to set up a session using this library.
+
+The admin login credetials are: 
+
+    username: admin
+    password: admin
+
+Just as hinted in the input placeholders. These values are not configurable, though I have been thinking about changing that.
+
+
+## Project Scripts and Running the Server
+
+> Important notes:
+>   - Ensure that SQLite is installed! I should test this all on windows aughaughg
+>   - uhhhhhhhhhhhhh
+
+
+### Setup
+
+To run initial setup, use:
+
+```sh
+npm run final:setup
+```
+
+This is the equivalent of:
+```sh
+npm install
+npm upgrade
+cat final_project/site/schema.sql | sqlite3 final_project/site/dev.db  # Runs the schema setup script to build the initial database.
+```
+
+To reset the database, run:
+
+```sh
+npm run final:reset-db
+```
+
+Which deletes the existing `dev.db` and creates a new one from the schema.
+
+
+### Build
+
+To build the server, use:
+
+```sh
+npm run final:build
+```
+
+This compile the project's Typescript for both the client and server side.
+
+During runtime, you may compile *just* the clientside code with:
+
+```sh
+npm run final:build-client
+```
+
+### Running
+
+After building, run with: 
+
+```sh
+npm run final:run
+```
+
+This command simply runs the compiled `server.js` with Node.
+
+By default, the server will run on port 8080. This may be changed in [`config.ts`](./site/config/config.ts).
+
+
+## Attributions
+
+- [Favicon](https://favicon.io/emoji-favicons/artist-palette) 
