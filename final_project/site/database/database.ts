@@ -26,6 +26,35 @@ const TableProperties: Record<string, string[]> = {
     ]
 };
 
+const TablePropertyTypes: Record<string, (string | null)[]> = {
+    Artwork: [
+        null,
+        "text",
+        "text",
+        "textarea",
+        "date",
+        "textarea",
+        "text",
+        "text",
+        "text"
+    ]
+};
+
+const PageProperties: string[] = [
+    "Path",
+    "Title",
+    "BodyText",
+    "Hidden"
+];
+
+
+const PagePropertyTypes: (string | null)[] = [
+    "text",
+    "text",
+    "textarea",
+    "checkbox"
+];
+
 
 /**
  * A function that creates async-await compatible access to the SQLite database.
@@ -157,4 +186,4 @@ class DB {
 
 export default DB;
 
-export { TableProperties };
+export { TableProperties, TablePropertyTypes, PageProperties, PagePropertyTypes };

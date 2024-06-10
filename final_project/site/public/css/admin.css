@@ -64,6 +64,10 @@ form.simple-vertical label {
     align-items: center;
 }
 
+.simple-vertical input[type=checkbox] {
+    justify-self: end;
+}
+
 .info-popup {
     position: absolute;
 
@@ -137,11 +141,11 @@ tbody td {
     padding: 1em 1ex;
 }
 
-.controls button {
+.controls button, .controls .btn{
     font-size: 12px;
 }
 
-.controls button#new {
+.controls #new {
     margin-right: auto;
 }
 

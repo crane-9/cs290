@@ -11,7 +11,7 @@ import apiRouter from "./api.routes.js";
 import dataMiddleware from "../middleware/data.middleware.js";
 
 import { passKey } from "../config/config.js";
-import DB, { TableProperties } from "../database/database.js";
+import DB, { PageProperties, PagePropertyTypes, TableProperties } from "../database/database.js";
 import * as utils from "../utils/basics.js";
 
 
@@ -87,6 +87,12 @@ adminRouter.get("/pages", async (req: Request, res: Response) => {
 
     res.render('admin-pages', {...res.locals, table, entries});
 })
+
+adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
+    // fill out new page template for new pages creation!
+
+    res.render('admin-table-entry', { table: { properties: PageProperties, types: PagePropertyTypes }, action: "Create", placeholders: ["my-new-page", "Page Title", "This is **markdown-supported** body text!"] });
+});
 
 
 // Login page.

@@ -56,7 +56,7 @@ hr {
 
 /* INPUTS */
 
-input, textarea, button, ::file-selector-button {
+input, textarea, button, ::file-selector-button, .btn {
     background-color: inherit;
     border: none;
     color: inherit;
@@ -69,12 +69,20 @@ input {
     accent-color: var(--reds-0);
 }
 
-input[type=button], input[type=submit], button, ::file-selector-button {
+a.btn {
+    display: block;
+}
+
+a.btn:hover {
+    color: var(--greys-4);
+}
+
+input[type=button], input[type=submit], button, ::file-selector-button, .btn {
     background-color: var(--reds-1);
     padding: 1ex 2em;
 }
 
-input[type=button]:hover, input[type=submit]:hover, button:hover, ::file-selector-button:hover {
+input[type=button]:hover, input[type=submit]:hover, button:hover, ::file-selector-button:hover, .btn:hover {
     background-color: var(--reds-0);
 } 
 
@@ -92,7 +100,7 @@ textarea {
 
 /* HEADINGS */
 
-header, h1, h2, h3, footer, nav, input[type=button], input[type=submit], button, label, .heading-font {
+header, h1, h2, h3, footer, nav, input[type=button], input[type=submit], button, label, .btn, .heading-font {
     font: var(--heading-font);
     font-size: initial;
     letter-spacing: 0.2ex;
