@@ -102,7 +102,7 @@ class DB {
 
     // Returns an array of objects as response.
     __getAll(sqlString: string, params: any[] | any = []): Promise<any[]> {
-        return promiseWrapper(this.db.all.bind(this.db), sqlString, params)
+        return promiseWrapper(this.db.all.bind(this.db), sqlString, params);
     }
 
     // READ

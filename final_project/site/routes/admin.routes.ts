@@ -95,9 +95,10 @@ adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
 });
 
 
-// Login page.
+// Login handling.
 adminRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request, res: Response) => {
     const { username, password } = req.body;
+    const redir = req.query.redirect || ""
 
     // If valid
     if (username === "admin" && password === "admin") {
@@ -107,7 +108,7 @@ adminRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request,
         (req.session as any).loggedIn = true;
         res.cookie("sessionID", req.sessionID);
 
-        res.redirect("/admin");
+        res.redirect("/admin" + redir);
     } else {
         // If invalid,
         console.log("Redirecting...")

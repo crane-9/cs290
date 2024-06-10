@@ -13,6 +13,8 @@ function authMiddleware(req: Request, res: Response, next: Function): void {
     const loggedIn = (req.session as any).loggedIn;
     const accessAuth = req.path === "/auth";
 
+    const param = accessAuth || req.path == "/" ? "" : "?redirect=" + req.path;
+
     // Different conditions control access to the `/auth` page.
     if (accessAuth) {
         // If NOT logged in and trying to access `/auth`, continue.
@@ -25,7 +27,7 @@ function authMiddleware(req: Request, res: Response, next: Function): void {
         if (loggedIn) next();
 
         // Else, redirect to gain authentication.
-        else res.redirect("/admin/auth");
+        else res.redirect("/admin/auth" + param);
     } 
 }
 
