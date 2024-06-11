@@ -1,8 +1,8 @@
 /**
  * Interfaces for the database, structures appearing as they do in the database.
  */
-namespace interfaces {
 
+namespace interfaces {
     // Data a single piece of artwork consists of.
     interface Artwork {
         Id?: number;

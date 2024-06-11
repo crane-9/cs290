@@ -12,26 +12,41 @@ html
 
             main: form.simple-vertical(
                     method="post",
-                    action=endpoint                   
+                    action=endpoint
             )
 
-                - for (var i = 0; i < table.properties.length; ++i) {
-                    - const isCheckbox = table.types[i] == "checkbox";
-                    - var attrs = {id: table.properties[i], name: table.properties[i], placeholder: placeholders === undefined? table.properties[i] : placeholders[i], required: !isCheckbox && !editMode};
+                each property of table.properties
+                    //- If the property cannot be edited, prevent that. but keep its value here for the sake of easy submission to API.
+                    if property.constant && editMode 
+                        input(type="hidden" value=property.value)
 
+                    - const isCheckbox = property.type == "checkbox";
+                    - var attrs = {id: property.name, name: property.name, placeholder: property.placeholder, required: !editMode && property.required};
+
+                    //- If editing, set value.
                     if editMode 
-                        - attrs.value = attrs.placeholder
+                        - attrs.value = table.values[property.name]
 
-                    if isCheckbox && attrs.placeholder == 1
+                    if property.constant && editMode 
+                        - attrs.readonly = true
+
+                    //- If checkbox, special attribute is needed to indicate `true` state.
+                    if isCheckbox && attrs.value == 1
                         - attrs.checked = true
 
-                    label(for=table.properties[i])= table.properties[i]
-                        if table.types[i] == "textarea"
-                            textarea&attributes(attrs) #{attrs.value}
+                    //- Finally, the actual content:
+                    if property.type == 'hidden'
+                        //- If hidden, hide.
+                        input(type="hidden")&attributes(attrs)
 
-                        else
-                            input(type=table.types[i])&attributes(attrs)
-                - }
+                    else
+                        //- Label + input
+                        label(for=property.name)= property.label
+                            if property.type == "textarea"
+                                textarea&attributes(attrs) #{attrs.value}
+
+                            else
+                                input(type=property.type)&attributes(attrs)
                 
                 //- Value will be supplied by the backend.
                 input(type="submit", value=action)

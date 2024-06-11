@@ -10,8 +10,11 @@ import apiRouter from "./api.routes.js";
 import dataMiddleware from "../middleware/data.middleware.js";
 
 import SESSION from "../config/session.js";
-import DB, { PageProperties, PagePropertyTypes, TableProperties, TablePropertyTypes } from "../database/database.js";
+import DB from "../database/database.js";
+import { TableProperties, PageProperties } from "../database/properties.js";
+
 import * as utils from "../utils/basics.js";
+import { validateTableAccess } from "../database/tables.js";
 
 
 const adminRouter = express.Router();
@@ -70,7 +73,6 @@ adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
     // Get data on specific table! i think. yeah.
     const table = {
         properties: TableProperties[tableName],
-        types: TablePropertyTypes[tableName],
         name: tableName
     }
     // Validate table is valid.
@@ -89,32 +91,25 @@ adminRouter.get("/database/:table/edit-entry", async (req: Request, res: Respons
     const rawIDs = req.query['ids'] as string;
     const entryID = rawIDs.split(",")[0];
 
-    console.info(rawIDs);
-
     // Protection.
-    if (!entryID) {
+    if (!validateTableAccess(req.params.table) || !entryID) {
         return res.redirect("/admin/pages?status=error&message=Invalid%20request.");
     }
 
+    // Carry on, get specific table and its data.
     const tableName = utils.capitalize(req.params.table);
-    // Get data on specific table! i think. yeah.
-    const table = {
-        properties: TableProperties[tableName],
-        types: TablePropertyTypes[tableName],
-        name: tableName
-    }
-    // Validate table is valid.
-
     const db = res.locals['db'] as DB;
     const currentValues = await db.getEntry(tableName, entryID) as interfaces.Artwork;
-    delete currentValues.Id;
 
     res.render('admin-table-entry', {
         ...res.locals,
-        table,
+        table: {
+            properties: TableProperties[tableName],
+            name: tableName,
+            values: currentValues
+        },
         action: `Update ${tableName}`,
         endpoint: `/admin/api/update/${req.params.table}`,
-        placeholders: Object.values(currentValues),
         editMode: true
     });
 });
@@ -125,12 +120,7 @@ adminRouter.get("/pages", async (req: Request, res: Response) => {
 
     const table = {
         name: "Site Page",
-        properties: [
-            "Path",
-            "Title",
-            "BodyText",
-            "Hidden"
-        ],
+        properties: PageProperties,
         size: entries.length,
     };
 
@@ -141,10 +131,8 @@ adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
     res.render('admin-table-entry', {
         table: {
             properties: PageProperties,
-            types: PagePropertyTypes
         },
         action: "Create",
-        placeholders: ["my-new-page", "Page Title", "This is **markdown-supported** body text!"],
         endpoint: "/admin/api/create/page"
     });
 });
@@ -166,10 +154,9 @@ adminRouter.get("/pages/edit-page", async (req: Request, res: Response) => {
     res.render('admin-table-entry', {
         table: {
             properties: PageProperties,
-            types: PagePropertyTypes
+            values: currentValues
         },
         action: "Update",
-        placeholders: Object.values(currentValues),
         endpoint: "/admin/api/update/page",
         page: true,
         editMode: true

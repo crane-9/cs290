@@ -7,9 +7,10 @@ import cookieParser from "cookie-parser";
 import express, { Request, Response} from "express";
 
 import SESSION from "../config/session.js";
-import DB, { TableProperties } from "../database/database.js";
+import DB from "../database/database.js";
+
 import authMiddleware from "../middleware/auth.middleware.js";
-import { capitalize } from "../utils/basics.js";
+import { validateTableAccess } from "../database/tables.js";
 
 
 const apiRouter = express.Router();
@@ -81,11 +82,10 @@ apiRouter.post("/create/artwork", async (req: Request, res: Response) => {
 // UPDATE
 
 /**
- * 
+ * Updates a page with the given information.
  */
 apiRouter.post("/update/page", async (req: Request, res: Response) => {
     const db = new DB();
-
     await db.updatePageInfo(req.body);
 
     res.redirect("/admin/pages?status=success&message=Page%20updated.")
@@ -102,6 +102,17 @@ apiRouter.post("/update/site-info",  async (req: Request, res: Response) => {
     await db.updateSiteInfo(req.body);
 
     res.redirect("/admin?status=success&message=Data%20successfully%20updated.")
+});
+
+/**
+ * 
+ */
+apiRouter.post("/update/:table", async (req: Request, res: Response) => {
+    const db = new DB();
+
+    // await db.updatePageInfo(req.body);
+
+    res.redirect(`/admin/pages?status=success&message=${req.params.table}%20updated.`);
 });
 
 
@@ -135,19 +146,19 @@ apiRouter.post("/delete/page", async (req: Request, res: Response) => {
  */
 apiRouter.post("/delete/:table", async (req: Request, res: Response) => {
     const table = req.params.table;
-    const tableName = capitalize(req.params.table);
     const idsRaw = req.body['ids'];
     
     // Protection.
-    if (!idsRaw || !Object.keys(TableProperties).includes(tableName)) {
+    if (!idsRaw || validateTableAccess(table)) {
         return res.redirect(`/admin/database/${table}?status=error&message=Invalid%20request.`);
     }
 
+    // Database.
     const db = new DB();
     const ids = idsRaw.split(",");
 
     for (let id of ids) {
-        await db.deleteFromTable(tableName, id);
+        await db.deleteFromTable(table, id);
     }
 
     res.redirect(`/admin/database/${table}?status=success&message=Entries%20removed.`);

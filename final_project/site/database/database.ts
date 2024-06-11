@@ -3,55 +3,10 @@
  */
 import { Database } from "sqlite3";
 import { DB_PATH } from "../config/config.js";
+import { generateUpdateArgs } from "../utils/updateQuery.js";
 
-
-// Basically an enum for tables that can be accessed for their entries.
-const AccessibleTables = {
-    artwork: "Artwork"
-};
-
-
-// Hard-coded :/
-const TableProperties: Record<string, string[]> = {
-    Artwork: [
-        "Name",
-        "FileName",
-        "AltText",
-        "Date",
-        "Description",
-        "CollectionName",
-        "Medium",
-        "Credits",
-    ]
-};
-
-const TablePropertyTypes: Record<string, (string | null)[]> = {
-    Artwork: [
-        "text",
-        "text",
-        "textarea",
-        "date",
-        "textarea",
-        "text",
-        "text",
-        "text"
-    ]
-};
-
-const PageProperties: string[] = [
-    "Path",
-    "Title",
-    "BodyText",
-    "Hidden"
-];
-
-
-const PagePropertyTypes: (string | null)[] = [
-    "text",
-    "text",
-    "textarea",
-    "checkbox"
-];
+import { AccessibleTables } from "./tables.js";
+import { capitalize } from "../utils/basics.js";
 
 
 /**
@@ -176,32 +131,20 @@ class DB {
 
     // UPDATE
 
-    async updatePageInfo({ }): Promise<void> {
-        
+    async updatePageInfo(info: interfaces.PageInfo): Promise<void> {
+        const query = generateUpdateArgs(info);
+
+        await this.__run(`UPDATE PageInfo SET ${query.query} WHERE Id = ${info.Path};`, query.params);
     }
 
     async updateSiteInfo({ title, description, author }: interfaces.WebsiteInfoIncoming): Promise<void> {
-        // Gather what values need to be set.
-        let sets: string[] = [];
-        let params: Record<number, string> = {};
+        const query = generateUpdateArgs({
+            "Title": title,
+            "Description": description,
+            "Author": author
+        })
 
-        // Cut down on repetition.
-        function prepareSets(propertyName: string, value: string, idx: number) {
-            // Trim
-            value = value.trim();
-            if (value.length > 0) {
-                sets.push(`${propertyName} = ?${idx}`);
-                params[idx] = value;
-            }
-        }
-
-        prepareSets("Title", title, 1);
-        prepareSets("Description", description, 2);
-        prepareSets("Author", author, 3);
-
-        const setString = sets.join(", ");
-
-        await this.__run(`UPDATE WebsiteInfo SET ${setString} WHERE Id = 1;`, params);
+        await this.__run(`UPDATE WebsiteInfo SET ${query.query} WHERE Id = 1;`, query.params);
     }
 
     // DELETE
@@ -221,10 +164,8 @@ class DB {
      * @param id ID of artwork to delete.
      */
     async deleteFromTable(table: string, id: number): Promise<void> {
-        await this.__run(`DELETE FROM ${table} WHERE Id = ?;`, [id]);
+        await this.__run(`DELETE FROM ${capitalize(table)} WHERE Id = ?;`, [id]);
     }
 }
 
 export default DB;
-
-export { TableProperties, TablePropertyTypes, PageProperties, PagePropertyTypes };

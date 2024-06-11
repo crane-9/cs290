@@ -25,8 +25,8 @@ html
 
                             //- List all properties, except for Id.
                             each property in table.properties
-                                if property != "Id" && property != "Canonical"
-                                    th #{property}
+                                unless property.type === 'hidden'
+                                    th #{property.name}
 
                         //- A whole bunch of nesting for logic.
                         each entry in entries
@@ -40,20 +40,20 @@ html
                                 //- The important information.
                                 each property in table.properties
                                     //- Some specific properties are handled in specific ways.
-                                    if property == "Id" || property == "Canonical"
+                                    if property.type == "hidden"
                                         //- Nothing -- skip this property.
 
-                                    else if property == "Path"
-                                        td: a(target="blank" href="/" + entry[property]) #{entry[property]} 
+                                    else if property.name == "Path"
+                                        td: a(target="blank" href="/" + entry[property.name]) #{entry[property.name]} 
 
-                                    else if property == "FileName"
-                                        td: a(target="blank" href="/static/img/" + entry[property]) #{entry[property]}
+                                    else if property.name == "FileName"
+                                        td: a(target="blank" href="/static/img/" + entry[property.name]) #{entry[property.name]}
 
-                                    else if property == "Hidden"
-                                        td #{entry[property]? 'Yes' : 'No'}
+                                    else if property.name == "Hidden"
+                                        td #{entry[property.name]? 'Yes' : 'No'}
 
                                     else
-                                        td #{entry[property]}
+                                        td #{entry[property.name]}
 
                         else
                             //- Explicit nothing.
