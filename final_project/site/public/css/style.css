@@ -20,6 +20,8 @@
     --reds-1: #AC3D42;
     --reds-2: #CB5C65;
 
+    --red-trans: #530C1180;
+
     --success: #a3ffa3;
 
     --body-font: 300 16px "Inconsolata", monospace;
@@ -63,9 +65,7 @@ input, textarea, button, ::file-selector-button, .btn {
     font: var(--body-font);
     border-radius: 3px;
     padding: 1ex 1em;
-}
 
-input {
     accent-color: var(--reds-0);
 }
 

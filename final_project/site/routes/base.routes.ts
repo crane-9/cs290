@@ -21,6 +21,10 @@ baseRouter.get("/", (req: Request, res: Response) => {
     res.render('index', res.locals);
 });
 
+baseRouter.get("/index", (req: Request, res: Response) => {
+    res.redirect("/");
+});
+
 /**
  * About page.
  */
@@ -50,8 +54,8 @@ baseRouter.get("/sitemap", async (req: Request, res: Response) => {
 
 // All other custom pages.
 baseRouter.get("/:custom", (req: Request, res: Response) => {
-    // res.render
     // Render customized page with customized values!
+    res.render('custom', res.locals);
 })
 
 

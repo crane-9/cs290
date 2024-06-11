@@ -8,12 +8,15 @@ namespace interfaces {
         Id: number;
         Name: string;
         FileName: string;
+        AltText: string;
         Date: string;
         Description: string;
         CollectionName: string;
         Medium: string;
         Credit: string;
     }
+
+    interface ArtworkIncoming extends Omit<Artwork, "Id"> {}
 
     // General metadata about the website.
     interface WebsiteInfo {
@@ -36,7 +39,8 @@ namespace interfaces {
         Title: string;
         BodyText: string;
         Canonical: boolean;
-        Hidden: boolean;
+        Hidden: string;
     }
 
+    interface PageInfoIncoming extends Omit<PageInfo, "Canonical" > {}
 }

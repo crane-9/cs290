@@ -38,6 +38,7 @@ app.use('/', baseRouter);
 
 // Responses on errors.
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    console.log("CAUGHT ERROR:");
     console.error(err.stack);
     res.status(500);
     res.render("error", {
@@ -56,6 +57,11 @@ app.all('*', (req: Request, res: Response) => {
     });
 });
 
+// Handle unhandled promise rejection.
+process.on("unhandledRejection", (reason: unknown, promise: Promise<unknown>) => {
+    console.error("Unhandled promise rejection:", reason);
+    console.error(promise);
+})
 
 // Run and log.
 server.listen(config.PORT);

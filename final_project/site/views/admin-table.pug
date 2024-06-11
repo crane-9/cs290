@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        - var page = {Title: "Artwork Table"}
+        - var page = {Title: `${table.name} Management`}
         include includes/base_head.pug
         link(rel='stylesheet' href='/static/css/admin.css')
     body
@@ -13,10 +13,11 @@ html
             main
                 h2 #{table.name} Data
 
+                if pages
+                    p Rows highlighted in red cannot be removed: they are an essential piece of the site's framework.
+
                 table.database-table
-                    thead 
-                        tr
-                            th(colspan=table.properties.length) #{table.name} Entries
+                    thead: tr: th(colspan=table.properties.length + 1) #{table.name} Entries
                     
                     tbody
                         tr
@@ -24,39 +25,51 @@ html
 
                             //- List all properties, except for Id.
                             each property in table.properties
-                                if property != "Id"
+                                if property != "Id" && property != "Canonical"
                                     th #{property}
 
                         //- A whole bunch of nesting for logic.
                         each entry in entries
-                            tr
+                            - var nameID = page? entry.Path : entry.Id;
+                            - nameID = "select-" + nameID;
+
+                            tr(class=entry.Canonical? "canonical" : "")
                                 //- Check/selection box
-                                td 
-                                    input(type="checkbox", name="select-" + entry.Id, id="select-" + entry.Id)
+                                td: input(type="checkbox", name=nameID, id=nameID)
                                 
                                 //- The important information.
                                 each property in table.properties
-                                    if property == "Id"
+                                    //- Some specific properties are handled in specific ways.
+                                    if property == "Id" || property == "Canonical"
                                         //- Nothing -- skip this property.
 
+                                    else if property == "Path"
+                                        td: a(target="blank" href="/" + entry[property]) #{entry[property]} 
+
                                     else if property == "FileName"
-                                        td 
-                                            a(target="blank" href="/static/img/" + entry[property]) #{entry[property]}
+                                        td: a(target="blank" href="/static/img/" + entry[property]) #{entry[property]}
+
+                                    else if property == "Hidden"
+                                        td #{entry[property]? 'Yes' : 'No'}
 
                                     else
                                         td #{entry[property]}
 
                         else
-                            tr: td(colspan=table.properties.length) No Entries.
+                            //- Explicit nothing.
+                            tr: td(colspan=table.properties.length + 1) No Entries.
 
-                    tfoot 
-                        tr
-                            td#selection-counter(colspan=2)
-                            td#total-counter(colspan=table.properties.length - 2) #{table.size} artworks total
+                    tfoot: tr
+                        td#selection-counter(colspan=2)
+                        td#total-counter(colspan=table.properties.length - 1) #{table.size} #{table.name} entries total
 
                 .controls 
-                    a.btn#new(href="/admin/pages/new-page") New Entry
+                    if pages
+                        a.btn#new(href=`/admin/pages/new-page`) New Page
+                    else
+                        a.btn#new(href=`/admin/database/${table.name}/new-entry`.toLowerCase()) New Entry
 
                     button#edit(type="button") Edit Entry
                     button#delete(type="button") Delete Entries
                         
+    script(type="module", src="/static/scripts/management.js") 

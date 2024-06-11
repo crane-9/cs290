@@ -7,7 +7,7 @@ meta(property='author' content=meta.Author)
 meta(property='og:site_name' content=meta.Title)
 meta(name='theme-name' content='#AC3D42')
 
-title #{meta.Title} &mdash; #{page.Title}
+title #{meta.Title} &mdash; #{page.Title || "Error"}
 
 link(rel='shortcut icon' href='/static/favicon.ico' type='image/x-icon')
 link(rel='stylesheet' href='/static/css/style.css')

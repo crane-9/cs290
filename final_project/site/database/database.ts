@@ -14,7 +14,6 @@ const AccessibleTables = {
 // Hard-coded :/
 const TableProperties: Record<string, string[]> = {
     Artwork: [
-        "Id",
         "Name",
         "FileName",
         "AltText",
@@ -28,7 +27,6 @@ const TableProperties: Record<string, string[]> = {
 
 const TablePropertyTypes: Record<string, (string | null)[]> = {
     Artwork: [
-        null,
         "text",
         "text",
         "textarea",
@@ -105,6 +103,11 @@ class DB {
         return promiseWrapper(this.db.all.bind(this.db), sqlString, params);
     }
 
+    // No return value.
+    __run(sqlString: string, params: any[] | any = []): Promise<void> {
+        return promiseWrapper(this.db.run.bind(this.db), sqlString, params);
+    }
+
     // READ
 
     /**
@@ -116,7 +119,7 @@ class DB {
     async getAllEntries(table: string): Promise<any[]> {
         // Protection.
         if (!Object.values(AccessibleTables).includes(table)) {
-            throw {name: "Invalid Table Access", message: "Inaccessible table."}
+            throw {name: "Invalid Table Access", message: "Inaccessible table."};
         }
 
         return this.__getAll(`SELECT * FROM ${table};`);
@@ -157,6 +160,16 @@ class DB {
         return this.__get("SELECT Title, Description, Author FROM WebsiteInfo WHERE Id = 1;");
     }
 
+    // CREATE
+
+    async insertArtwork({Name, FileName, AltText, Date, Description, CollectionName, Medium, Credit}: interfaces.ArtworkIncoming): Promise<void> {
+        return this.__run("INSERT INTO Artwork (Name, Filename, AltText, Date, Description, CollectionName, Medium, Credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?),", [Name, FileName, AltText, Date, Description, CollectionName, Medium, Credit]);
+    }
+
+    async createPage({ Path, Title, BodyText, Hidden }: interfaces.PageInfoIncoming): Promise<void> {
+        return this.__run("INSERT INTO PageInfo VALUES (?, ?, ?, ?, ?)", [Path, Title, BodyText, false, Hidden == "on"]);
+    }
+
     // UPDATE
 
     async updateSiteInfo({ title, description, author }: interfaces.WebsiteInfoIncoming): Promise<void> {
@@ -180,7 +193,26 @@ class DB {
 
         const setString = sets.join(", ");
 
-        await this.__get(`UPDATE WebsiteInfo SET ${setString} WHERE Id = 1;`, params);
+        await this.__run(`UPDATE WebsiteInfo SET ${setString} WHERE Id = 1;`, params);
+    }
+
+    // DELETE
+
+    /**
+     * Deletes a page from the database.
+     * Prevents deletion of canonical pages.
+     * @param path Unique path of the page to remove from the database.
+     */
+    async deletePage(path: string): Promise<void> {
+        await this.__run("DELETE FROM PageInfo WHERE Canonical = FALSE AND Path = ?;", [path]);
+    }
+
+    /**
+     * Deletes a single piece of artwork from the database by ID.
+     * @param id ID of artwork to delete.
+     */
+    async deleteArtwork(id: number): Promise<void> {
+        await this.__run("DELETE FROM Artwork WHERE Id = ?;", [id]);
     }
 }
 

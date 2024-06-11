@@ -10,75 +10,23 @@ html
         .layout 
             include includes/admin/nav.pug
 
-            main
-                
-                form.simple-vertical(
+            main: form.simple-vertical(
                     method="post",
-                    action="/admin/api/page/new"                   
-                )
+                    action=endpoint                   
+            )
 
-                    - for (var i = 0; i < table.properties.length; ++i) {
-                        - var attrs = {id: table.properties[i], name: table.properties[i], placeholder: placeholders[i]};
+                - for (var i = 0; i < table.properties.length; ++i) {
+                    - var attrs = {id: table.properties[i], name: table.properties[i], placeholder: placeholders === undefined? table.properties[i] : placeholders[i], required: table.types[i] != "checkbox"};
 
-                        label(for=table.properties[i])= table.properties[i]
-                            if table.types[i] == "textarea"
-                                textarea&attributes(attrs)
+                    label(for=table.properties[i])= table.properties[i]
+                        if table.types[i] == "textarea"
+                            textarea&attributes(attrs)
 
-                            else
-                                input(type=table.types[i])&attributes(attrs)
-                    - }
+                        else
+                            input(type=table.types[i])&attributes(attrs)
+                - }
+                
+                //- Value will be supplied by the backend.
+                input(type="submit", value=action)
 
-                    //- label(for="name") Artwork Name
-                    //-     input#name(
-                    //-         type="text",
-                    //-         name="name",
-                    //-         placeholder="Artwork Name"
-                    //-         required
-                    //-     )
-
-                    //- label(for="file") Artwork Image
-                    //-     input#file(
-                    //-         type="file", 
-                    //-         accept="image/*",
-                    //-         name="file"
-                    //-         required
-                    //-     )
-
-                    //- label(for="date") Date Created
-                    //-     input#date(
-                    //-         type="date",
-                    //-         name="date",
-                    //-         placeholder="today"
-                    //-     )
-
-                    //- label(for="description") Piece Description
-                    //-     input#description(
-                    //-         type="text",
-                    //-         name="description",
-                    //-         placeholder="Artwork Description"
-                    //-     )
-
-                    //- label(for="collection") Collection
-                    //-     input#collection(
-                    //-         type="text",
-                    //-         name="collection",
-                    //-         placeholder="Collection"
-                    //-     )
-
-                    //- label(for="medium") Medium
-                    //-     input#medium(
-                    //-         type="text",
-                    //-         name="medium",
-                    //-         placeholder="e.g. acrylic, charcoal...."
-                    //-         required
-                    //-     )
-
-                    //- label(for="credits") Additional Credits
-                    //-     input#credits(
-                    //-         type="text",
-                    //-         name="credits",
-                    //-         placeholder="Additional credits"
-                    //-     )
-
-                    //- Value will be supplied by the backend.
-                    input(type="submit", value=action)
+    script(type="module", src="/static/scripts/management.js") 
