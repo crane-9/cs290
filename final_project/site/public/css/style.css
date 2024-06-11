@@ -97,6 +97,11 @@ textarea {
     resize: vertical;
 }
 
+button:disabled {
+    background-color: var(--greys-2);
+    color: var(--black);
+}
+
 
 /* HEADINGS */
 

@@ -22,6 +22,10 @@ class Counter {
         this.currentCount --;
         if (display)  this.display();
     }
+
+    getCount(): number {
+        return this.currentCount;
+    }
 }
 
 export { Counter };

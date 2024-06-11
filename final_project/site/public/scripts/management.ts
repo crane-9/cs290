@@ -5,8 +5,8 @@ import { Counter } from "./counter.js";
 
 
 // Grab buttons
-const editBtn = document.getElementById("edit");
-const deleteBtn = document.getElementById("delete");
+const editBtn = document.getElementById("edit") as HTMLButtonElement;
+const deleteBtn = document.getElementById("delete") as HTMLButtonElement;
 
 // Grab all selections
 const selectors = document.querySelectorAll("input[name^=select-][type=checkbox]");
@@ -18,7 +18,7 @@ let selectedPages: Set<HTMLInputElement> = new Set();
 const counter = new Counter();
 
 
-// Setting up selection
+// SELECTIONS
 
 /**
  * Sets up each checkbox to trigger the selection counter.
@@ -41,15 +41,11 @@ function setupSelection(selector: HTMLInputElement): void {
             counter.decrease();
             selectedPages.delete(selector);
         }
+        setButtonStatus();
     });
 }
 
-// Grab all selectors and set each up.
-for (let s of selectors)  setupSelection(s as HTMLInputElement);
-counter.display();  // Then display.
-
-
-// EDITING
+// EDIT BUTTON
 
 /**
  * Directs to a page where the user can edit the *first* selected entry. Unfortunately not multiple at once....?
@@ -59,7 +55,7 @@ function createEdit(): void {
 }
 
 
-// DELETING
+// DELETE BUTTON
 
 /**
  * Creates a request to delete ALL selected entries.
@@ -67,3 +63,18 @@ function createEdit(): void {
 function requestDelete(): void {
 
 }
+
+
+// SHARED
+
+/** Sets buttons' status based on counter status. */
+function setButtonStatus(): void {
+     editBtn.disabled = deleteBtn.disabled = counter.getCount() < 1;
+}
+
+// SETUP
+
+// Grab all selectors and set each up.
+for (let s of selectors)  setupSelection(s as HTMLInputElement);
+counter.display();  // Then display.
+setButtonStatus();
