@@ -46,6 +46,7 @@ adminRouter.get("/database", (req: Request, res: Response) => {
     res.render('admin-database', {meta: res.locals['meta']});
 });
 
+
 adminRouter.get("/database/:table", async (req: Request, res: Response) => {
     const tableName = utils.capitalize(req.params.table);
     // Get data on the specific table.
@@ -72,7 +73,6 @@ adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
         name: tableName
     }
     // Validate table is valid.
-
     // If not raise error, ummm and it doesn't have to display on the admin template bc they shouldn't be pokin about!
 
     res.render('admin-table-entry', {
@@ -135,7 +135,9 @@ adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
 
 adminRouter.get("/pages/edit-page", async (req: Request, res: Response) => {
     // Get the entry we're editing.
+    const entryID = req.query['editPath'];
 
+    console.debug(entryID);
     
     res.render('admin-table-entry', {
         table: {

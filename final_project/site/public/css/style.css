@@ -97,8 +97,8 @@ textarea {
     resize: vertical;
 }
 
-button:disabled {
-    background-color: var(--greys-2);
+:disabled {
+    background: var(--greys-2)!important;
     color: var(--black);
 }
 

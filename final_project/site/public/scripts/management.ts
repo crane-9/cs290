@@ -5,10 +5,13 @@ import { Counter } from "./counter.js";
 
 
 // Grab buttons
-const editBtn = document.getElementById("edit") as HTMLButtonElement;
-const deleteBtn = document.getElementById("delete") as HTMLButtonElement;
+const editBtn = document.getElementById("edit") as HTMLInputElement;
+const deleteBtn = document.getElementById("delete") as HTMLInputElement;
 
-// Grab all selections
+// Holds selected for easy submission via builtin form behavior.
+const selectedInput = document.getElementById("rows-selected") as HTMLInputElement;
+
+// Grab all selections.
 const selectors = document.querySelectorAll("input[name^=select-][type=checkbox]");
 
 // Set that will hold the selected.
@@ -16,6 +19,22 @@ let selectedPages: Set<HTMLInputElement> = new Set();
 
 // Create counter instance.
 const counter = new Counter();
+
+
+// SHARED / HELPER functions
+
+/** Updates the value of the hidden input holding the IDs/Paths of the selected. */
+function updateSelected(): void {
+    selectedInput.value = Array.from(selectedPages, (v: HTMLInputElement, k: number) => {
+        return v.id.split(/^select-/)[1];
+    }).join(",");
+}
+
+
+/** Sets buttons' status based on counter status. */
+function setButtonStatus(): void {
+    editBtn.disabled = deleteBtn.disabled = counter.getCount() < 1;
+}
 
 
 // SELECTIONS
@@ -42,35 +61,10 @@ function setupSelection(selector: HTMLInputElement): void {
             selectedPages.delete(selector);
         }
         setButtonStatus();
+        updateSelected();
     });
 }
 
-// EDIT BUTTON
-
-/**
- * Directs to a page where the user can edit the *first* selected entry. Unfortunately not multiple at once....?
- */
-function createEdit(): void {
-
-}
-
-
-// DELETE BUTTON
-
-/**
- * Creates a request to delete ALL selected entries.
- */
-function requestDelete(): void {
-
-}
-
-
-// SHARED
-
-/** Sets buttons' status based on counter status. */
-function setButtonStatus(): void {
-     editBtn.disabled = deleteBtn.disabled = counter.getCount() < 1;
-}
 
 // SETUP
 
@@ -78,3 +72,4 @@ function setButtonStatus(): void {
 for (let s of selectors)  setupSelection(s as HTMLInputElement);
 counter.display();  // Then display.
 setButtonStatus();
+updateSelected();

@@ -63,13 +63,18 @@ html
                         td#selection-counter(colspan=2)
                         td#total-counter(colspan=table.properties.length - 1) #{table.size} #{table.name} entries total
 
-                .controls 
+                form.controls
                     if pages
                         a.btn#new(href=`/admin/pages/new-page`) New Page
                     else
                         a.btn#new(href=`/admin/database/${table.name}/new-entry`.toLowerCase()) New Entry
 
-                    button#edit(type="button") Edit Entry
-                    button#delete(type="button") Delete Entries
+                    input(type="hidden" name="ids" id="rows-selected")
+
+                    - const editDest = page? 'pages/edit-page' : table.name.toLowerCase();
+                    - const deleteDest = page? 'page' : editDest;
+                    input#edit(type="submit" formaction=`/admin/${editDest}` value="Edit Entry")
+                    input#delete(type="submit" formmethod="POST" formaction=`/admin/api/delete/${deleteDest}`, value="Delete Entries")
                         
     script(type="module", src="/static/scripts/management.js") 
+    include includes/admin/feedback.pug

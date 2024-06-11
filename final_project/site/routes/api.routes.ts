@@ -43,6 +43,8 @@ apiRouter.post("/auth", express.urlencoded({ extended: true }), (req: Request, r
 });
 
 
+// CREATE
+
 /**
  * Creates a new page.
  */
@@ -56,13 +58,21 @@ apiRouter.post("/create/page", express.urlencoded({ extended: true}), async (req
 });
 
 
+/**
+ * Creates a new entry in the given table.
+ */
 apiRouter.post("/create/:table", express.urlencoded({ extended: true }), async (req: Request, res: Response) => {
     const tableName = capitalize(req.params.table);
     console.log(tableName, req.body);
 
+    // Validate tablename.
+    // Do Stuff.
+
     res.redirect("/admin/database/" + req.params.table);
 });
 
+
+// UPDATE
 
 /**
  * Endpoint to update general site information.
@@ -77,5 +87,37 @@ apiRouter.post("/update/site-info",  express.urlencoded({ extended: true }), asy
     res.redirect("/admin?status=success&message=Data%20successfully%20updated.")
 });
 
+
+// DELETE
+
+/**
+ * Deletes one or more pages. 
+ * Protects against deletion of canonical pages. Attempting to delete canonical pages has zero result.
+ */
+apiRouter.post("/delete/page", express.urlencoded({ extended: true }), async (req: Request, res: Response) => {
+    const idsRaw = req.body['ids'];
+    
+    // Protection.
+    if (!idsRaw) {
+        return res.redirect("/admin/pages?status=error&message=Invalid%20request.");
+    }
+
+    // Now work with database.
+    const db = new DB();
+    const pages = idsRaw.split(',');
+
+    for (let path of pages) {
+        await db.deletePage(path);
+    }
+
+    res.redirect("/admin/pages?status=success&message=Non-builtin%20pages%20removed.");
+});
+
+/**
+ * Deletes entries from a table.
+ */
+apiRouter.post("/delete/:table", express.urlencoded({ extended: true }), async (req: Request, res: Response) => {
+    
+});
 
 export default apiRouter;

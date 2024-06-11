@@ -145,8 +145,8 @@ tr.canonical {
     padding: 1em 1ex;
 }
 
-.controls button, .controls .btn{
-    font-size: 12px;
+.controls > * {
+    font-size: 12px!important;
 }
 
 .controls #new {

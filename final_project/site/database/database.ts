@@ -208,11 +208,12 @@ class DB {
     }
 
     /**
-     * Deletes a single piece of artwork from the database by ID.
+     * Deletes a single row from a table by ID.
+     * @param table The table to delete from.
      * @param id ID of artwork to delete.
      */
-    async deleteArtwork(id: number): Promise<void> {
-        await this.__run("DELETE FROM Artwork WHERE Id = ?;", [id]);
+    async deleteFromTable(table: string, id: number): Promise<void> {
+        await this.__run(`DELETE FROM ${table} WHERE Id = ?;`, [id]);
     }
 }
 
