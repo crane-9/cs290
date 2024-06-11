@@ -131,10 +131,28 @@ class DB {
 
     // UPDATE
 
+    /**
+     * Updates a single row of a table.
+     * @param table The table to update.
+     * @param info The new information to set.
+     */
+    async updateTable(table: string, info: any): Promise<void> {
+        const query = generateUpdateArgs(info);
+        console.info(query);
+
+        await this.__run(`UPDATE ${table} SET ${query.query} WHERE Id = ${info.Id};`, query.params);
+    }
+
+    /**
+     * Updates information for a single page in the database.
+     * @param info New information for the page.
+     */
     async updatePageInfo(info: interfaces.PageInfo): Promise<void> {
         const query = generateUpdateArgs(info);
+        console.info(info);
+        console.info(query);
 
-        await this.__run(`UPDATE PageInfo SET ${query.query} WHERE Id = ${info.Path};`, query.params);
+        await this.__run(`UPDATE PageInfo SET ${query.query} WHERE Path = '${info.Path}';`, query.params);
     }
 
     async updateSiteInfo({ title, description, author }: interfaces.WebsiteInfoIncoming): Promise<void> {

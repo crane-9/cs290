@@ -11,6 +11,7 @@ import DB from "../database/database.js";
 
 import authMiddleware from "../middleware/auth.middleware.js";
 import { validateTableAccess } from "../database/tables.js";
+import { capitalize } from "../utils/basics.js";
 
 
 const apiRouter = express.Router();
@@ -108,11 +109,19 @@ apiRouter.post("/update/site-info",  async (req: Request, res: Response) => {
  * 
  */
 apiRouter.post("/update/:table", async (req: Request, res: Response) => {
+    // Protect.
+    if (!validateTableAccess(req.params.table)) {
+        return res.redirect(`/admin/database/${req.params.table}?status=error&message=Invalid%20request.`);
+    }
+    
+    // Get table name
+    const tableName = capitalize(req.params.table);
+
+    // Update data.
     const db = new DB();
+    await db.updateTable(tableName, req.body);
 
-    // await db.updatePageInfo(req.body);
-
-    res.redirect(`/admin/pages?status=success&message=${req.params.table}%20updated.`);
+    res.redirect(`/admin/database/${req.params.table}?status=success&message=${tableName}%20updated.`);
 });
 
 

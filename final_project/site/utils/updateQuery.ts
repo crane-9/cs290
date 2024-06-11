@@ -24,6 +24,7 @@ function generateUpdateArgs(pairs: Record<string, any>): UpdateStatement {
 
     let count = 0;
     for (let [property, value] of Object.entries(pairs)) {
+        count ++;
         // Skip Id and Path, these are unchanging values.
         if (property == "Id" || property == "Path") continue;
         

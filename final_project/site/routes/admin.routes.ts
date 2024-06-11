@@ -91,9 +91,11 @@ adminRouter.get("/database/:table/edit-entry", async (req: Request, res: Respons
     const rawIDs = req.query['ids'] as string;
     const entryID = rawIDs.split(",")[0];
 
+    console.info(rawIDs, entryID);
+
     // Protection.
     if (!validateTableAccess(req.params.table) || !entryID) {
-        return res.redirect("/admin/pages?status=error&message=Invalid%20request.");
+        return res.redirect(`/admin/database/${req.params.table}?status=error&message=Invalid%20request.`);
     }
 
     // Carry on, get specific table and its data.
