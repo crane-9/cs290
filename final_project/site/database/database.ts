@@ -21,7 +21,7 @@ const TableProperties: Record<string, string[]> = {
         "Description",
         "CollectionName",
         "Medium",
-        "Credit",
+        "Credits",
     ]
 };
 
@@ -132,12 +132,16 @@ class DB {
         return this.__getAll("SELECT * FROM PageInfo ORDER BY Canonical DESC, Path ASC;");
     }
 
+    async getEntry(table: string, id: string): Promise<any> {
+        return this.__get(`SELECT * FROM ${table} WHERE Id = ?;`, [id]);
+    }
+
     /**
      * Gets all non-hidden pages to display on the sitemap.
      * @returns Array of page info.
      */
     async getSitemapPages(): Promise<interfaces.PageInfo[]> {
-        return this.__getAll("SELECT Path, Title FROM PageInfo WHERE Hidden = False ORDER BY Canonical Asc;")
+        return this.__getAll("SELECT Path, Title FROM PageInfo WHERE Hidden = False ORDER BY Canonical Asc;");
     }
 
     /**
@@ -162,8 +166,8 @@ class DB {
 
     // CREATE
 
-    async insertArtwork({Name, FileName, AltText, Date, Description, CollectionName, Medium, Credit}: interfaces.ArtworkIncoming): Promise<void> {
-        return this.__run("INSERT INTO Artwork (Name, Filename, AltText, Date, Description, CollectionName, Medium, Credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?),", [Name, FileName, AltText, Date, Description, CollectionName, Medium, Credit]);
+    async insertArtwork({Name, FileName, AltText, Date, Description, CollectionName, Medium, Credits}: interfaces.ArtworkIncoming): Promise<void> {
+        return this.__run("INSERT INTO Artwork (Name, Filename, AltText, Date, Description, CollectionName, Medium, Credits) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", [Name, FileName, AltText, Date, Description, CollectionName, Medium, Credits]);
     }
 
     async createPage({ Path, Title, BodyText, Hidden }: interfaces.PageInfoIncoming): Promise<void> {
@@ -171,6 +175,10 @@ class DB {
     }
 
     // UPDATE
+
+    async updatePageInfo({ }): Promise<void> {
+        
+    }
 
     async updateSiteInfo({ title, description, author }: interfaces.WebsiteInfoIncoming): Promise<void> {
         // Gather what values need to be set.

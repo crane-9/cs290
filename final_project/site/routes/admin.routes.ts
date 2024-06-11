@@ -3,7 +3,7 @@
  */
 
 import cookieParser from "cookie-parser";
-import express, { Request, Response} from "express";
+import express, { Request, Response, raw} from "express";
 
 import authMiddleware from "../middleware/auth.middleware.js";
 import apiRouter from "./api.routes.js";
@@ -60,7 +60,8 @@ adminRouter.get("/database/:table", async (req: Request, res: Response) => {
             size: results.length,
             properties: TableProperties[tableName]
         }, 
-        entries: results
+        entries: results,
+        page: false
     });
 });
 
@@ -83,7 +84,18 @@ adminRouter.get("/database/:table/new-entry", (req: Request, res: Response) => {
     });
 });
 
-adminRouter.get("/database/:table/edit-entry", (req: Request, res: Response) => {
+adminRouter.get("/database/:table/edit-entry", async (req: Request, res: Response) => {
+    // Get the entry we're editing.
+    const rawIDs = req.query['ids'] as string;
+    const entryID = rawIDs.split(",")[0];
+
+    console.info(rawIDs);
+
+    // Protection.
+    if (!entryID) {
+        return res.redirect("/admin/pages?status=error&message=Invalid%20request.");
+    }
+
     const tableName = utils.capitalize(req.params.table);
     // Get data on specific table! i think. yeah.
     const table = {
@@ -93,13 +105,17 @@ adminRouter.get("/database/:table/edit-entry", (req: Request, res: Response) => 
     }
     // Validate table is valid.
 
-    // If not raise error, ummm and it doesn't have to display on the admin template bc they shouldn't be pokin about!
+    const db = res.locals['db'] as DB;
+    const currentValues = await db.getEntry(tableName, entryID) as interfaces.Artwork;
+    delete currentValues.Id;
 
     res.render('admin-table-entry', {
         ...res.locals,
         table,
         action: `Update ${tableName}`,
-        endpoint: `/admin/api/update/${req.params.table}`
+        endpoint: `/admin/api/update/${req.params.table}`,
+        placeholders: Object.values(currentValues),
+        editMode: true
     });
 });
 
@@ -135,9 +151,17 @@ adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
 
 adminRouter.get("/pages/edit-page", async (req: Request, res: Response) => {
     // Get the entry we're editing.
-    const entryID = req.query['editPath'];
+    const entryID = req.query['ids'] as string;
+    console.info(entryID);
 
-    console.debug(entryID);
+    // Protection.
+    if (!entryID) {
+        return res.redirect("/admin/pages?status=error&message=Invalid%20request.");
+    }
+    
+    // Get current data.
+    const db = res.locals['db'] as DB;
+    const currentValues = await db.getPageInfo("/" + entryID.split(",")[0]);
     
     res.render('admin-table-entry', {
         table: {
@@ -145,8 +169,10 @@ adminRouter.get("/pages/edit-page", async (req: Request, res: Response) => {
             types: PagePropertyTypes
         },
         action: "Update",
-        placeholders: [],
-        endpoint: "/admin/api/update/page"
+        placeholders: Object.values(currentValues),
+        endpoint: "/admin/api/update/page",
+        page: true,
+        editMode: true
     });
 })
 

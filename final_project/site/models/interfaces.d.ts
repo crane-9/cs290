@@ -5,7 +5,7 @@ namespace interfaces {
 
     // Data a single piece of artwork consists of.
     interface Artwork {
-        Id: number;
+        Id?: number;
         Name: string;
         FileName: string;
         AltText: string;
@@ -13,7 +13,7 @@ namespace interfaces {
         Description: string;
         CollectionName: string;
         Medium: string;
-        Credit: string;
+        Credits: string;
     }
 
     interface ArtworkIncoming extends Omit<Artwork, "Id"> {}

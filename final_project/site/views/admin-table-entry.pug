@@ -16,11 +16,18 @@ html
             )
 
                 - for (var i = 0; i < table.properties.length; ++i) {
-                    - var attrs = {id: table.properties[i], name: table.properties[i], placeholder: placeholders === undefined? table.properties[i] : placeholders[i], required: table.types[i] != "checkbox"};
+                    - const isCheckbox = table.types[i] == "checkbox";
+                    - var attrs = {id: table.properties[i], name: table.properties[i], placeholder: placeholders === undefined? table.properties[i] : placeholders[i], required: !isCheckbox && !editMode};
+
+                    if editMode 
+                        - attrs.value = attrs.placeholder
+
+                    if isCheckbox && attrs.placeholder == 1
+                        - attrs.checked = true
 
                     label(for=table.properties[i])= table.properties[i]
                         if table.types[i] == "textarea"
-                            textarea&attributes(attrs)
+                            textarea&attributes(attrs) #{attrs.value}
 
                         else
                             input(type=table.types[i])&attributes(attrs)

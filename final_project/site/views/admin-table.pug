@@ -30,7 +30,7 @@ html
 
                         //- A whole bunch of nesting for logic.
                         each entry in entries
-                            - var nameID = page? entry.Path : entry.Id;
+                            - var nameID = pages? entry.Path : entry.Id;
                             - nameID = "select-" + nameID;
 
                             tr(class=entry.Canonical? "canonical" : "")
@@ -71,8 +71,9 @@ html
 
                     input(type="hidden" name="ids" id="rows-selected")
 
-                    - const editDest = page? 'pages/edit-page' : table.name.toLowerCase();
-                    - const deleteDest = page? 'page' : editDest;
+                    - const editDest = pages? 'pages/edit-page' : `database/${table.name.toLowerCase()}/edit-entry`;
+                    - const deleteDest = pages? 'page' : table.name.toLowerCase();
+
                     input#edit(type="submit" formaction=`/admin/${editDest}` value="Edit Entry")
                     input#delete(type="submit" formmethod="POST" formaction=`/admin/api/delete/${deleteDest}`, value="Delete Entries")
                         
