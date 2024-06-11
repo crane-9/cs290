@@ -178,6 +178,8 @@ By default, the server will run on port 8080. This may be changed in [`config.ts
 
 - Running `server.js` from any directory other than `site/`, pages cannot be rendered.
 - Issue in one of the JS libraries (MarkedJS) on Node v20.12.1 -- ensure latest version of Node to avoid.
+- Updating a boolean value does not appear to work, going from either true to false or false to true.
+    - This could easily be fixed using the information I've set in the `database/properties.ts` file! I just may not have time to do it.
 
 
 ## Attributions
