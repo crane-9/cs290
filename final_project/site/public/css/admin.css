@@ -109,6 +109,18 @@ label:has([required])::after {
     filter: drop-shadow(1px 1px 20px var(--reds-0));
 }
 
+label:has([readonly])::after {
+    content: "read-only";
+
+    position: absolute;
+    right: 1em;
+
+    color: var(--greys-2);
+    font: var(--body-font);
+    font-size: 0.75rem;
+    font-style: italic;
+
+}
 
 /* TABLE styling */
 
