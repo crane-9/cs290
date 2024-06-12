@@ -1,5 +1,7 @@
 # CS290 Final Project
 
+> Site re-reviews can be found in the [root README](../README.md).
+
 - [Design](#design)
     - [Base Concept](#base-concept)
     - [Mockup](#mockup-drawing)
