@@ -174,6 +174,31 @@ This command simply runs the compiled `server.js` with Node.
 By default, the server will run on port 8080. This may be changed in [`config.ts`](./site/config/config.ts).
 
 
+### Testing
+
+To test site functionality, navigate to `/admin`, and login with username and password "admin".
+
+#### Adding Artwork
+
+Navigate to the "ARTWORK" tab beneath the "DATABASE" tab. If the database was initialized correctly, there should be four artwork entries. Hit the "NEW ENTRY" button.
+
+On the "New Entry" page, enter whatever information you wish, so long as the field labelled "FILE NAME" is set to "5.png".
+
+Now, return to the home/index page. A fifth painting should now appear.
+
+
+#### Adding a Page
+
+Similar to the last test, navigate to the `/admin/pages` page, and hit the "NEW PAGE" button. Enter whatever information you would like for the page URL path and title, and use some markdown in the "BODY TEXT" box.
+
+Once done, you should be redirected to `/admin/pages`. Your page should be listed at the bottom, beneath the highlighted pages. Clicking on the link in the "Path" column should open a new tab with your custom page and its customized content.
+
+
+#### Editing Basic Site Info
+
+Navigating to `/admin/config` should open a form with inputs for the site title, author, and description. Change any combination of these values, hit "APPLY CHANGES", and verify the information has changed on the `/admin` page, which you should immediately be redirected to. Any base page should reflect this change in its `<head>` element.
+
+
 ## Issues
 
 - Running `server.js` from any directory other than `site/`, pages cannot be rendered.

@@ -11,7 +11,7 @@ import DB from "../database/database.js";
 
 import authMiddleware from "../middleware/auth.middleware.js";
 import { validateTableAccess } from "../database/tables.js";
-import { capitalize } from "../utils/basics.js";
+import { capitalize, validatePath } from "../utils/basics.js";
 
 
 const apiRouter = express.Router();
@@ -55,12 +55,14 @@ apiRouter.post("/auth", (req: Request, res: Response) => {
  * Creates a new page.
  */
 apiRouter.post("/create/page", async (req: Request, res: Response) => {
-    console.log(req.body);
+    if (!validatePath(req.body)) {
+        return res.redirect("/admin/pages/new-page?status=error&message=Invalid%20character(s)%20in%20'Path'.")
+    }
 
     const db = new DB();
     await db.createPage(req.body);
 
-    res.redirect('/admin/pages');
+    res.redirect('/admin/pages?status=success&message=Page%20created%20successfully.');
 });
 
 

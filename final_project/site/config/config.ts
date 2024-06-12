@@ -14,7 +14,6 @@ const DB_PATH = path.join(__dirname, "../dev.db"); // Not super important where 
 // Important note: this is ONLY for the sake of the dev demo, this is unwise implementation in production!
 const passKey = crypto.randomBytes(16).toString("hex");
 
-
 export {
     PUBLIC_DIR,
     PORT,

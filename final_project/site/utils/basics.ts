@@ -9,7 +9,16 @@ function capitalize(inString: string): string {
 }
 
 
+/**
+ * Validates that the new page's path is valid.
+ * @param param0 The incoming information about the new page.
+ * @returns True if valid, false if not.
+ */
+function validatePath({Path}: interfaces.PageInfoIncoming): boolean {
+    return !Path.match(/[!@#$%^&*\W(),.\/\\]/);
+}
+
 export {
     capitalize,
-
+    validatePath,
 }
