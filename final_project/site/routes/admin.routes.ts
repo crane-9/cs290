@@ -33,20 +33,28 @@ adminRouter.use(dataMiddleware);
  */
 
 // Base pages.
-adminRouter.get("/", (req: Request, res: Response) => {
-    res.render('admin', {meta: res.locals['meta']});
+adminRouter.get("/", async (req: Request, res: Response) => {
+    const db = res.locals['db'] as DB;
+
+    const pages = await db.getAllPages();
+    const tables = await db.getDatabaseSummary();
+    
+    res.render('admin', {...res.locals, pages, tables });
 });
 
 adminRouter.get("/auth", (req: Request, res: Response) => {
-    res.render('auth', {meta: res.locals['meta']});
+    res.render('auth', {...res.locals,});
 });
 
 adminRouter.get("/config", (req: Request, res: Response) => {
-    res.render('admin-config', {meta: res.locals['meta']});
+    res.render('admin-config', {...res.locals,});
 });
 
-adminRouter.get("/database", (req: Request, res: Response) => {
-    res.render('admin-database', {meta: res.locals['meta']});
+adminRouter.get("/database", async (req: Request, res: Response) => {
+    const db = res.locals['db'] as DB;
+    const tables = await db.getDatabaseSummary();
+
+    res.render('admin-database', {...res.locals, tables});
 });
 
 
@@ -116,6 +124,7 @@ adminRouter.get("/database/:table/edit-entry", async (req: Request, res: Respons
     });
 });
 
+
 adminRouter.get("/pages", async (req: Request, res: Response) => {
     const db = res.locals['db'] as DB;
     const entries = await db.getAllPages();
@@ -127,7 +136,8 @@ adminRouter.get("/pages", async (req: Request, res: Response) => {
     };
 
     res.render('admin-table', {...res.locals, table, entries, pages: true});
-})
+});
+
 
 adminRouter.get("/pages/new-page", async (req: Request, res: Response) => {
     res.render('admin-table-entry', {

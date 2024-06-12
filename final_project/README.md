@@ -190,7 +190,3 @@ By default, the server will run on port 8080. This may be changed in [`config.ts
 todo:
 
 - mwin lwyout with brick.................. no. do the carousel.
-- create entry page using the same sorta awesome stuff we learned from making the table page
-- making the make the page page
-- update schema. ok i did that what now.
-- 

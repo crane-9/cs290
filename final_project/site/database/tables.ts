@@ -9,6 +9,8 @@ const AccessibleTables = {
     artwork: "Artwork"
 };
 
+const ValidTableNames = Object.values(AccessibleTables);
+
 
 /**
  * Returns a simple true/false for table access validation.
@@ -16,7 +18,7 @@ const AccessibleTables = {
  * @returns True if valid for access, false otherwise.
  */
 function validateTableAccess(table: string): boolean {
-    return Object.values(AccessibleTables).includes(capitalize(table));
+    return ValidTableNames.includes(capitalize(table));
 }
 
-export { AccessibleTables, validateTableAccess };
+export { AccessibleTables, validateTableAccess, ValidTableNames };

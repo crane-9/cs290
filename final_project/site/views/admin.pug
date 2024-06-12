@@ -12,20 +12,40 @@ html
             main
                 h2 Meta Information
 
-                .grid-display
-                    span Site Title
-                    span #{meta.Title}
+                .simple-vertical.indent
+                    label Site Title
+                        input(type="text" readonly value=meta.Title)
 
-                    span Site Author
-                    span #{meta.Author}
+                    label Site Author
+                        input(type="text" readonly value=meta.Author)
 
-                    span Site Description
-                    span #{meta.Description}
+                    label Site Description
+                        input(type="text" readonly value=meta.Description)
+
+                    a.btn(href="/admin/config") Edit Site Info
 
                 h2 Pages
-                //- Maybe I could ghhhhhhhhhhhhhhh do something here. yeah.
+
+                .simple-vertical.indent
+                    
+                    each page of pages
+                        .heading-font(class=page.Canonical? "": "custom-page")
+                            a(href="/" + page.Path) #{page.Title} 
+
+                    span #{pages.length} Total Pages
+
+                    a.btn(href="/admin/pages") Manage Pages
 
                 h2 Database Summary
-                //- List how many tables and how many items per table
+
+                .simple-vertical.indent
+
+                    each table of tables 
+                        .heading-font
+                            span 
+                                a(href=`/admin/database/${table.name}`.toLowerCase()) #{table.name}
+                                | : #{table.count} Total Entries
+
+                    a.btn(href="/admin/database") Manage Database
 
                 include includes/admin/feedback.pug

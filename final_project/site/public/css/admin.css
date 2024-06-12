@@ -46,18 +46,17 @@ form#input, form#login {
     margin: 5em auto 2em;
 }
 
-form#site-info {
-    margin-left: 3em;
-}
-
-form.simple-vertical {
+.simple-vertical {
     display: flex;
     flex-flow: column nowrap;
     gap: 1em;
 }
 
+.simple-vertical > a {
+    align-self: flex-end;
+}
 
-form.simple-vertical label {
+.simple-vertical label {
     display: grid;
     gap: 2em;
     grid-template-columns: 1fr 1fr;

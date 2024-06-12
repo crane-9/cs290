@@ -154,6 +154,9 @@ main {
     padding: 1em 2em;
 }
 
+.indent {
+    margin-left: 3em;
+}
 
 .social-medias {
     display: flex;

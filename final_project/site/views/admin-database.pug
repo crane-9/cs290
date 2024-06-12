@@ -11,4 +11,19 @@ html
             include includes/admin/nav.pug
 
             main
-                p hello content
+                //- Fairly basic stats for the database. Could be much more interesting in the future!
+                h2 Database Summary
+                
+                .simple-vertical.indent.heading-font 
+                        span Total Tables: #{tables.length}
+                        //- Add up all entries.
+                        span Total Entries: #{tables.reduce((accumulated, current) => accumulated + current.count, 0)}
+
+                h2 Tables 
+
+                .simple-vertical.indent 
+
+                    each table of tables 
+                        .heading-font
+                            a(href=`/admin/database/${table.name}`) #{table.name}
+                            | : #{table.count} Total Entries

@@ -5,7 +5,7 @@ import { Database } from "sqlite3";
 import { DB_PATH } from "../config/config.js";
 import { generateUpdateArgs } from "../utils/updateQuery.js";
 
-import { AccessibleTables } from "./tables.js";
+import { AccessibleTables, ValidTableNames } from "./tables.js";
 import { capitalize } from "../utils/basics.js";
 
 
@@ -73,7 +73,7 @@ class DB {
      */
     async getAllEntries(table: string): Promise<any[]> {
         // Protection.
-        if (!Object.values(AccessibleTables).includes(table)) {
+        if (!ValidTableNames.includes(table)) {
             throw {name: "Invalid Table Access", message: "Inaccessible table."};
         }
 
@@ -117,6 +117,24 @@ class DB {
      */
     async getSiteInfo(): Promise<interfaces.WebsiteInfo> {
         return this.__get("SELECT Title, Description, Author FROM WebsiteInfo WHERE Id = 1;");
+    }
+
+    /**
+     * Returns a summary of accessible tables.
+     * @returns A record that maps the table name to number of total entries.
+     */
+    async getDatabaseSummary(): Promise<Record<string, number>[]> {
+        let promises: Promise<Record<string, number>>[] = [];
+
+        // Collect all promises.
+        for (let tableName of ValidTableNames) {
+            promises.push(await this.__get(`SELECT COUNT(*) AS count FROM ${tableName};`));
+        }
+        
+        // Resolve all and create an array.
+        return Array.from(await Promise.all(promises), (v: any, k: number) => {
+            return {...v, name: ValidTableNames[k]}
+        });
     }
 
     // CREATE
