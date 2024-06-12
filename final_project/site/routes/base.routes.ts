@@ -17,8 +17,13 @@ baseRouter.use(pageMiddleware);
 /**
  * Index page.
  */
-baseRouter.get("/", (req: Request, res: Response) => {
-    res.render('index', res.locals);
+baseRouter.get("/", async (req: Request, res: Response) => {
+    const db = res.locals['db'] as DB;
+
+    const artwork = await db.getAllEntries("Artwork");
+    console.log(artwork);
+
+    res.render('index', {...res.locals, artwork});
 });
 
 baseRouter.get("/index", (req: Request, res: Response) => {
@@ -53,9 +58,11 @@ baseRouter.get("/sitemap", async (req: Request, res: Response) => {
 
 
 // All other custom pages.
-baseRouter.get("/:custom", (req: Request, res: Response) => {
-    // Render customized page with customized values!
-    res.render('custom', res.locals);
+baseRouter.get("/:custom", (req: Request, res: Response, next: Function) => {
+    if (res.locals['page'])
+        // Render customized page with customized values!
+        res.render('custom', res.locals);
+    else next();
 })
 
 

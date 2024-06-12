@@ -188,6 +188,11 @@ tr.canonical {
     grid-template-columns: 1fr 1fr;
 }
 
+.custom-page::after{
+    content: "(Custom page)";
+    color: var(--greys-2);
+}
+
 /* MOBILE STYLING */
 
 @media (max-width: 950px) {

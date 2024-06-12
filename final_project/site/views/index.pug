@@ -6,13 +6,12 @@ html
         include includes/header.pug
 
         main#home
-            //- the idea here is to make it a higlight slides thing. either like i did for worm boy iii or more accurately, a horizontal overflow that scrolls . no idea. hmm.  
             .art-highlight
-                .art-slide
-                    img(src="/static/img/1.png", alt="Drawing one")
-                
-                .art-slide
-                    img(src="/static/img/2.png", alt="Drawing one")
+                each art of artwork 
+                    img.artwork(
+                        src="/static/img/" + art.FileName
+                        alt=art.AltText
+                    )
 
             .body-text!= page.BodyText
 
