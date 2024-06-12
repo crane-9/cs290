@@ -184,9 +184,4 @@ By default, the server will run on port 8080. This may be changed in [`config.ts
 
 ## Attributions
 
-- [Favicon](https://favicon.io/emoji-favicons/artist-palette) 
-
-
-todo:
-
-- mwin lwyout with brick.................. no. do the carousel.
+- [Favicon](https://favicon.io/emoji-favicons/artist-palette)
